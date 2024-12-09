@@ -22,6 +22,11 @@ function adjustRootDimensions(): void {
     [w, h] = [window.innerWidth, window.innerHeight];
   }
 
+  const htmlEl = document.documentElement;
+  htmlEl.style.fontSize =
+    Number(getComputedStyle(htmlEl).fontSize.replace('px', '')) *
+      Math.sqrt(window.innerWidth / 568) +
+    'px';
   [rootEl.style.width, rootEl.style.height] = [`${w}px`, `${h}px`];
 }
 
