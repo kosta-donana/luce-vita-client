@@ -22,11 +22,11 @@ function adjustRootDimensions(): void {
     [w, h] = [window.innerWidth, window.innerHeight];
   }
 
-  const htmlEl = document.documentElement;
-  htmlEl.style.fontSize =
-    Number(getComputedStyle(htmlEl).fontSize.replace('px', '')) *
-      Math.sqrt(window.innerWidth / 568) +
-    'px';
+  // html 요소의 폰트 크기(rem 단위의 기준)를 뷰포트 너비에 알맞게 변경하기
+  document.documentElement.style.fontSize =
+    Math.round(16 * Math.cbrt(window.innerWidth / 1536) * 100) / 100 + 'px';
+
+  // root 요소의 너비 값과 높이 값 설정하기
   [rootEl.style.width, rootEl.style.height] = [`${w}px`, `${h}px`];
 }
 
