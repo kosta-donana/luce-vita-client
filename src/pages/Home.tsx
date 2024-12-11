@@ -4,7 +4,7 @@ import { TravelEmpty } from '../components/home/TravelEmpty';
 
 export function Home() {
   return (
-    <div className="p-4">
+    <div className="p-6">
       {/* 헤더 */}
       <header>헤더</header>
 
