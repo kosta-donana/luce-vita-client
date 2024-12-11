@@ -2,10 +2,11 @@ import { DateBlock } from '../components/home/DateBlock';
 import { TravelCard } from '../components/home/TravelCard';
 import { TravelEmpty } from '../components/home/TravelEmpty';
 import { Header } from '../components/home/Header';
+import { CreateTravelButton } from '../components/home/CreateTravelButton';
 
 export function Home() {
   return (
-    <div className="p-6">
+    <div className="p-6 relative">
       {/* 헤더 */}
       <Header />
 
@@ -36,7 +37,7 @@ export function Home() {
       <TravelEmpty />
 
       {/* 추가 버튼 */}
-      <div>(+)</div>
+      <CreateTravelButton />
     </div>
   );
 }
