@@ -1,12 +1,13 @@
 import { DateBlock } from '../components/home/DateBlock';
 import { TravelCard } from '../components/home/TravelCard';
 import { TravelEmpty } from '../components/home/TravelEmpty';
+import { Header } from '../components/home/Header';
 
 export function Home() {
   return (
     <div className="p-6">
       {/* 헤더 */}
-      <header>헤더</header>
+      <Header />
 
       {/* 여행 일정 캘린더 */}
       <div className="flex flex-col justify-center p-6 gap-3 rounded-xl bg-gray-300">
