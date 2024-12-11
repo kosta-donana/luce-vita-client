@@ -24,6 +24,9 @@ export default {
           600: '#52b69a',
         },
       },
+      aspectRatio: {
+        '2/1': '2 / 1',
+      },
     },
   },
   plugins: [],

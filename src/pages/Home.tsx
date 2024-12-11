@@ -1,8 +1,15 @@
 import { DateBlock } from '../components/home/DateBlock';
+import { TravelCard } from '../components/home/TravelCard';
+import { TravelEmpty } from '../components/home/TravelEmpty';
+import { Header } from '../components/home/Header';
+import { CreateTravelButton } from '../components/home/CreateTravelButton';
 
 export function Home() {
   return (
-    <div className="p-4">
+    <div className="p-6 relative">
+      {/* 헤더 */}
+      <Header />
+
       {/* 여행 일정 캘린더 */}
       <div className="flex flex-col justify-center p-6 gap-3 rounded-xl bg-gray-300">
         {/* 일정 상태 */}
@@ -12,27 +19,9 @@ export function Home() {
 
         {/* 캘린더 */}
         <div className="w-full grid grid-rows-3 grid-cols-7 gap-2 px-2">
-          <DateBlock>1</DateBlock>
-          <DateBlock>2</DateBlock>
-          <DateBlock>3</DateBlock>
-          <DateBlock>4</DateBlock>
-          <DateBlock>5</DateBlock>
-          <DateBlock isTravel={true}>6</DateBlock>
-          <DateBlock isTravel={true}>7</DateBlock>
-          <DateBlock isTravel={true}>8</DateBlock>
-          <DateBlock isTravel={true}>9</DateBlock>
-          <DateBlock isTravel={true}>10</DateBlock>
-          <DateBlock isTravel={true}>11</DateBlock>
-          <DateBlock>12</DateBlock>
-          <DateBlock>13</DateBlock>
-          <DateBlock>14</DateBlock>
-          <DateBlock>15</DateBlock>
-          <DateBlock>16</DateBlock>
-          <DateBlock>17</DateBlock>
-          <DateBlock>18</DateBlock>
-          <DateBlock>19</DateBlock>
-          <DateBlock>20</DateBlock>
-          <DateBlock>21</DateBlock>
+          {Array.from({ length: 21 }, (_, i) => (
+            <DateBlock isTravel={6 <= i && i <= 11 ? true : false}>{(i + 1).toString()}</DateBlock>
+          ))}
         </div>
 
         {/* 예정일 계산 */}
@@ -41,8 +30,14 @@ export function Home() {
         </div>
       </div>
 
-      {/* 여행의 제목 */}
-      <div>여행의 제목</div>
+      {/* 예정된 여행 카드 */}
+      <TravelCard />
+
+      {/* 빈 여행 카드 자리 */}
+      <TravelEmpty />
+
+      {/* 추가 버튼 */}
+      <CreateTravelButton />
     </div>
   );
 }
