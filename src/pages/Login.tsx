@@ -2,7 +2,7 @@ export function Login() {
   return (
     <div className="px-16 py-20 bg-slate-200">
       {/* 제목 */}
-      <p className="mt-20 text-primary-400 text-[4rem] font-semibold text-center">Luce Vita!</p>
+      <h1 className="mt-20 text-primary-400 text-[4rem] font-semibold text-center">Luce Vita!</h1>
       {/* 소개글 */}
       <p className="mt-20 text-primary-400 text-2xl/loose font-medium text-center">
         여러분의 삶 속에서 모든 여행을 함께하며
