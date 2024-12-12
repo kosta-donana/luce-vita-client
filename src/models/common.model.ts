@@ -16,3 +16,10 @@ export type TopNavProps = {
   title: string;
   titleColor: string;
 };
+
+export type TravelArticleProps = {
+  margin?: string;
+  title: string;
+  titleColor: string;
+  textSize?: string;
+};
