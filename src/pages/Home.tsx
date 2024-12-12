@@ -1,48 +1,69 @@
-import { DateBlock } from '../components/home/DateBlock';
+import { useState } from 'react';
+import { TravelStatus } from '../components/home/TravelStatus';
 import { TravelCard } from '../components/home/TravelCard';
 import { TravelEmpty } from '../components/home/TravelEmpty';
 import { Header } from '../components/home/Header';
 import { CreateTravelButton } from '../components/home/CreateTravelButton';
 
-// interface Travel {};
+export interface Travel {
+  travelid: number;
+  userid: string;
+  countryno: number;
+  title: string;
+  startdate: string;
+  enddate: string;
+  localname: string;
+  address: string;
+  travelimg: string;
+  budgettotal: number;
+  tag: string; // tags 아닌가 ?
+  memo: string;
+}
 
-// const travels = [];
+const initialTravels: Array<Travel> = [
+  {
+    travelid: 11,
+    userid: '10dhdof03hd9dh',
+    countryno: 111,
+    title: '제목이다이것이',
+    startdate: '1202',
+    enddate: '1207',
+    localname: '금천구',
+    address: '자세한주소인것임',
+    travelimg: 'https://??????',
+    budgettotal: 110000,
+    tag: '태그1',
+    memo: '메모별것도없네이거',
+  },
+  {
+    travelid: 22,
+    userid: '32dkch109fbos6',
+    countryno: 222,
+    title: '이것도여행인것인거임',
+    startdate: '1209',
+    enddate: '1214',
+    localname: '디지털단지',
+    address: '호서호서호서호서구내식당당',
+    travelimg: 'https://!!!!!!',
+    budgettotal: 220000,
+    tag: '태그2',
+    memo: '메모를쓰지않은것이냐어째서',
+  },
+];
 
 export function Home() {
+  const [travels] = useState<Array<Travel>>(initialTravels);
+  // const [travels] = useState<Array<Travel>>([]);
+
   return (
-    <div className="p-6 relative">
-      {/* 헤더 */}
+    <div className="relative p-6 flex flex-col gap-4">
       <Header />
-
-      {/* 여기도 컴포넌트로 분리 여행상태창카드?? */}
-
-      {/* 여행 일정 캘린더 */}
-      <div className="flex flex-col justify-center p-6 gap-3 rounded-xl bg-primary-400">
-        {/* 일정 상태 */}
-        <div className="w-full text-left text-4xl font-bold text-white">
-          여행이 일주일 남았습니다 !
-        </div>
-
-        {/* 캘린더 */}
-        <div className="w-full grid grid-rows-3 grid-cols-7 gap-2 px-2">
-          {Array.from({ length: 21 }, (_, i) => (
-            <DateBlock isTravel={6 <= i && i <= 11 ? true : false}>{(i + 1).toString()}</DateBlock>
-          ))}
-        </div>
-
-        {/* 예정일 계산 */}
-        <div className="w-full text-right text-2xl text-white">
-          여행 예정일까지 <span className="text-3xl text-secondary-400">6</span>일 전
-        </div>
-      </div>
-
-      {/* 예정된 여행 카드 */}
-      <TravelCard />
-
-      {/* 빈 여행 카드 자리 */}
-      <TravelEmpty />
-
-      {/* 추가 버튼 */}
+      <TravelStatus />
+      {travels.length > 0 ? (
+        travels.map((travel) => <TravelCard key={travel.travelid} travel={travel} />)
+      ) : (
+        <TravelEmpty />
+      )}
       <CreateTravelButton />
     </div>
   );
