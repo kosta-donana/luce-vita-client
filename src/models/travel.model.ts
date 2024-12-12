@@ -1,4 +1,4 @@
-export interface Travel {
+export type Travel = {
   travelid: number;
   userid: string;
   country: {
@@ -14,4 +14,4 @@ export interface Travel {
   budgettotal: number;
   tags: string[];
   memo: string;
-}
+};
