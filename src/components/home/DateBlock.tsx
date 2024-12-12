@@ -7,8 +7,8 @@ export function DateBlock({
 }) {
   return (
     <div
-      className={`aspect-square flex justify-center items-center rounded-xl bg-gray-500 text-white text-3xl ${
-        isTravel ? 'bg-secondary-300' : 'bg-gray-500'
+      className={`aspect-square flex justify-center items-center rounded-xl font-bold bg-gray-500 text-white text-3xl ${
+        isTravel ? 'bg-secondary-400' : 'bg-slate-200'
       }`}
     >
       {children}
