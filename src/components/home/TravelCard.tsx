@@ -1,5 +1,5 @@
 import { Tag } from './Tag';
-import { Travel } from '../../pages/Home';
+import { Travel } from '../../models/travel.model';
 
 export function TravelCard({ travel }: { travel: Travel }) {
   return (
@@ -25,7 +25,7 @@ export function TravelCard({ travel }: { travel: Travel }) {
         <div>
           <div className="text-slate-400">국가, 장소</div>
           <div className="text-2xl font-bold text-gray-600">
-            <span>{travel.countryno}</span>
+            <span>{travel.country.countryname}</span>
             <span className="mr-2">,</span>
             <span>{travel.localname}</span>
           </div>
