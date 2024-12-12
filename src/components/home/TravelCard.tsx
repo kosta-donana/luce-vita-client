@@ -3,7 +3,7 @@ import { Travel } from '../../models/travel.model';
 
 export function TravelCard({ travel }: { travel: Travel }) {
   return (
-    <div className="flex flex-col gap-8 justify-center p-6 aspect-2/1 rounded-xl shadow-md bg-white">
+    <div className="flex flex-col gap-6 justify-center p-6 aspect-2/1 rounded-xl shadow-md bg-white">
       {/* 제목, 기간 */}
       <div className="flex justify-between items-center">
         {/* 제목 */}
