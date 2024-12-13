@@ -31,3 +31,10 @@ export type InputProps = {
   borderColor: string;
   placeholder?: string;
 };
+
+export type FullButtonProps = {
+  type: 'button' | 'submit';
+  margin?: string;
+  bgColor: string;
+  textColor: string;
+};
