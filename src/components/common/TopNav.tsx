@@ -1,4 +1,4 @@
-import { TopNavProps } from '../../models/common.model';
+import { TopNavProps } from '../../models/props.model';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
