@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Home, Login, Travels } from './pages';
+import { Home, Login, Travels, TravelDetail } from './pages';
 
 const router = createBrowserRouter([
   {
@@ -13,6 +13,10 @@ const router = createBrowserRouter([
   {
     path: '/travels',
     element: <Travels />,
+  },
+  {
+    path: '/travels/:idHash',
+    element: <TravelDetail />,
   },
 ]);
 
