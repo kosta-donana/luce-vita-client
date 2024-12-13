@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { TravelArticleProps } from '../../models/common.model';
+import { TravelArticleProps } from '../../models/props.model';
 
 /**
  * 여행 정보를 나타내는 항목 컴포넌트입니다.
