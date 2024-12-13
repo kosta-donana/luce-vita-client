@@ -19,7 +19,15 @@ export type TopNavProps = {
 
 export type TravelArticleProps = {
   margin?: string;
+  fontSize?: string;
   title: string;
   titleColor: string;
-  textSize?: string;
+};
+
+export type InputProps = {
+  type: string;
+  name: string;
+  bgColor: string;
+  borderColor: string;
+  placeholder?: string;
 };
