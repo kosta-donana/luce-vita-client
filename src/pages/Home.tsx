@@ -3,8 +3,9 @@ import { TravelStatus } from '../components/home/TravelStatus';
 import { TravelCard } from '../components/home/TravelCard';
 import { TravelEmpty } from '../components/home/TravelEmpty';
 import { Header } from '../components/home/Header';
-import { CreateTravelButton } from '../components/home/CreateTravelButton';
+import FloatingButton from '../components/common/FloatingButton';
 import { Travel } from '../models/travel.model';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const dummyTravels: Array<Travel> = [
   {
@@ -42,15 +43,19 @@ export function Home() {
   // const [travels] = useState<Array<Travel>>([]);
 
   return (
-    <div className="relative p-6 flex flex-col gap-4">
-      <Header />
-      <TravelStatus />
-      {travels.length > 0 ? (
-        travels.map((travel) => <TravelCard key={travel.travelid} travel={travel} />)
-      ) : (
-        <TravelEmpty />
-      )}
-      <CreateTravelButton />
-    </div>
+    <>
+      <div className="p-6 flex flex-col gap-4">
+        <Header />
+        <TravelStatus />
+        {travels.length > 0 ? (
+          travels.map((travel) => <TravelCard key={travel.travelid} travel={travel} />)
+        ) : (
+          <TravelEmpty />
+        )}
+      </div>
+      <FloatingButton
+        iconInfo={{ id: faPlus, onClickHandler: () => {}, title: '새로운 여행 추가하기' }}
+      />
+    </>
   );
 }

@@ -8,7 +8,7 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({ iconInfo }) => {
   return (
     <button
       type="button"
-      className={`absolute z-10 right-0 bottom-0 m-8 bg-primary-500 hover:bg-secondary-400 size-24 text-neutral-200 hover:text-neutral-100 rounded-full shadow-md shadow-gray-500`}
+      className="absolute z-10 right-0 bottom-0 m-8 bg-primary-500 hover:bg-secondary-400 size-24 text-neutral-200 hover:text-neutral-100 rounded-full shadow-md shadow-gray-500"
     >
       <FontAwesomeIcon
         icon={iconInfo.id}
