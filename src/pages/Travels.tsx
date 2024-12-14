@@ -6,7 +6,7 @@ import { faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export function Travels() {
   return (
-    <div className="p-6 min-h-full">
+    <div className="p-6 bg-primary-100 min-h-full">
       {/* 상단 내비게이션 */}
       <TopNav
         navIconInfos={[
