@@ -19,7 +19,7 @@ const TravelBasics: React.FC<TravelBasicsProps> = (props) => {
   const titleColor = props.titleColor;
 
   return (
-    <section className="mt-6 pl-5 pr-24 py-6 bg-primary-300 text-white rounded-2xl">
+    <section className="mt-8 pl-5 pr-24 py-6 bg-primary-300 text-white rounded-2xl">
       <TravelArticle fontSize="text-4xl" title="여행 제목" titleColor={titleColor}>
         {props.title}
       </TravelArticle>

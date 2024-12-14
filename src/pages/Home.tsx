@@ -43,7 +43,7 @@ export function Home() {
   // const [travels] = useState<Array<Travel>>([]);
 
   return (
-    <div className="p-6 bg-primary-100 flex flex-col gap-4 min-h-full">
+    <div className="p-6 bg-primary-100 min-h-full flex flex-col gap-5">
       {/* 상단 내비게이션 */}
       <TopNav
         navIconInfos={[
