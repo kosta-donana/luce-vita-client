@@ -6,13 +6,13 @@ import { TravelArticleProps } from '../../models/props.model';
  */
 const TravelArticle: React.FC<PropsWithChildren<TravelArticleProps>> = ({
   margin,
+  fontSize,
   title,
   titleColor,
-  textSize,
   children,
 }) => {
   return (
-    <article className={`${margin ?? ''} ${textSize ?? ''} font-medium`.trim()}>
+    <article className={`${margin ?? ''} ${fontSize ?? ''} font-medium`.trim()}>
       <h1 className={`my-1 ${titleColor} text-lg`}>{title}</h1>
       {children}
     </article>

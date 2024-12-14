@@ -1,3 +1,7 @@
+/**
+ * 여행 관련 데이터 모델(타입)들을 정의하고 있는 파일입니다.
+ */
+
 export type Travel = {
   travelid: number;
   userid: string;
