@@ -23,9 +23,7 @@ export function Login() {
         </FullButton>
       </form>
       <div className="mt-3 text-gray-600 underline text-xl flex justify-between">
-        {/* 회원가입 링크 */}
         <Link to="/">이메일로 회원가입하러 가기</Link>
-        {/* 비밀번호 찾기 링크 */}
         <Link to="/">비밀번호 찾기</Link>
       </div>
     </div>
