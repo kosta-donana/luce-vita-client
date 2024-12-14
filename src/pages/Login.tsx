@@ -1,6 +1,6 @@
 export function Login() {
   return (
-    <div className="px-16 py-20 bg-slate-200">
+    <div className="px-16 py-20 bg-slate-200 min-h-full">
       {/* 제목 */}
       <h1 className="mt-20 text-primary-400 text-[4rem] font-semibold text-center">Luce Vita!</h1>
       {/* 소개글 */}
