@@ -1,5 +1,5 @@
 import InputItem from '../components/login/InputItem';
-import FullButton from '../components/common/FullButton';
+import Button from '../components/common/FullWidthButton';
 import { Link } from 'react-router-dom';
 
 export function Login() {
@@ -18,9 +18,9 @@ export function Login() {
       <form className="mt-32" method="post">
         <InputItem type="email" name="email" title="이메일" />
         <InputItem type="password" name="password" title="비밀번호" />
-        <FullButton type="submit" margin="mt-14" bgColor="bg-primary-400" textColor="text-white">
+        <Button type="submit" margin="mt-14" bgColor="bg-primary-400" textColor="text-white">
           로그인하기
-        </FullButton>
+        </Button>
       </form>
       <div className="mt-3 text-gray-600 underline text-xl flex justify-between">
         <Link to="/">이메일로 회원가입하러 가기</Link>

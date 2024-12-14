@@ -4,7 +4,7 @@ import { FullButtonProps } from '../../models/props.model';
 /**
  * 너비를 전부 차지하는 버튼 컴포넌트입니다.
  */
-const FullButton: React.FC<PropsWithChildren<FullButtonProps>> = ({
+const FullWidthButton: React.FC<PropsWithChildren<FullButtonProps>> = ({
   type,
   margin,
   bgColor,
@@ -23,4 +23,4 @@ const FullButton: React.FC<PropsWithChildren<FullButtonProps>> = ({
   );
 };
 
-export default FullButton;
+export default FullWidthButton;
