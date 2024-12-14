@@ -3,18 +3,13 @@ import TravelBasics from '../components/travel-detail/TravelBasics';
 import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export function TravelDetail() {
-  function doNothing() {
-    // TODO: 임시 함수 대체하기
-    return;
-  }
-
   return (
     <div className="p-6 bg-primary-100 min-h-full">
       {/* 내비게이션 */}
       <TopNav
-        iconInfos={[
-          { id: faLeftLong, onClickHandler: doNothing, title: '이전 화면으로 되돌아가기' },
-          { id: faUser, onClickHandler: doNothing, title: '마이페이지로 이동하기' },
+        navIconInfos={[
+          { id: faLeftLong, title: '이전 화면으로 되돌아가기', route: -1 },
+          { id: faUser, title: '마이페이지로 이동하기', route: '/' },
         ]}
         bgColor="bg-secondary-500"
         iconColor="text-neutral-600"
