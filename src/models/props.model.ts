@@ -35,7 +35,7 @@ export type InputProps = {
   placeholder?: string;
 };
 
-export type FullButtonProps = {
+export type FullWidthButtonProps = {
   type: 'button' | 'submit';
   margin?: string;
   bgColor: string;
