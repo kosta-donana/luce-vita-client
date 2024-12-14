@@ -13,10 +13,10 @@ export function Travels() {
           { id: faHouse, title: '홈 화면으로 이동하기', route: '/' },
           { id: faUser, title: '마이페이지로 이동하기', route: '/' },
         ]}
-        bgColor="bg-primary-100"
-        iconColor="text-primary-300"
-        title="여행 리스트"
-        titleColor="text-primary-300"
+        bgColor="bg-primary-400"
+        iconColor="text-primary-200"
+        title="여행 목록"
+        titleColor="text-primary-100"
       />
       {/* 플로팅 버튼 */}
       <FloatingNavButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
