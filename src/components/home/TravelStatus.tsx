@@ -2,7 +2,7 @@ import { DateBlock } from './DateBlock';
 
 export function TravelStatus() {
   return (
-    <div className="flex flex-col justify-center p-6 gap-3 rounded-xl shadow-md bg-primary-400">
+    <div className="flex flex-col justify-center p-6 gap-3 rounded-3xl shadow-md shadow-gray-400 bg-primary-400">
       {/* 일정 상태 */}
       <div className="w-full text-left text-4xl font-bold text-white">
         여행이 일주일 남았습니다 !
