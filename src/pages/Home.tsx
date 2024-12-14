@@ -42,7 +42,7 @@ export function Home() {
   // const [travels] = useState<Array<Travel>>([]);
 
   return (
-    <div className="relative p-6 flex flex-col gap-4">
+    <div className="relative p-6 flex flex-col gap-4 min-h-full">
       <Header />
       <TravelStatus />
       {travels.length > 0 ? (

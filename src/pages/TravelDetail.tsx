@@ -9,7 +9,7 @@ export function TravelDetail() {
   }
 
   return (
-    <div className="p-6 bg-primary-100">
+    <div className="p-6 bg-primary-100 min-h-full">
       {/* 내비게이션 */}
       <TopNav
         iconInfos={[
