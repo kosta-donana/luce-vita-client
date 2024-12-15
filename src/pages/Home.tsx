@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import TopNav from '../components/common/TopNav';
+import FloatingNavButton from '../components/common/FloatingNavButton';
 import { TravelStatus } from '../components/home/TravelStatus';
 import { TravelCard } from '../components/home/TravelCard';
 import { TravelEmpty } from '../components/home/TravelEmpty';
-import { Header } from '../components/home/Header';
-import { CreateTravelButton } from '../components/home/CreateTravelButton';
 import { Travel } from '../models/travel.model';
+import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const dummyTravels: Array<Travel> = [
   {
@@ -42,15 +43,28 @@ export function Home() {
   // const [travels] = useState<Array<Travel>>([]);
 
   return (
-    <div className="relative p-6 flex flex-col gap-4 min-h-full">
-      <Header />
+    <div className="p-6 bg-primary-100 min-h-full flex flex-col gap-5">
+      {/* 상단 내비게이션 */}
+      <TopNav
+        navIconInfos={[
+          // TODO: 내비게이션 아이콘 변경 및 커뮤니티 기능 연결하기
+          { id: faHouseFlag, title: '커뮤니티 기능으로 임시 이동하기', route: '/' },
+          { id: faUser, title: '마이페이지로 이동하기', route: '/' },
+        ]}
+        bgColor="bg-primary-100"
+        iconColor="text-primary-300"
+        title="Luce Vita"
+        titleColor="text-slate-700"
+      />
+      {/* 플로팅 버튼 */}
+      <FloatingNavButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
+
       <TravelStatus />
       {travels.length > 0 ? (
         travels.map((travel) => <TravelCard key={travel.travelid} travel={travel} />)
       ) : (
         <TravelEmpty />
       )}
-      <CreateTravelButton />
     </div>
   );
 }

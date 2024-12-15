@@ -1,6 +1,3 @@
-/**
- * 공통 컴포넌트의 Props 타입들을 정의하고 있는 파일입니다.
- */
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { To } from 'react-router-dom';
 
@@ -13,12 +10,20 @@ type NavIconInfo = {
   route: To | number;
 };
 
+/**
+ * 공통 컴포넌트의 Props 타입들을 정의하고 있는 파일입니다.
+ */
+
 export type TopNavProps = {
   navIconInfos: [NavIconInfo, NavIconInfo];
   bgColor: string;
   iconColor: string;
   title: string;
   titleColor: string;
+};
+
+export type FloatingNavButtonProps = {
+  navIconInfo: NavIconInfo;
 };
 
 export type TravelArticleProps = {

@@ -17,7 +17,9 @@ const TopNav: React.FC<TopNavProps> = ({ navIconInfos, bgColor, iconColor, title
   }
 
   return (
-    <nav className={`p-5 ${bgColor} ${iconColor} rounded-3xl flex justify-between items-center`}>
+    <nav
+      className={`p-5 ${bgColor} ${iconColor} rounded-3xl shadow-md flex justify-between items-center`}
+    >
       <FontAwesomeIcon
         icon={navIconInfos[0].id}
         onClick={() => {

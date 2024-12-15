@@ -14,7 +14,7 @@ export function TravelDetail() {
         bgColor="bg-secondary-500"
         iconColor="text-neutral-600"
         title="여행 내용"
-        titleColor="text-white"
+        titleColor="text-neutral-50"
       />
       {/* 기본 정보 */}
       <TravelBasics
