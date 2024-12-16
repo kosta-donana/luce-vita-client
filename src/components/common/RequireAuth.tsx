@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
+import { RequireAuthProps } from '../../models/props.model';
 import { authenticate } from '../../utils/auth.util';
-import { Login } from '../../pages';
 
-export const RequireAuth: React.FC<unknown> = () => {
-  return authenticate() ? <Outlet /> : <Login />;
+export const RequireAuth: React.FC<RequireAuthProps> = ({ redirect }) => {
+  return authenticate() ? <Outlet /> : <Navigate to={redirect} replace />;
 };
