@@ -1,6 +1,6 @@
-import InputItem from '../components/login/InputItem';
-import Button from '../components/common/FullWidthButton';
 import { Link } from 'react-router-dom';
+import { InputItem } from '../components/login/InputItem';
+import { FullWidthButton as Button } from '../components/common/FullWidthButton';
 
 export function Login() {
   return (

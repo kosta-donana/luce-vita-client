@@ -1,5 +1,5 @@
-import TopNav from '../components/common/TopNav';
-import FloatingNavButton from '../components/common/FloatingNavButton';
+import { TopNav } from '../components/common/TopNav';
+import { FloatingNavButton } from '../components/common/FloatingNavButton';
 import { TravelCard } from '../components/home/TravelCard';
 import { TravelEmpty } from '../components/home/TravelEmpty';
 import { faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';

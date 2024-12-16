@@ -1,5 +1,5 @@
-import TopNav from '../components/common/TopNav';
-import TravelBasics from '../components/travel-detail/TravelBasics';
+import { TopNav } from '../components/common/TopNav';
+import { TravelBasics } from '../components/travel-detail/TravelBasics';
 import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export function TravelDetail() {

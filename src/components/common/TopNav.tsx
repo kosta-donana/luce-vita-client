@@ -5,7 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /**
  * 상단 내비게이션(앱 바) 컴포넌트입니다.
  */
-const TopNav: React.FC<TopNavProps> = ({ navIconInfos, bgColor, iconColor, title, titleColor }) => {
+export const TopNav: React.FC<TopNavProps> = ({
+  navIconInfos,
+  bgColor,
+  iconColor,
+  title,
+  titleColor,
+}) => {
   const navigate = useNavigate();
 
   function navigateToOrNumber(route: To | number) {
@@ -40,5 +46,3 @@ const TopNav: React.FC<TopNavProps> = ({ navIconInfos, bgColor, iconColor, title
     </nav>
   );
 };
-
-export default TopNav;

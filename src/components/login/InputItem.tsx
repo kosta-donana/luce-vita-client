@@ -1,4 +1,4 @@
-import Input from '../common/Input';
+import { Input } from '../common/Input';
 
 type InputItemProps = {
   type: string;
@@ -6,7 +6,7 @@ type InputItemProps = {
   title: string;
 };
 
-const InputItem: React.FC<InputItemProps> = ({ type, name, title }) => {
+export const InputItem: React.FC<InputItemProps> = ({ type, name, title }) => {
   let placeholder: string | undefined;
 
   if (type == 'email') {
@@ -26,5 +26,3 @@ const InputItem: React.FC<InputItemProps> = ({ type, name, title }) => {
     </div>
   );
 };
-
-export default InputItem;

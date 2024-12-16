@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /**
  * 플로팅 버튼 컴포넌트입니다.
  */
-const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInfo }) => {
+export const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInfo }) => {
   const navigate = useNavigate();
 
   function navigateToOrNumber(route: To | number) {
@@ -32,5 +32,3 @@ const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInfo }) =>
     </button>
   );
 };
-
-export default FloatingNavButton;

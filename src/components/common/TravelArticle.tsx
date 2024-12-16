@@ -4,7 +4,7 @@ import { TravelArticleProps } from '../../models/props.model';
 /**
  * 여행 정보를 나타내는 항목 컴포넌트입니다.
  */
-const TravelArticle: React.FC<PropsWithChildren<TravelArticleProps>> = ({
+export const TravelArticle: React.FC<PropsWithChildren<TravelArticleProps>> = ({
   margin,
   fontSize,
   title,
@@ -18,5 +18,3 @@ const TravelArticle: React.FC<PropsWithChildren<TravelArticleProps>> = ({
     </article>
   );
 };
-
-export default TravelArticle;

@@ -1,4 +1,4 @@
-import TravelArticle from '../common/TravelArticle';
+import { TravelArticle } from '../common/TravelArticle';
 
 type TravelBasicsProps = {
   titleColor: string;
@@ -15,7 +15,7 @@ type TravelBasicsProps = {
   tags: string[];
 };
 
-const TravelBasics: React.FC<TravelBasicsProps> = (props) => {
+export const TravelBasics: React.FC<TravelBasicsProps> = (props) => {
   const titleColor = props.titleColor;
 
   return (
@@ -47,5 +47,3 @@ const TravelBasics: React.FC<TravelBasicsProps> = (props) => {
     </section>
   );
 };
-
-export default TravelBasics;
