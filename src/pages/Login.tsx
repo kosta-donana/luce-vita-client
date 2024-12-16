@@ -24,7 +24,15 @@ export function Login() {
       </form>
       <div className="mt-3 text-gray-600 underline text-xl flex justify-between">
         <Link to="/">이메일로 회원가입하러 가기</Link>
-        <Link to="/">비밀번호 찾기</Link>
+        {/* <Link to="/">비밀번호 찾기</Link> */}
+      </div>
+      <div className="mt-9 flex gap-x-10">
+        <Button type="button" bgColor="bg-[#fee500]" textColor="text-[#191919]">
+          카카오 로그인
+        </Button>
+        <Button type="button" bgColor="bg-white" textColor="text-black">
+          <img src="/google.png" className="size-14" alt="구글 로그인" />
+        </Button>
       </div>
     </div>
   );

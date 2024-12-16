@@ -20,15 +20,11 @@ export const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInf
     <button
       type="button"
       className="absolute z-10 right-0 bottom-0 m-8 bg-primary-500 hover:bg-secondary-400 size-24 text-neutral-200 hover:text-neutral-100 rounded-full shadow-md shadow-gray-500"
+      onClick={() => {
+        navigateToOrNumber(navIconInfo.route);
+      }}
     >
-      <FontAwesomeIcon
-        icon={navIconInfo.id}
-        onClick={() => {
-          navigateToOrNumber(navIconInfo.route);
-        }}
-        size="4x"
-        title={navIconInfo.title}
-      />
+      <FontAwesomeIcon icon={navIconInfo.id} size="4x" title={navIconInfo.title} />
     </button>
   );
 };
