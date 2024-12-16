@@ -9,6 +9,7 @@ export const FullWidthButton: React.FC<PropsWithChildren<FullWidthButtonProps>> 
   margin,
   bgColor,
   textColor,
+  onClickHandler,
   children,
 }) => {
   return (
@@ -17,6 +18,7 @@ export const FullWidthButton: React.FC<PropsWithChildren<FullWidthButtonProps>> 
       className={`${
         margin ?? ''
       } p-5 ${bgColor} w-full ${textColor} text-3xl font-bold rounded-2xl`.trim()}
+      onClick={onClickHandler}
     >
       {children}
     </button>

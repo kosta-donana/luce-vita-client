@@ -46,4 +46,5 @@ export type FullWidthButtonProps = {
   margin?: string;
   bgColor: string;
   textColor: string;
+  onClickHandler?: () => void;
 };
