@@ -1,6 +1,6 @@
 import { To, useNavigate } from 'react-router-dom';
-import { FloatingNavButtonProps } from '../../models/props.model';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FloatingNavButtonProps } from '../../models/props.model';
 
 /**
  * 플로팅 버튼 컴포넌트입니다.

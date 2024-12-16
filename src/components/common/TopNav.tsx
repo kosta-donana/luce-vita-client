@@ -1,6 +1,6 @@
 import { To, useNavigate } from 'react-router-dom';
-import { TopNavProps } from '../../models/props.model';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { TopNavProps } from '../../models/props.model';
 
 /**
  * 상단 내비게이션(앱 바) 컴포넌트입니다.
