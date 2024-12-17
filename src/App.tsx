@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Home, Login, SignUp, Travels, TravelDetail } from './pages';
+import { Home, Login, SignUp, Travels, TravelDetail, Todo } from './pages';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/travels/:idHash',
     element: <TravelDetail />,
+  },
+  {
+    path: '/travels/:idHash/:todoDate',
+    element: <Todo />,
   },
 ]);
 
