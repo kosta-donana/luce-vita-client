@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { InputItem } from '../components/login/InputItem';
 import { FullWidthButton as Button } from '../components/common/FullWidthButton';
 
@@ -29,11 +31,11 @@ export function Login() {
         {/* <Link to="/">비밀번호 찾기</Link> */}
       </div>
       <div className="mt-9 flex gap-x-10">
-        <Button type="button" bgColor="bg-[#fee500]" textColor="text-[#191919]">
-          카카오 로그인
+        <Button type="button" bgColor="bg-[#ffce00]" textColor="text-[#1e1e1e]">
+          <FontAwesomeIcon icon={faComment} size="2xl" title="카카오 로그인" />
         </Button>
         <Button type="button" bgColor="bg-white" textColor="text-black">
-          <img src="/google.png" className="size-14" alt="구글 로그인" />
+          <img src="/google.png" className="size-14" title="구글 로그인" alt="구글 로그인" />
         </Button>
       </div>
     </div>
