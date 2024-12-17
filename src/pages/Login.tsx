@@ -16,7 +16,9 @@ export function Login() {
         서비스를 제공합니다.
       </p>
       <form className="mt-32" method="post">
+        {/* 이메일 입력란 */}
         <InputItem type="email" name="email" title="이메일" />
+        {/* 비밀번호 입력란 */}
         <InputItem type="password" name="password" title="비밀번호" />
         <Button type="submit" margin="mt-14" bgColor="bg-primary-400" textColor="text-white">
           로그인하기

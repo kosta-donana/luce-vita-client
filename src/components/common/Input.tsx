@@ -1,7 +1,7 @@
 import { InputProps } from '../../models/props.model';
 
 /**
- * 입력창 컴포넌트입니다.
+ * 입력란 컴포넌트입니다.
  */
 export const Input: React.FC<InputProps> = ({ type, name, bgColor, borderColor, placeholder }) => {
   return (
