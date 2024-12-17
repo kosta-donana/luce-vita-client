@@ -25,7 +25,10 @@ export function SignUp() {
         {/* 비밀번호 입력란 */}
         <div className="mt-11 flex">
           <InputItem required type="password" name="password" title="비밀번호" />
-          <p id="password_warning" className="ml-4 w-5/12 text-red-400 font-medium leading-snug ">
+          <p
+            id="password_warning"
+            className="ml-4 w-5/12 text-red-400 font-medium leading-snug invisible"
+          >
             <br />
             <br />ⓘ 영문 대소문자 및 숫자를 모두 포함한 10자리 이상의 문자열을 입력해주세요.
           </p>
@@ -35,7 +38,7 @@ export function SignUp() {
           <InputItem type="password" name="passwordConfirm" title="비밀번호 확인" />
           <p
             id="password_confirm_warning"
-            className="ml-4 w-5/12 text-red-400 font-medium leading-snug "
+            className="ml-4 w-5/12 text-red-400 font-medium leading-snug invisible"
           >
             <br />
             <br />ⓘ 입력하신 비밀번호가 일치하지 않습니다.
