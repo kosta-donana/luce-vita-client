@@ -36,7 +36,6 @@ export const TravelBasics: React.FC<TravelBasicsProps> = (props) => {
       </TravelArticle>
       <TravelArticle margin="mt-6" fontSize="text-xl" title="메모" titleColor={titleColor}>
         <textarea
-          id="memo"
           className="p-2.5 w-full text-neutral-700 rounded-xl border-2 border-primary-100"
           rows={5}
           readOnly
