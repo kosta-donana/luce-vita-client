@@ -1,7 +1,12 @@
+import { useRef, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestSignUp } from '../utils/auth.util';
 import { InputItem } from '../components/signup/InputItem';
 import { HalfWidthButton as Button } from '../components/common/HalfWidthButton';
+
+function validatePassword(password: string): boolean {
+  return true; // TODO: 비밀번호 유효성 검사 로직 구현하기
+}
 
 export function SignUp() {
   const navigate = useNavigate();
@@ -15,6 +20,34 @@ export function SignUp() {
     }
   };
 
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const passwordConfirmRef = useRef<HTMLInputElement>(null);
+  useLayoutEffect(() => {
+    // 비밀번호 입력란 경고 메시지 로직 추가하기
+    const passwordWarningEl = document.getElementById('password_warning')!;
+    passwordRef.current?.addEventListener('focus', () => {
+      passwordWarningEl.style.visibility = 'hidden';
+    });
+    passwordRef.current?.addEventListener('blur', (e) => {
+      const target = e.target as HTMLInputElement;
+      if (!validatePassword(target.value)) {
+        passwordWarningEl.style.visibility = 'visible';
+      }
+    });
+
+    // 비밀번호 확인 입력란 경고 메시지 로직 추가하기
+    const passwordConfirmWarningEl = document.getElementById('password_confirm_warning')!;
+    passwordConfirmRef.current?.addEventListener('focus', () => {
+      passwordConfirmWarningEl.style.visibility = 'hidden';
+    });
+    passwordConfirmRef.current?.addEventListener('blur', (e) => {
+      const target = e.target as HTMLInputElement;
+      if (passwordRef.current?.value != target.value) {
+        passwordConfirmWarningEl.style.visibility = 'visible';
+      }
+    });
+  }, []);
+
   return (
     <div className="px-10 py-16 bg-primary-400 min-h-full">
       {/* 제목 */}
@@ -24,7 +57,7 @@ export function SignUp() {
         <InputItem required type="email" margin="mr-24" name="email" title="이메일" />
         {/* 비밀번호 입력란 */}
         <div className="mt-11 flex">
-          <InputItem required type="password" name="password" title="비밀번호" />
+          <InputItem ref={passwordRef} required type="password" name="password" title="비밀번호" />
           <p
             id="password_warning"
             className="ml-4 w-5/12 text-red-400 font-medium leading-snug invisible"
@@ -35,7 +68,12 @@ export function SignUp() {
         </div>
         {/* 비밀번호 확인 입력란 */}
         <div className="mt-3.5 flex">
-          <InputItem type="password" name="passwordConfirm" title="비밀번호 확인" />
+          <InputItem
+            ref={passwordConfirmRef}
+            type="password"
+            name="passwordConfirm"
+            title="비밀번호 확인"
+          />
           <p
             id="password_confirm_warning"
             className="ml-4 w-5/12 text-red-400 font-medium leading-snug invisible"
