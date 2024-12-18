@@ -13,7 +13,7 @@ export function SignUp() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (requestSignUp() == 'success') {
+    if (requestSignUp() === 'success') {
       navigate('/');
     } else {
       // TODO: 에러 메시지 표시하기

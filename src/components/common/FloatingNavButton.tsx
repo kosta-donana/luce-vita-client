@@ -9,7 +9,7 @@ export const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInf
   const navigate = useNavigate();
 
   function navigateToOrNumber(route: To | number) {
-    if (typeof route == 'number') {
+    if (typeof route === 'number') {
       navigate(route);
     } else {
       navigate(route);
