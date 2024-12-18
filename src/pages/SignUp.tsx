@@ -5,7 +5,18 @@ import { InputItem } from '../components/signup/InputItem';
 import { HalfWidthButton as Button } from '../components/common/HalfWidthButton';
 
 function validatePassword(password: string): boolean {
-  return true; // TODO: 비밀번호 유효성 검사 로직 구현하기
+  if (password.length < 10) return false;
+
+  let [hasUpper, hasLower, hasDigit] = [false, false, false];
+
+  for (let i = 0; i < password.length; i++) {
+    const code = password.charCodeAt(i);
+    hasUpper ||= 65 <= code && code <= 90;
+    hasLower ||= 97 <= code && code <= 122;
+    hasDigit ||= 48 <= code && code <= 57;
+  }
+
+  return hasUpper && hasLower && hasDigit;
 }
 
 export function SignUp() {
@@ -23,28 +34,33 @@ export function SignUp() {
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
   useLayoutEffect(() => {
-    // 비밀번호 입력란 경고 메시지 로직 추가하기
     const passwordWarningEl = document.getElementById('password_warning')!;
-    passwordRef.current?.addEventListener('focus', () => {
-      passwordWarningEl.style.visibility = 'hidden';
-    });
-    passwordRef.current?.addEventListener('blur', (e) => {
-      const target = e.target as HTMLInputElement;
-      if (!validatePassword(target.value)) {
-        passwordWarningEl.style.visibility = 'visible';
-      }
+    const passwordConfirmWarningEl = document.getElementById('password_confirm_warning')!;
+
+    // 비밀번호 입력란 경고 메시지 로직 추가하기
+    passwordRef.current?.addEventListener('input', () => {
+      const [passwordInput, passwordConfirmInput] = [
+        passwordRef.current!,
+        passwordConfirmRef.current!,
+      ];
+      passwordWarningEl.style.visibility =
+        passwordInput.value && !validatePassword(passwordInput.value) ? 'visible' : 'hidden';
+      passwordConfirmWarningEl.style.visibility =
+        passwordConfirmInput.value && passwordInput.value !== passwordConfirmInput.value
+          ? 'visible'
+          : 'hidden';
     });
 
     // 비밀번호 확인 입력란 경고 메시지 로직 추가하기
-    const passwordConfirmWarningEl = document.getElementById('password_confirm_warning')!;
-    passwordConfirmRef.current?.addEventListener('focus', () => {
-      passwordConfirmWarningEl.style.visibility = 'hidden';
-    });
-    passwordConfirmRef.current?.addEventListener('blur', (e) => {
-      const target = e.target as HTMLInputElement;
-      if (passwordRef.current?.value != target.value) {
-        passwordConfirmWarningEl.style.visibility = 'visible';
-      }
+    passwordConfirmRef.current?.addEventListener('input', () => {
+      const [passwordInput, passwordConfirmInput] = [
+        passwordRef.current!,
+        passwordConfirmRef.current!,
+      ];
+      passwordConfirmWarningEl.style.visibility =
+        passwordConfirmInput.value && passwordInput.value !== passwordConfirmInput.value
+          ? 'visible'
+          : 'hidden';
     });
   }, []);
 
