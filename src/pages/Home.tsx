@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton } from '../components/common/FloatingNavButton';
@@ -38,7 +39,7 @@ const dummyTravels: Array<Travel> = [
   },
 ];
 
-export function Home() {
+export const Home = withNavigation(() => {
   const [travels] = useState<Array<Travel>>(dummyTravels);
   // const [travels] = useState<Array<Travel>>([]);
 
@@ -67,4 +68,4 @@ export function Home() {
       )}
     </div>
   );
-}
+});

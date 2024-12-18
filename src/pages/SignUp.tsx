@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useRef, useLayoutEffect } from 'react';
+import { withNavigation } from './withNavigation';
 import { SignUpStatus, requestSignUp } from '../utils/signup.util';
 import { InputItem } from '../components/signup/InputItem';
 import { HalfWidthButton as Button } from '../components/common/HalfWidthButton';
@@ -19,7 +20,7 @@ function validatePassword(password: string): boolean {
   return hasUpper && hasLower && hasDigit;
 }
 
-export function SignUp() {
+export const SignUp = withNavigation(() => {
   const navigate = useNavigate();
 
   const emailRef = useRef<HTMLInputElement>(null);
@@ -86,10 +87,11 @@ export function SignUp() {
       return;
     }
 
-    const status: SignUpStatus = await requestSignUp(emailRef.current!.value, passwordInput.value);
+    const email = emailRef.current!.value;
+    const status: SignUpStatus = await requestSignUp(email, passwordInput.value);
     switch (status) {
       case 'verify':
-        navigate('/emailverification');
+        navigate('/emailverification', { state: { email: email } });
         break;
       case 'exist':
         alert('이미 등록된 이메일입니다.');
@@ -164,4 +166,4 @@ export function SignUp() {
       </form>
     </div>
   );
-}
+});
