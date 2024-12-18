@@ -1,5 +1,5 @@
-import { To } from 'react-router-dom';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { To } from 'react-router-dom';
 
 type NavIconInfo = {
   // Font Awesome 아이콘에 대한 이름 (카멜 표기법)

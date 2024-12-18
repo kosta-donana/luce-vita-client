@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Travel } from '../models/travel.model';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton } from '../components/common/FloatingNavButton';
 import { TravelStatus } from '../components/home/TravelStatus';
 import { TravelCard } from '../components/home/TravelCard';
 import { TravelEmpty } from '../components/home/TravelEmpty';
-import { Travel } from '../models/travel.model';
-import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const dummyTravels: Array<Travel> = [
   {

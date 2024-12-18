@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import { faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton } from '../components/common/FloatingNavButton';
 import { TravelCard } from '../components/home/TravelCard';
 import { TravelEmpty } from '../components/home/TravelEmpty';
 import { Travel } from '../models/travel.model';
-import { faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const initialTravel = {
   travelid: 4,
