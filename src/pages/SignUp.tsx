@@ -21,18 +21,11 @@ function validatePassword(password: string): boolean {
 
 export function SignUp() {
   const navigate = useNavigate();
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    if (requestSignUp() === 'success') {
-      navigate('/');
-    } else {
-      // TODO: 에러 메시지 표시하기
-    }
-  };
 
   const passwordRef = useRef<HTMLInputElement>(null);
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
+  const termsCheckboxRef = useRef<HTMLInputElement>(null);
+
   useLayoutEffect(() => {
     const passwordWarningEl = document.getElementById('password_warning')!;
     const passwordConfirmWarningEl = document.getElementById('password_confirm_warning')!;
@@ -63,6 +56,40 @@ export function SignUp() {
           : 'hidden';
     });
   }, []);
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
+
+    const [passwordInput, passwordConfirmInput] = [
+      passwordRef.current!,
+      passwordConfirmRef.current!,
+    ];
+
+    // 비밀번호 입력란 유효성 검사하기
+    if (!validatePassword(passwordInput.value)) {
+      passwordInput.focus();
+      passwordConfirmInput.value = '';
+      document.getElementById('password_confirm_warning')!.style.visibility = 'hidden';
+      return;
+    }
+
+    // 비밀번호 확인 입력란 유효성 검사하기
+    if (passwordInput.value !== passwordConfirmInput.value) {
+      passwordConfirmInput.focus();
+      return;
+    }
+
+    // 약관 확인 항목 유효성 검사하기
+    if (!termsCheckboxRef.current!.checked) {
+      return;
+    }
+
+    if (requestSignUp() === 'success') {
+      navigate('/');
+    } else {
+      // TODO: 에러 메시지 표시하기
+    }
+  }
 
   return (
     <div className="px-10 py-16 bg-primary-400 min-h-full">
@@ -109,7 +136,7 @@ export function SignUp() {
             약관 내용
           </textarea>
           <label className="mt-1 flex items-center">
-            <input type="checkbox" name="termsCheck" />
+            <input ref={termsCheckboxRef} type="checkbox" name="isTermsAgreed" />
             <p className="ml-1.5 text-primary-100">
               위 약관을 전부 이해하였으며, 상기 모든 내용에 동의합니다.
             </p>
