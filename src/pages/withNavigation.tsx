@@ -1,4 +1,4 @@
-const transitionalPaths = ['/login', '/signup', '/emailverification'];
+const transitionalPaths = ['/signup', '/emailverification'];
 
 export const withNavigation = <P extends object>(WrappedComponent: React.FC<P>) => {
   return (props: P) => {
