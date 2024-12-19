@@ -1,5 +1,5 @@
-import { Tag } from './Tag';
 import { Travel } from '../../models/travel.model';
+import { Tag } from './Tag';
 
 export function TravelCard({ travel }: { travel: Travel }) {
   return (

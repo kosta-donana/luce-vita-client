@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { RequireAuth } from './components/common/RequireAuth';
-import { Home, Login, Travels, TravelDetail } from './pages';
+import { Home, Login, SignUp, EmailVerification, Travels, TravelDetail } from './pages';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +15,14 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/signup',
+    element: <SignUp />,
+  },
+  {
+    path: '/emailverification',
+    element: <EmailVerification />,
   },
 ]);
 

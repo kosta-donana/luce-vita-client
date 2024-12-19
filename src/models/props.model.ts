@@ -38,6 +38,7 @@ export type TravelArticleProps = {
 };
 
 export type InputProps = {
+  required?: boolean;
   type: string;
   name: string;
   bgColor: string;
@@ -50,4 +51,13 @@ export type FullWidthButtonProps = {
   margin?: string;
   bgColor: string;
   textColor: string;
+  handleClick?: () => void;
+};
+
+export type HalfWidthButtonProps = {
+  type: 'button' | 'submit';
+  margin?: string;
+  bgColor: string;
+  textColor: string;
+  handleClick?: () => void;
 };
