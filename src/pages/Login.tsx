@@ -11,7 +11,7 @@ export const Login = withNavigation(() => {
       {/* 제목 */}
       <h1 className="mt-20 text-primary-400 text-[4rem] font-semibold text-center">Luce Vita!</h1>
       {/* 소개글 */}
-      <p className="my-20 text-primary-400 text-2xl/loose font-medium text-center">
+      <p className="my-16 text-primary-400 text-2xl/loose font-medium text-center">
         여러분의 삶 속에서 모든 여행을 함께하며
         <br />
         계획을 세우고, 일정과 예산을 관리하기 위한
