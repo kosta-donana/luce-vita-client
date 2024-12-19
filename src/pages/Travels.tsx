@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import { faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { withNavigation } from './withNavigation';
+import { Travel } from '../models/travel.model';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton } from '../components/common/FloatingNavButton';
 import { TravelCard } from '../components/home/TravelCard';
 import { TravelEmpty } from '../components/home/TravelEmpty';
-import { Travel } from '../models/travel.model';
-import { faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const initialTravel = {
   travelid: 4,
@@ -24,7 +25,7 @@ const initialTravel = {
   memo: '딱히메모없음',
 };
 
-export function Travels() {
+export const Travels = withNavigation(() => {
   const [travel] = useState<Travel>(initialTravel);
 
   return (
@@ -47,4 +48,4 @@ export function Travels() {
       <TravelEmpty />
     </div>
   );
-}
+});
