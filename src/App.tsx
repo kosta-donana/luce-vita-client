@@ -1,10 +1,16 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RequireAuth } from './components/common/RequireAuth';
 import { Home, Login, SignUp, EmailVerification, Travels, TravelDetail } from './pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <RequireAuth redirect="/login" />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: '/travels', element: <Travels /> },
+      { path: '/travels/:idHash', element: <TravelDetail /> },
+    ],
   },
   {
     path: '/login',
@@ -17,14 +23,6 @@ const router = createBrowserRouter([
   {
     path: '/emailverification',
     element: <EmailVerification />,
-  },
-  {
-    path: '/travels',
-    element: <Travels />,
-  },
-  {
-    path: '/travels/:idHash',
-    element: <TravelDetail />,
   },
 ]);
 
