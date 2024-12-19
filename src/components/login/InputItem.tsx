@@ -10,7 +10,7 @@ type InputItemProps = {
 export const InputItem: React.FC<InputItemProps> = ({ required, type, name, title }) => {
   let placeholder: string | undefined;
 
-  if (type == 'email') {
+  if (type === 'email') {
     placeholder = 'luce@vita.travel';
   }
 

@@ -1,8 +1,9 @@
+import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
+import { withNavigation } from './withNavigation';
 import { TopNav } from '../components/common/TopNav';
 import { TravelBasics } from '../components/travel-detail/TravelBasics';
-import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
 
-export function TravelDetail() {
+export const TravelDetail = withNavigation(() => {
   return (
     <div className="p-6 bg-primary-100 min-h-full">
       {/* 내비게이션 */}
@@ -33,4 +34,4 @@ export function TravelDetail() {
       {/* 일정 목록 */}
     </div>
   );
-}
+});

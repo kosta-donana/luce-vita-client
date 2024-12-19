@@ -1,10 +1,17 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Home, Login, SignUp, Travels, TravelDetail, Todo } from './pages';
+import { RequireAuth } from './components/common/RequireAuth';
+import { Home, Login, SignUp, EmailVerification, Travels, TravelDetail, Todo } from './pages';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <RequireAuth redirect="/login" />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'travels', element: <Travels /> },
+      { path: 'travels/:idHash', element: <TravelDetail /> },
+      { path: 'travels/:idHash/:todoDate', element: <Todo /> },
+    ],
   },
   {
     path: '/login',
@@ -15,16 +22,8 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: '/travels',
-    element: <Travels />,
-  },
-  {
-    path: '/travels/:idHash',
-    element: <TravelDetail />,
-  },
-  {
-    path: '/travels/:idHash/:todoDate',
-    element: <Todo />,
+    path: '/emailverification',
+    element: <EmailVerification />,
   },
 ]);
 

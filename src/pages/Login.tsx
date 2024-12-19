@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
+import { withNavigation } from './withNavigation';
 import { InputItem } from '../components/login/InputItem';
 import { FullWidthButton as Button } from '../components/common/FullWidthButton';
 
-export function Login() {
+export const Login = withNavigation(() => {
   return (
     <div className="px-16 py-20 bg-slate-200 min-h-full">
       {/* 제목 */}
@@ -40,4 +41,4 @@ export function Login() {
       </div>
     </div>
   );
-}
+});

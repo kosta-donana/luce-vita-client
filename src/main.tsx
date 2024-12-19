@@ -1,4 +1,3 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
@@ -31,11 +30,7 @@ function adjustRootDimensions(): void {
 
 // 처음으로 root 요소의 크기를 조정하고 나서, root(: Root)에 리액트 요소를 렌더링하기
 adjustRootDimensions();
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+root.render(<App />);
 
 let timeoutId = 0;
 /**
