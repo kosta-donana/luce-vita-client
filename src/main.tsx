@@ -22,7 +22,7 @@ function adjustRootDimensions(): void {
   }
 
   // html 요소의 폰트 크기(rem 단위의 기준)를 뷰포트 너비에 알맞게 변경하기
-  document.documentElement.style.fontSize = Math.round(16 * Math.cbrt(w / 1536) * 100) / 100 + 'px';
+  document.documentElement.style.fontSize = Math.round(16 * Math.cbrt(w / 1440) * 100) / 100 + 'px';
 
   // root 요소의 너비 값과 높이 값 설정하기
   [rootEl.style.width, rootEl.style.height] = [`${w}px`, `${h}px`];
