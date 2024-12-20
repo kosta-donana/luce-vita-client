@@ -4,7 +4,7 @@ import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
 import { dummyTravels } from '../utils/dummy-travels.util';
 import { TopNav } from '../components/common/TopNav';
-import { FloatingNavButton } from '../components/common/FloatingNavButton';
+import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
 import { TravelStatus } from '../components/home/TravelStatus';
 import { TravelCard } from '../components/home/TravelCard';
 import { EmptyCard } from '../components/home/EmptyCard';
@@ -34,7 +34,7 @@ export const Home = withNavigation(() => {
         <EmptyCard />
       )}
 
-      <FloatingNavButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
+      <CreateTravelButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
     </div>
   );
 });
