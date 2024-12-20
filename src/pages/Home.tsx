@@ -44,7 +44,6 @@ export const Home = withNavigation(() => {
 
   return (
     <div className="p-6 bg-primary-100 min-h-full flex flex-col gap-5">
-      {/* 상단 내비게이션 */}
       <TopNav
         navIconInfos={[
           // TODO: 내비게이션 아이콘 변경 및 커뮤니티 기능 연결하기
@@ -58,13 +57,13 @@ export const Home = withNavigation(() => {
       />
 
       <TravelStatus />
+
       {travels.length > 0 ? (
         travels.map((travel) => <TravelCard key={travel.travelid} travel={travel} />)
       ) : (
         <TravelEmpty />
       )}
 
-      {/* 플로팅 버튼 */}
       <FloatingNavButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
     </div>
   );
