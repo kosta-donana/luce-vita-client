@@ -56,8 +56,6 @@ export const Home = withNavigation(() => {
         title="Luce Vita"
         titleColor="text-slate-700"
       />
-      {/* 플로팅 버튼 */}
-      <FloatingNavButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
 
       <TravelStatus />
       {travels.length > 0 ? (
@@ -65,6 +63,9 @@ export const Home = withNavigation(() => {
       ) : (
         <TravelEmpty />
       )}
+
+      {/* 플로팅 버튼 */}
+      <FloatingNavButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
     </div>
   );
 });
