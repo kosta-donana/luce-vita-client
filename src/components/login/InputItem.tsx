@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { Input } from '../common/Input';
 
 type InputItemProps = {
@@ -7,24 +8,27 @@ type InputItemProps = {
   title: string;
 };
 
-export const InputItem: React.FC<InputItemProps> = ({ required, type, name, title }) => {
-  let placeholder: string | undefined;
+export const InputItem = forwardRef<HTMLInputElement, InputItemProps>(
+  ({ required, type, name, title }, ref) => {
+    let placeholder: string | undefined;
 
-  if (type === 'email') {
-    placeholder = 'luce@vita.travel';
+    if (type === 'email') {
+      placeholder = 'luce@vita.travel';
+    }
+
+    return (
+      <div className="mt-6">
+        <h1 className="my-2 text-gray-600">{title}</h1>
+        <Input
+          ref={ref}
+          required={required}
+          type={type}
+          name={name}
+          bgColor="bg-neutral-100 focus:bg-white"
+          borderColor="border-neutral-600 focus:border-gray-700"
+          placeholder={placeholder}
+        />
+      </div>
+    );
   }
-
-  return (
-    <div className="mt-6">
-      <h1 className="my-2 text-gray-600">{title}</h1>
-      <Input
-        required={required}
-        type={type}
-        name={name}
-        bgColor="bg-neutral-100 focus:bg-white"
-        borderColor="border-neutral-600 focus:border-gray-700"
-        placeholder={placeholder}
-      />
-    </div>
-  );
-};
+);
