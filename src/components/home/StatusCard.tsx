@@ -1,6 +1,6 @@
 import { DateBlock } from './DateBlock';
 
-export function TravelStatus() {
+export function StatusCard() {
   return (
     <div className="flex flex-col justify-center my-7 p-6 gap-3 rounded-3xl shadow-md shadow-gray-400 bg-primary-400">
       {/* 일정 상태 */}
@@ -11,7 +11,9 @@ export function TravelStatus() {
       {/* 캘린더 */}
       <div className="w-full grid grid-rows-3 grid-cols-7 gap-2 px-2">
         {Array.from({ length: 21 }, (_, i) => (
-          <DateBlock isTravel={6 <= i && i <= 11 ? true : false}>{(i + 1).toString()}</DateBlock>
+          <DateBlock key={i} isTravel={6 <= i && i <= 11 ? true : false}>
+            {(i + 1).toString()}
+          </DateBlock>
         ))}
       </div>
 

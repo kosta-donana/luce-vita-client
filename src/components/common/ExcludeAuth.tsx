@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Outlet, Navigate } from 'react-router-dom';
-import { RequireAuthProps } from '../../models/props.model';
+import { PropsWithChildren, useState, useEffect } from 'react';
 import { authenticate } from '../../utils/auth.util';
+import { GoBack } from './GoBack';
 
-export const RequireAuth: React.FC<RequireAuthProps> = ({ redirect }) => {
+export const ExcludeAuth: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<true | false | null>(null);
 
   useEffect(() => {
@@ -16,5 +15,5 @@ export const RequireAuth: React.FC<RequireAuthProps> = ({ redirect }) => {
     return <></>;
   }
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={redirect} />;
+  return isAuthenticated ? <GoBack /> : children;
 };

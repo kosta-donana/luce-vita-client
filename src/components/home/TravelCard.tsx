@@ -51,8 +51,8 @@ export function TravelCard({ travel }: { travel: Travel }) {
 
         {/* 태그 */}
         <div className="flex gap-2">
-          {travel.tags.map((tag) => (
-            <Tag>{`#${tag}`}</Tag>
+          {travel.tags.map((tag, i) => (
+            <Tag key={i}>{`#${tag}`}</Tag>
           ))}
         </div>
       </div>
