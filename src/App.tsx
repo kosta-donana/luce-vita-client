@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Home, Login, SignUp, EmailVerification, Travels, TravelDetail } from './pages';
+import { Home, Login, SignUp, EmailVerification, Travels, TravelDetail, Todo } from './pages';
 
 const devRouter = createBrowserRouter([
   { path: '/', element: <Home /> },
@@ -8,6 +8,7 @@ const devRouter = createBrowserRouter([
   { path: '/emailverification', element: <EmailVerification /> },
   { path: '/travels', element: <Travels /> },
   { path: '/travels/:idHash', element: <TravelDetail /> },
+  { path: '/travels/:idHash/:todoDate', element: <Todo /> },
 ]);
 
 function App() {
