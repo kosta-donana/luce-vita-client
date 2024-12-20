@@ -5,7 +5,7 @@ import { Travel } from '../models/travel.model';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton } from '../components/common/FloatingNavButton';
 import { TravelCard } from '../components/home/TravelCard';
-import { TravelEmpty } from '../components/home/TravelEmpty';
+import { EmptyCard } from '../components/home/EmptyCard';
 
 const initialTravel = {
   travelid: 4,
@@ -45,7 +45,7 @@ export const Travels = withNavigation(() => {
       <FloatingNavButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
 
       <TravelCard travel={travel} />
-      <TravelEmpty />
+      <EmptyCard />
     </div>
   );
 });
