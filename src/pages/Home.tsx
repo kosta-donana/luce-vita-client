@@ -41,7 +41,6 @@ const dummyTravels: Array<Travel> = [
 
 export const Home = withNavigation(() => {
   const [travels] = useState<Array<Travel>>(dummyTravels);
-  // const [travels] = useState<Array<Travel>>([]);
 
   return (
     <div className="p-6 bg-primary-100 min-h-full flex flex-col gap-5">
