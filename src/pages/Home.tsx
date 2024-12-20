@@ -6,7 +6,7 @@ import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton } from '../components/common/FloatingNavButton';
 import { TravelStatus } from '../components/home/TravelStatus';
 import { TravelCard } from '../components/home/TravelCard';
-import { TravelEmpty } from '../components/home/TravelEmpty';
+import { EmptyCard } from '../components/home/EmptyCard';
 
 const dummyTravels: Array<Travel> = [
   {
@@ -61,7 +61,7 @@ export const Home = withNavigation(() => {
       {travels.length > 0 ? (
         travels.map((travel) => <TravelCard key={travel.travelid} travel={travel} />)
       ) : (
-        <TravelEmpty />
+        <EmptyCard />
       )}
 
       <FloatingNavButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
