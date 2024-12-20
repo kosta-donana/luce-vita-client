@@ -5,7 +5,7 @@ import { Travel } from '../models/travel.model';
 import { dummyTravels } from '../utils/dummy-travels.util';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
-import { TravelStatus } from '../components/home/TravelStatus';
+import { StatusCard as Status } from '../components/home/StatusCard';
 import { TravelCard } from '../components/home/TravelCard';
 import { EmptyCard } from '../components/home/EmptyCard';
 
@@ -26,7 +26,7 @@ export const Home = withNavigation(() => {
         titleColor="text-slate-700"
       />
 
-      <TravelStatus />
+      <Status />
 
       {travels.length > 0 ? (
         travels.map((travel) => <TravelCard key={travel.travelid} travel={travel} />)

@@ -1,6 +1,6 @@
 import { DateBlock } from './DateBlock';
 
-export function TravelStatus() {
+export function StatusCard() {
   return (
     <div className="flex flex-col justify-center my-7 p-6 gap-3 rounded-3xl shadow-md shadow-gray-400 bg-primary-400">
       {/* 일정 상태 */}
