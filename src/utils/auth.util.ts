@@ -11,7 +11,7 @@ const ajax = axios.create({
 async function requestToken(): Promise<TokenStatus> {
   try {
     const response = await ajax({
-      url: '/verify',
+      url: '/token',
       method: 'post',
     });
 
