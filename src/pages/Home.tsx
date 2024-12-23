@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
@@ -11,6 +13,33 @@ import { EmptyCard } from '../components/home/EmptyCard';
 
 export const Home = withNavigation(() => {
   const [travels] = useState<Array<Travel>>(dummyTravels);
+  const { data } = useQuery({
+    queryKey: [],
+    queryFn: async () => {
+      const ajax = axios.create({
+        baseURL: `http://localhost:3000/travels/${import.meta.env.VITE_TEST_USER_UUID}`,
+        timeout: 5000,
+      });
+      const result = await ajax({ url: '/', method: 'get' });
+      return result;
+    },
+  });
+
+  useEffect(() => {
+    console.log('useQuery data:', data);
+    // const ajax = axios.create({
+    //   baseURL: `http://localhost:3000/travels/${import.meta.env.VITE_TEST_USER_UUID}`,
+    //   timeout: 5000,
+    // });
+    // (async () => {
+    //   const result = await ajax({
+    //     url: '/',
+    //     method: 'get',
+    //     data: {},
+    //   });
+    //   console.log(result);
+    // })();
+  }, [data]);
 
   return (
     <div className="p-6 bg-primary-100 min-h-full flex flex-col gap-5">
