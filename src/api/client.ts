@@ -23,6 +23,7 @@ client.interceptors.request.use(
 // 응답 인터셉터 설정
 client.interceptors.response.use(
   (response) => {
+    // 응답 받기 전 수행할 작업
     return response;
   },
   (error) => {
