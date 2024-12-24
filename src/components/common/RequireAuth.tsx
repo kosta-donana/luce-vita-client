@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import { RequireAuthProps } from '../../models/props.model';
 import { authenticate } from '../../utils/auth.util';
@@ -6,7 +6,7 @@ import { authenticate } from '../../utils/auth.util';
 export const RequireAuth: React.FC<RequireAuthProps> = ({ redirect }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<true | false | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     authenticate().then((result) => {
       setIsAuthenticated(result);
     });
