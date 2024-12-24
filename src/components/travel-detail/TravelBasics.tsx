@@ -1,7 +1,6 @@
-import { TravelArticle } from '../common/TravelArticle';
+import { TravelBasicsArticle } from './TravelBasicsArticle';
 
 type TravelBasicsProps = {
-  titleColor: string;
   title: string;
   startdate: string;
   enddate: string;
@@ -16,33 +15,30 @@ type TravelBasicsProps = {
 };
 
 export const TravelBasics: React.FC<TravelBasicsProps> = (props) => {
-  const titleColor = props.titleColor;
-
   return (
     <section className="mt-8 pl-5 pr-24 py-6 bg-primary-300 text-white rounded-2xl">
-      <TravelArticle fontSize="text-4xl" title="여행 제목" titleColor={titleColor}>
+      <TravelBasicsArticle fontSize="text-4xl" title="여행 제목">
         {props.title}
-      </TravelArticle>
-      <TravelArticle margin="mt-6" fontSize="text-3xl" title="날짜" titleColor={titleColor}>
+      </TravelBasicsArticle>
+      <TravelBasicsArticle margin="mt-6" fontSize="text-3xl" title="날짜">
         {`${props.startdate} - ${props.enddate}`}
-      </TravelArticle>
-      <TravelArticle margin="mt-6" fontSize="text-3xl" title="국가 및 장소" titleColor={titleColor}>
+      </TravelBasicsArticle>
+      <TravelBasicsArticle margin="mt-6" fontSize="text-3xl" title="국가 및 장소">
         {props.country.countryname}
         <br />
         {props.localname}
-      </TravelArticle>
-      <TravelArticle margin="mt-6" fontSize="text-2xl" title="숙소 정보" titleColor={titleColor}>
+      </TravelBasicsArticle>
+      <TravelBasicsArticle margin="mt-6" fontSize="text-2xl" title="숙소 정보">
         {props.address}
-      </TravelArticle>
-      <TravelArticle margin="mt-6" fontSize="text-xl" title="메모" titleColor={titleColor}>
+      </TravelBasicsArticle>
+      <TravelBasicsArticle margin="mt-6" fontSize="text-xl" title="메모">
         <textarea
           className="p-2.5 w-full text-neutral-700 rounded-xl border-2 border-primary-100"
           rows={5}
+          defaultValue={props.memo}
           readOnly
-        >
-          {props.memo}
-        </textarea>
-      </TravelArticle>
+        />
+      </TravelBasicsArticle>
     </section>
   );
 };

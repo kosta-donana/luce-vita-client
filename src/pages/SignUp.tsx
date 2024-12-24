@@ -149,10 +149,9 @@ export const SignUp = withNavigation(() => {
           <textarea
             className="p-3.5 w-full text-gray-700 rounded-2xl border-2 border-primary-200 resize-none"
             rows={7}
+            defaultValue="약관 내용"
             readOnly
-          >
-            약관 내용
-          </textarea>
+          />
           <label className="mt-1 flex items-center">
             <input ref={termsCheckboxRef} type="checkbox" name="areTermsAgreed" />
             <p className="ml-1.5 text-primary-100">

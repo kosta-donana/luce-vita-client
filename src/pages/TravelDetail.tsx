@@ -19,7 +19,6 @@ export const TravelDetail = withNavigation(() => {
       />
       {/* 기본 정보 */}
       <TravelBasics
-        titleColor="text-primary-100"
         title="null"
         startdate="24/10/22"
         enddate="24/11/07"
