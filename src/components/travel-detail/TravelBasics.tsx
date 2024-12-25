@@ -16,7 +16,7 @@ type TravelBasicsProps = {
 
 export const TravelBasics: React.FC<TravelBasicsProps> = (props) => {
   return (
-    <section className="mt-8 pl-5 pr-24 py-6 bg-primary-300 text-white rounded-2xl">
+    <section className="mt-8 pl-5 pr-24 py-6 bg-primary-300 text-white rounded-2xl shadow-md">
       <TravelBasicsArticle fontSize="text-4xl" title="여행 제목">
         {props.title}
       </TravelBasicsArticle>
