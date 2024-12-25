@@ -2,6 +2,7 @@ import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { TopNav } from '../components/common/TopNav';
 import { TravelBasics } from '../components/travel-detail/TravelBasics';
+import { TravelBudget } from '../components/travel-detail/TravelBudget';
 
 export const TravelDetail = withNavigation(() => {
   return (
@@ -19,7 +20,6 @@ export const TravelDetail = withNavigation(() => {
       />
       {/* 기본 정보 */}
       <TravelBasics
-        titleColor="text-primary-100"
         title="null"
         startdate="24/10/22"
         enddate="24/11/07"
@@ -30,6 +30,7 @@ export const TravelDetail = withNavigation(() => {
         tags={[]}
       />
       {/* 예산 정보 */}
+      <TravelBudget currency="KRW" total={1000000} spent={300000} />
       {/* 수정 버튼 */}
       {/* 일정 목록 */}
     </div>
