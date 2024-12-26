@@ -18,7 +18,6 @@ export const Home = withNavigation(() => {
     queryFn: async () => {
       const ajax = axios.create({
         baseURL: `http://localhost:3000/travels/${import.meta.env.VITE_TEST_USER_UUID}`,
-        timeout: 5000,
       });
       const result = await ajax({ url: '/', method: 'get' });
       return result;
