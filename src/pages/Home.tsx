@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
-import { dummyTravels } from '../utils/dummy-travels.util';
+// import { dummyTravels } from '../utils/dummy-travels.util';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
 import { StatusCard as Status } from '../components/home/StatusCard';
@@ -12,32 +13,28 @@ import { TravelCard } from '../components/home/TravelCard';
 import { EmptyCard } from '../components/home/EmptyCard';
 
 export const Home = withNavigation(() => {
-  const [travels] = useState<Array<Travel>>(dummyTravels);
+  const navigate = useNavigate();
+  // const [travels, setTravels] = useState<Travel[]>(dummyTravels);
+  const [upcomingTravels, setUpcomingTravels] = useState<Travel[]>();
+  const [ongoingTravels, setOngoingTravels] = useState<Travel[]>();
+
   const { data } = useQuery({
     queryKey: [],
     queryFn: async () => {
-      const ajax = axios.create({
-        baseURL: `http://localhost:3000/travels/${import.meta.env.VITE_TEST_USER_UUID}`,
-      });
-      const result = await ajax({ url: '/', method: 'get' });
+      const result = await axios.get(
+        `http://localhost:3000/api/travels/${import.meta.env.VITE_TEST_USER_UUID}`
+      );
       return result;
     },
   });
 
   useEffect(() => {
     console.log('useQuery data:', data);
-    // const ajax = axios.create({
-    //   baseURL: `http://localhost:3000/travels/${import.meta.env.VITE_TEST_USER_UUID}`,
-    //   timeout: 5000,
-    // });
-    // (async () => {
-    //   const result = await ajax({
-    //     url: '/',
-    //     method: 'get',
-    //     data: {},
-    //   });
-    //   console.log(result);
-    // })();
+    console.log('data?.data.data:', data?.data.data);
+    if (data) {
+      setOngoingTravels(data.data.data.ongoingTravels);
+      setUpcomingTravels(data.data.data.upcomingTravels);
+    }
   }, [data]);
 
   return (
@@ -54,15 +51,37 @@ export const Home = withNavigation(() => {
         titleColor="text-slate-700"
       />
 
-      <Status />
+      {/* 여행 상태 캘린더 */}
+      <Status startDate={'2024-12-25'} endDate={'2025-01-06'} />
 
-      {travels.length > 0 ? (
-        travels.map((travel) => <TravelCard key={travel.travelid} travel={travel} />)
-      ) : (
-        <EmptyCard />
-      )}
+      {/* 다가올 여행 */}
+      {upcomingTravels?.map((travel) => (
+        <TravelCard
+          key={travel.travel_id}
+          travel={travel}
+          onClick={() => {
+            navigate(`/travels/${travel.travel_id}`);
+          }}
+        />
+      ))}
 
-      <CreateTravelButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
+      {/* 진행중인 여행 */}
+      {ongoingTravels?.map((travel) => (
+        <TravelCard
+          key={travel.travel_id}
+          travel={travel}
+          onClick={() => {
+            navigate(`/travels/${travel.travel_id}`);
+          }}
+        />
+      ))}
+
+      {/* 여행이 없으니 만들라는 레이아웃 칸 */}
+      {ongoingTravels?.length === 0 && upcomingTravels?.length === 0 && <EmptyCard />}
+
+      <CreateTravelButton
+        navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/travels/create' }}
+      />
     </div>
   );
 });
