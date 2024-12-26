@@ -10,11 +10,13 @@ import { FloatingNavButton as CreateTravelButton } from '../components/common/Fl
 import { StatusCard as Status } from '../components/home/StatusCard';
 import { TravelCard } from '../components/home/TravelCard';
 import { EmptyCard } from '../components/home/EmptyCard';
+import { useNavigate } from 'react-router-dom';
 
 export const Home = withNavigation(() => {
   // const [travels, setTravels] = useState<Travel[]>(dummyTravels);
   const [upcomingTravels, setUpcomingTravels] = useState<Travel[]>();
   const [ongoingTravels, setOngoingTravels] = useState<Travel[]>();
+  const navigate = useNavigate();
 
   const { data } = useQuery({
     queryKey: [],
@@ -51,18 +53,39 @@ export const Home = withNavigation(() => {
 
       <Status />
 
-      {ongoingTravels &&
-        ongoingTravels.map((travel) => <TravelCard key={travel.travel_id} travel={travel} />)}
-
+      {/* 다가올 여행 */}
       {upcomingTravels &&
-        upcomingTravels.map((travel) => <TravelCard key={travel.travel_id} travel={travel} />)}
+        upcomingTravels.map((travel) => (
+          <TravelCard
+            key={travel.travel_id}
+            travel={travel}
+            onClick={() => {
+              navigate(`/travels/${travel.travel_id}`);
+            }}
+          />
+        ))}
 
+      {/* 진행중인 여행 */}
+      {ongoingTravels &&
+        ongoingTravels.map((travel) => (
+          <TravelCard
+            key={travel.travel_id}
+            travel={travel}
+            onClick={() => {
+              navigate(`/travels/${travel.travel_id}`);
+            }}
+          />
+        ))}
+
+      {/* 여행이 없으니 만들라는 레이아웃 칸 */}
       {ongoingTravels &&
         upcomingTravels &&
         ongoingTravels.length === 0 &&
         upcomingTravels.length === 0 && <EmptyCard />}
 
-      <CreateTravelButton navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/' }} />
+      <CreateTravelButton
+        navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/travels/create' }}
+      />
     </div>
   );
 });
