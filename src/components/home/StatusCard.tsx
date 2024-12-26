@@ -1,12 +1,14 @@
 import { useMemo } from 'react';
 import { DateBlock } from './DateBlock';
 
+// 주어진 날짜가 포함된 주의 시작 날짜 계산
 function getStartOfWeek(date: Date): Date {
   const day = date.getDay();
   const diff = date.getDate() - day;
   return new Date(date.setDate(diff));
 }
 
+// 시작 날짜(일요일)로 시작해서 numOfWeeks만큼(우리의 경우 3주) 주 생성
 function generateWeeks(startDate: Date, numOfWeeks: number): Date[][] {
   const weeks: Date[][] = [];
   for (let i = 0; i < numOfWeeks; i++) {
@@ -20,6 +22,7 @@ function generateWeeks(startDate: Date, numOfWeeks: number): Date[][] {
   return weeks;
 }
 
+// 현재 날짜가 시작일, 종료일 사이에 있는지 확인
 function isWithinRange(date: Date, start: Date, end: Date): boolean {
   date.setHours(9, 0, 0, 0);
   return date >= start && date <= end;
