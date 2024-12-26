@@ -3,8 +3,8 @@ import axios from 'axios';
 export type LoginStatus = 'succeed' | 'failed' | 'error';
 
 const ajax = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}/login`,
-  timeout: 5000,
+  withCredentials: true,
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/login`,
 });
 
 export async function requestLogin(email: string, password: string): Promise<LoginStatus> {

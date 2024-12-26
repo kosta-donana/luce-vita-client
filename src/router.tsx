@@ -10,6 +10,7 @@ import {
   Travels,
   TravelCreate,
   TravelDetail,
+  Todo,
 } from './pages';
 
 export const router = createBrowserRouter([
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
       { path: 'travels', element: <Travels /> },
       { path: 'travels/create', element: <TravelCreate /> },
       { path: 'travels/:idHash', element: <TravelDetail /> },
+      { path: 'travels/:idHash/:todoDate', element: <Todo /> },
     ],
   },
 ]);
