@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';

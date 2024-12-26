@@ -1,5 +1,5 @@
 import { PropsWithChildren, useState, useLayoutEffect } from 'react';
-import { authenticate } from '../../utils/auth.util';
+import { authenticate } from '../../api/authenticate';
 import { GoBack } from './GoBack';
 
 export const ExcludeAuth: React.FC<PropsWithChildren<unknown>> = ({ children }) => {

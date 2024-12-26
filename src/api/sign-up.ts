@@ -4,8 +4,7 @@ export type SignUpStatus = 'verify' | 'exist' | 'error';
 export type VerificationStatus = 'verified' | 'failed' | 'error';
 
 const ajax = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}/signup`,
-  timeout: 5000,
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/signup`,
 });
 
 /**

@@ -1,7 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { ExcludeAuth } from './components/common/ExcludeAuth';
 import { RequireAuth } from './components/common/RequireAuth';
-import { Login, SignUp, EmailVerification, Home, MyPage, Travels, TravelDetail } from './pages';
+import {
+  Login,
+  SignUp,
+  EmailVerification,
+  Home,
+  MyPage,
+  Travels,
+  TravelDetail,
+  Todo,
+} from './pages';
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +45,7 @@ export const router = createBrowserRouter([
       { path: 'mypage', element: <MyPage /> },
       { path: 'travels', element: <Travels /> },
       { path: 'travels/:idHash', element: <TravelDetail /> },
+      { path: 'travels/:idHash/:todoDate', element: <Todo /> },
     ],
   },
 ]);
