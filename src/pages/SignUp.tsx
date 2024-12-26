@@ -116,8 +116,8 @@ export const SignUp = withNavigation(() => {
           name="email"
           title="이메일"
         />
-        {/* 비밀번호 입력란 */}
         <div className="mt-11 flex">
+          {/* 비밀번호 입력란 */}
           <InputItem ref={passwordRef} required type="password" name="password" title="비밀번호" />
           <p
             id="password_warning"
@@ -127,8 +127,8 @@ export const SignUp = withNavigation(() => {
             <br />ⓘ 영문 대소문자 및 숫자를 모두 포함한 10자리 이상의 문자열을 입력해주세요.
           </p>
         </div>
-        {/* 비밀번호 확인 입력란 */}
         <div className="mt-3.5 flex">
+          {/* 비밀번호 확인 입력란 */}
           <InputItem
             ref={passwordConfirmRef}
             type="password"
