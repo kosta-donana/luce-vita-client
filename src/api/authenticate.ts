@@ -4,13 +4,13 @@ type TokenStatus = 'reissued' | 'expired' | 'error';
 
 const ajax = axios.create({
   withCredentials: true,
-  baseURL: `${import.meta.env.VITE_API_BASE_URL}/signup`,
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/signup/token`,
 });
 
 async function requestToken(): Promise<TokenStatus> {
   try {
     const response = await ajax({
-      url: '/token',
+      url: '/',
       method: 'post',
     });
 
