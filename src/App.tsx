@@ -7,6 +7,7 @@ import {
   SignUp,
   EmailVerification,
   Travels,
+  TravelCreate,
   TravelDetail,
   Todo,
 } from './pages';
@@ -18,6 +19,7 @@ const devRouter = createBrowserRouter([
   { path: '/signup', element: <SignUp /> },
   { path: '/emailverification', element: <EmailVerification /> },
   { path: '/travels', element: <Travels /> },
+  { path: '/travels/create', element: <TravelCreate /> },
   { path: '/travels/:idHash', element: <TravelDetail /> },
   { path: '/travels/:idHash/:todoDate', element: <Todo /> },
 ]);

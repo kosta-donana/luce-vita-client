@@ -8,7 +8,7 @@ import { FullWidthButton } from '../components/common/FullWidthButton';
 export const TravelDetail = withNavigation(() => {
   return (
     <div className="p-6 bg-primary-100 min-h-full">
-      {/* 내비게이션 */}
+      {/* 상단 내비게이션 */}
       <TopNav
         navIconInfos={[
           { id: faLeftLong, title: '이전 화면으로 되돌아가기', route: -1 },

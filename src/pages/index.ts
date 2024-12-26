@@ -4,5 +4,6 @@ export { Login } from './Login';
 export { SignUp } from './SignUp';
 export { EmailVerification } from './EmailVerification';
 export { Travels } from './Travels';
+export { TravelCreate } from './TravelCreate';
 export { TravelDetail } from './TravelDetail';
 export { Todo } from './Todo';
