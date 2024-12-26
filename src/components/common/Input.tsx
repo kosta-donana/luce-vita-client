@@ -12,7 +12,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         required={required}
         type={type}
         name={name}
-        className={`px-5 py-3.5 ${bgColor} w-full text-gray-700 text-2xl font-light rounded-2xl border-2 ${borderColor}`}
+        className={`px-5 py-3.5 ${bgColor} w-full text-gray-700 text-2xl rounded-2xl border-2 ${borderColor}`}
         placeholder={placeholder}
       />
     );
