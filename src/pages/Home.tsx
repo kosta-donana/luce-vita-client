@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -10,13 +11,12 @@ import { FloatingNavButton as CreateTravelButton } from '../components/common/Fl
 import { StatusCard as Status } from '../components/home/StatusCard';
 import { TravelCard } from '../components/home/TravelCard';
 import { EmptyCard } from '../components/home/EmptyCard';
-import { useNavigate } from 'react-router-dom';
 
 export const Home = withNavigation(() => {
+  const navigate = useNavigate();
   // const [travels, setTravels] = useState<Travel[]>(dummyTravels);
   const [upcomingTravels, setUpcomingTravels] = useState<Travel[]>();
   const [ongoingTravels, setOngoingTravels] = useState<Travel[]>();
-  const navigate = useNavigate();
 
   const { data } = useQuery({
     queryKey: [],
