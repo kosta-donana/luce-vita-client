@@ -8,14 +8,15 @@ export function TravelCard({ travel }: { travel: Travel }) {
       <div className="flex justify-between items-center">
         {/* 제목 */}
         <h2 className="border-b-2 border-slate-400 text-4xl font-bold text-gray-600">
-          {travel.title}
+          {travel.travel_title}
         </h2>
         {/* 기간 */}
         <div className="text-lg text-gray-600">
-          <span className="mr-2">2024</span>
-          <span>{travel.startdate}</span>
+          {/* 연도를 이 아래 span에 넣을 예정이었음.. */}
+          <span className="mr-2"></span>
+          <span>{travel.start_date}</span>
           <span className="mx-1">-</span>
-          <span>{travel.enddate}</span>
+          <span>{travel.end_date}</span>
         </div>
       </div>
 
@@ -25,9 +26,9 @@ export function TravelCard({ travel }: { travel: Travel }) {
         <div>
           <div className="text-slate-400">국가, 장소</div>
           <div className="text-2xl font-bold text-gray-600">
-            <span>{travel.country.countryname}</span>
+            <span>{travel.country.country_name}</span>
             <span className="mr-2">,</span>
-            <span>{travel.localname}</span>
+            <span>{travel.local_name}</span>
           </div>
         </div>
 
@@ -45,7 +46,7 @@ export function TravelCard({ travel }: { travel: Travel }) {
           <div className="text-slate-400">잔액</div>
           <div className="text-2xl font-bold text-gray-600">
             <span>₩</span>
-            <span>{travel.budgettotal}</span>
+            <span>{travel.budget_total}</span>
           </div>
         </div>
 
