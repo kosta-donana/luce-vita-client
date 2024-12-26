@@ -47,7 +47,7 @@ export const Home = withNavigation(() => {
         navIconInfos={[
           // TODO: 내비게이션 아이콘 변경 및 커뮤니티 기능 연결하기
           { id: faHouseFlag, title: '커뮤니티 기능으로 임시 이동하기', route: '/' },
-          { id: faUser, title: '마이페이지로 이동하기', route: '/' },
+          { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
         ]}
         bgColor="bg-primary-100"
         iconColor="text-primary-300"

@@ -12,7 +12,7 @@ export const TravelDetail = withNavigation(() => {
       <TopNav
         navIconInfos={[
           { id: faLeftLong, title: '이전 화면으로 되돌아가기', route: -1 },
-          { id: faUser, title: '마이페이지로 이동하기', route: '/' },
+          { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
         ]}
         bgColor="bg-secondary-500"
         iconColor="text-neutral-600"
