@@ -4,7 +4,7 @@ import { Tag } from './Tag';
 export function TravelCard({ travel, onClick }: { travel: Travel; onClick: () => void }) {
   return (
     <div
-      className="flex flex-col gap-6 justify-center p-6 aspect-2/1 rounded-3xl shadow-md bg-white"
+      className="flex flex-col gap-6 justify-center p-6 aspect-2/1 rounded-3xl shadow-md bg-white cursor-pointer"
       onClick={onClick}
     >
       {/* 제목, 기간 */}
