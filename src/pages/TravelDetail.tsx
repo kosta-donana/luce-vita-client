@@ -3,6 +3,7 @@ import { withNavigation } from './withNavigation';
 import { TopNav } from '../components/common/TopNav';
 import { TravelBasics } from '../components/travel-detail/TravelBasics';
 import { TravelBudget } from '../components/travel-detail/TravelBudget';
+import { FullWidthButton } from '../components/common/FullWidthButton';
 
 export const TravelDetail = withNavigation(() => {
   return (
@@ -32,6 +33,14 @@ export const TravelDetail = withNavigation(() => {
       {/* 예산 정보 */}
       <TravelBudget currency="KRW" total={1000000} spent={300000} />
       {/* 수정 버튼 */}
+      <FullWidthButton
+        type="button"
+        margin="my-8"
+        bgColor="bg-secondary-400"
+        textColor="text-white"
+      >
+        여행 수정하러 가기
+      </FullWidthButton>
       {/* 일정 목록 */}
     </div>
   );
