@@ -51,7 +51,7 @@ export const Home = withNavigation(() => {
         titleColor="text-slate-700"
       />
 
-      <Status />
+      <Status startDate={'2024-12-25'} endDate={'2024-12-31'} />
 
       {/* 다가올 여행 */}
       {upcomingTravels?.map((travel) => (
