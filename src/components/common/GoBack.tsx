@@ -7,8 +7,8 @@ export const GoBack: React.FC = () => {
 
   useLayoutEffect(() => {
     if (!isNavigationExecutedRef.current) {
-      navigate(-1);
       isNavigationExecutedRef.current = true;
+      navigate(-1);
     }
 
     return () => {
