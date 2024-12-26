@@ -10,10 +10,6 @@ export const GoBack: React.FC = () => {
       isNavigationExecutedRef.current = true;
       navigate(-1);
     }
-
-    return () => {
-      isNavigationExecutedRef.current = false;
-    };
   }, [navigate]);
 
   return <></>;
