@@ -7,8 +7,8 @@ export const Todo = withNavigation(() => {
     <div className="p-6 bg-primary-100 min-h-full flex flex-col gap-5">
       <TopNav
         navIconInfos={[
-          { id: faLeftLong, title: '이전 화면으로 되돌아가기', route: '/' },
-          { id: faUser, title: '마이페이지로 이동하기', route: '/' },
+          { id: faLeftLong, title: '이전 화면으로 되돌아가기', route: -1 },
+          { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
         ]}
         bgColor="bg-secondary-500"
         iconColor="text-neutral-600"
