@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 import { withNavigation } from './withNavigation';
-import { VerificationStatus, verifyEmail } from '../utils/signup.util';
+import { VerificationStatus, verifyEmail } from '../api/signup';
 import { InputItem } from '../components/signup/InputItem';
 import { FullWidthButton as Button } from '../components/common/FullWidthButton';
 

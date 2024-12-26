@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
-import { requestLogin } from '../utils/login.util';
+import { requestLogin } from '../api/login';
 import { InputItem } from '../components/login/InputItem';
 import { FullWidthButton as Button } from '../components/common/FullWidthButton';
 
