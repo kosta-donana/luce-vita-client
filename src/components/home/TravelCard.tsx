@@ -26,11 +26,15 @@ export function TravelCard({ travel, onClick, travelStatus }: TravelCardProps) {
           </h2>
           {/* 기간 */}
           <div className="text-lg text-gray-600">
-            <span className="mr-2 text-gray-500">{travel.start_date.slice(0, 4)}</span>
-            <span>· </span>
-            <span>{travel.start_date.slice(5).replace('-', '')}</span>
-            <span className="mx-1">-</span>
-            <span>{travel.end_date.slice(5).replace('-', '')}</span>
+            <div className="text-right">
+              <span className="text-gray-500">{travel.start_date.slice(0, 4)}</span>
+              <span>년 </span>
+            </div>
+            <div>
+              <span>{travel.start_date.slice(5).replace('-', '')}</span>
+              <span className="mx-1">-</span>
+              <span>{travel.end_date.slice(5).replace('-', '')}</span>
+            </div>
           </div>
         </div>
 
