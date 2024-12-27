@@ -66,14 +66,13 @@ export const Home = withNavigation(() => {
       />
 
       {/* 여행 상태 캘린더 */}
-      {/* {currentTravel ? (
+      {currentTravel ? (
         <Status startDate={currentTravel.start_date} endDate={currentTravel.end_date} />
       ) : (
         <Status startDate={'2000-01-01'} endDate={'2000-01-02'} />
-      )} */}
+      )}
 
-      <Status startDate={'2024-12-22'} endDate={'2024-12-25'} />
-
+      {/* 현재 진행중인 여행 */}
       {currentTravel ? (
         <TravelCard
           travel={currentTravel}
@@ -83,6 +82,7 @@ export const Home = withNavigation(() => {
         <EmptyCard />
       )}
 
+      {/* 예정된 여행들 (오름차순) */}
       {upcomingTravels &&
         upcomingTravels.map((travel) => (
           <TravelCard
