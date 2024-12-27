@@ -76,6 +76,7 @@ export const Home = withNavigation(() => {
       {currentTravel ? (
         <TravelCard
           travel={currentTravel}
+          travelStatus=""
           onClick={() => clickTravelHandler(currentTravel.travel_id)}
         />
       ) : (
@@ -88,6 +89,7 @@ export const Home = withNavigation(() => {
           <TravelCard
             key={travel.travel_id}
             travel={travel}
+            travelStatus=""
             onClick={() => clickTravelHandler(travel.travel_id)}
           />
         ))}
