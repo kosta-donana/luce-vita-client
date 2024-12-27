@@ -15,11 +15,11 @@ export function TravelCard({ travel, onClick }: { travel: Travel; onClick: () =>
         </h2>
         {/* 기간 */}
         <div className="text-lg text-gray-600">
-          {/* 연도를 이 아래 span에 넣을 예정이었음.. */}
-          <span className="mr-2"></span>
-          <span>{travel.start_date}</span>
+          <span className="mr-2 text-gray-500">{travel.start_date.slice(0, 4)}</span>
+          <span>· </span>
+          <span>{travel.start_date.slice(5).replace('-', '')}</span>
           <span className="mx-1">-</span>
-          <span>{travel.end_date}</span>
+          <span>{travel.end_date.slice(5).replace('-', '')}</span>
         </div>
       </div>
 
