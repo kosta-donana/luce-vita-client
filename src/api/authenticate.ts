@@ -16,12 +16,14 @@ async function requestToken(): Promise<TokenStatus> {
 
     if (response.data.success) {
       return 'reissued';
-    } else if (response.status === 401) {
-      return 'expired';
     } else {
       return 'error';
     }
-  } catch {
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.status === 401) {
+      return 'expired';
+    }
+
     return 'error';
   }
 }

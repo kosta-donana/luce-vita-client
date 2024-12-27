@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -36,7 +36,7 @@ export const Travels = withNavigation(() => {
     navigate(`/travels/${travel_id}`);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let timeoutId = 0;
     function debounceSetTop() {
       if (timeoutId != 0) {
@@ -53,6 +53,11 @@ export const Travels = withNavigation(() => {
 
     window.addEventListener('resize', debounceSetTop);
     screen.orientation.addEventListener('change', debounceSetTop);
+
+    return () => {
+      window.removeEventListener('resize', debounceSetTop);
+      screen.orientation.removeEventListener('change', debounceSetTop);
+    };
   }, []);
 
   useEffect(() => {
