@@ -24,6 +24,7 @@ export type TopNavProps = {
 
 export type FloatingNavButtonProps = {
   navIconInfo: NavIconInfo;
+  top: string;
 };
 
 export type TravelArticleProps = {
