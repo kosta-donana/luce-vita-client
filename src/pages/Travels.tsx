@@ -73,7 +73,7 @@ export const Travels = withNavigation(() => {
             key={travel.travel_id}
             travel={travel}
             travelStatus="upcoming"
-            onClick={() => clickTravelHandler(travel.travel_id)}
+            onClickHandler={() => clickTravelHandler(travel.travel_id)}
           />
         ))}
 
@@ -82,7 +82,7 @@ export const Travels = withNavigation(() => {
         <TravelCard
           travel={currentTravel}
           travelStatus="ongoing"
-          onClick={() => clickTravelHandler(currentTravel.travel_id)}
+          onClickHandler={() => clickTravelHandler(currentTravel.travel_id)}
         />
       ) : (
         <EmptyCard />
@@ -95,7 +95,7 @@ export const Travels = withNavigation(() => {
             key={travel.travel_id}
             travel={travel}
             travelStatus="completed"
-            onClick={() => clickTravelHandler(travel.travel_id)}
+            onClickHandler={() => clickTravelHandler(travel.travel_id)}
           />
         ))}
 
