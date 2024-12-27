@@ -48,8 +48,8 @@ export function TravelCard({ travel, onClick }: { travel: Travel; onClick: () =>
         <div className="flex justify-center items-center gap-2">
           <div className="text-slate-400">잔액</div>
           <div className="text-2xl font-bold text-gray-600">
-            <span>₩</span>
-            <span>{travel.budget_total}</span>
+            <span className="mr-1">₩</span>
+            <span>{travel.budget_total.toLocaleString()}</span>
           </div>
         </div>
 
