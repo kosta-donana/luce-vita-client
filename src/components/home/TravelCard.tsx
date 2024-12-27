@@ -10,7 +10,7 @@ export function TravelCard({ travel, onClick }: { travel: Travel; onClick: () =>
       {/* 제목, 기간 */}
       <div className="flex justify-between items-center">
         {/* 제목 */}
-        <h2 className="border-b-2 border-slate-400 text-4xl font-bold text-gray-600">
+        <h2 className="border-b-2 border-slate-400 text-4xl font-bold text-gray-600 overflow-hidden text-ellipsis">
           {travel.travel_title}
         </h2>
         {/* 기간 */}
@@ -29,16 +29,18 @@ export function TravelCard({ travel, onClick }: { travel: Travel; onClick: () =>
         <div>
           <div className="text-slate-400">국가, 장소</div>
           <div className="text-2xl font-bold text-gray-600">
-            <span>{travel.country.country_name}</span>
+            <span className="overflow-hidden text-ellipsis">{travel.country.country_name}</span>
             <span className="mr-2">,</span>
-            <span>{travel.local_name}</span>
+            <span className="overflow-hidden text-ellipsis">{travel.local_name}</span>
           </div>
         </div>
 
         {/* 숙소 */}
         <div>
           <div className="text-slate-400">숙소</div>
-          <div className="text-2xl font-bold text-gray-600">{travel.address}</div>
+          <div className="overflow-hidden text-ellipsis text-2xl font-bold text-gray-600">
+            {travel.address}
+          </div>
         </div>
       </div>
 
