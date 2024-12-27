@@ -38,12 +38,12 @@ export const Travels = withNavigation(() => {
       if (ongoingTravels.length > 0) {
         setCurrentTravel(ongoingTravels[0]);
         if (upcomingTravels.length > 0) {
-          setUpcomingTravels(upcomingTravels.reverse());
+          setUpcomingTravels(upcomingTravels);
         }
       } else if (upcomingTravels.length > 0) {
         setCurrentTravel(upcomingTravels[0]);
         if (upcomingTravels.length >= 2) {
-          setUpcomingTravels(upcomingTravels.slice(1).reverse());
+          setUpcomingTravels(upcomingTravels.slice(1));
         }
       } else {
         setCurrentTravel(null);
