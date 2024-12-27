@@ -37,12 +37,12 @@ export function StatusCard({ startDate, endDate }: { startDate: string; endDate:
   return (
     <div className="flex flex-col justify-center my-7 p-6 gap-3 rounded-3xl shadow-md shadow-gray-400 bg-primary-400">
       {/* 일정 상태 */}
-      <div className="w-full text-left text-4xl font-bold text-white">
+      <div className="my-1.5 w-full text-left text-4xl font-bold text-white">
         여행이 일주일 남았습니다!
       </div>
 
       {/* 캘린더 */}
-      <div className="w-full grid grid-rows-3 grid-cols-7 gap-2 px-2">
+      <div className="w-full grid grid-rows-3 grid-cols-7 gap-3 px-2">
         {weeks.flat().map((date, index) => (
           <DateBlock key={index} isTravel={isWithinRange(date, start, end)}>
             {date.getDate().toString()}
