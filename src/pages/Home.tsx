@@ -33,8 +33,6 @@ export const Home = withNavigation(() => {
   useEffect(() => {
     console.log('data?.data.data:', data?.data.data);
     if (data) {
-      // setOngoingTravels(data.data.data.ongoingTravels);
-      // setUpcomingTravels(data.data.data.upcomingTravels);
       const ongoingTravels = data.data.data.ongoingTravels;
       const upcomingTravels = data.data.data.upcomingTravels;
       if (ongoingTravels.length > 0) {
@@ -61,7 +59,11 @@ export const Home = withNavigation(() => {
       />
 
       {/* 여행 상태 캘린더 */}
-      <Status startDate={'2024-12-25'} endDate={'2025-01-06'} />
+      {currentTravel ? (
+        <Status startDate={currentTravel.start_date} endDate={currentTravel.end_date} />
+      ) : (
+        <Status startDate={'2000-01-01'} endDate={'2000-01-02'} />
+      )}
 
       {currentTravel ? (
         <TravelCard
