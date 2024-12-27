@@ -27,8 +27,8 @@ export const Home = withNavigation(() => {
     },
   });
 
-  const clickTravelHandler = (travel_id: number) => {
-    navigate(`/travels/${travel_id}`);
+  const clickTravelHandler = () => {
+    navigate(`/travels`);
   };
 
   useEffect(() => {
@@ -69,16 +69,12 @@ export const Home = withNavigation(() => {
       {currentTravel ? (
         <Status startDate={currentTravel.start_date} endDate={currentTravel.end_date} />
       ) : (
-        <Status startDate={'2000-01-01'} endDate={'2000-01-02'} />
+        <Status startDate={'1999-01-01'} endDate={'1999-12-31'} />
       )}
 
       {/* 현재 진행중인 여행 */}
       {currentTravel ? (
-        <TravelCard
-          travel={currentTravel}
-          travelStatus=""
-          onClick={() => clickTravelHandler(currentTravel.travel_id)}
-        />
+        <TravelCard travel={currentTravel} travelStatus="" onClickHandler={clickTravelHandler} />
       ) : (
         <EmptyCard />
       )}
@@ -90,7 +86,7 @@ export const Home = withNavigation(() => {
             key={travel.travel_id}
             travel={travel}
             travelStatus=""
-            onClick={() => clickTravelHandler(travel.travel_id)}
+            onClickHandler={clickTravelHandler}
           />
         ))}
 
