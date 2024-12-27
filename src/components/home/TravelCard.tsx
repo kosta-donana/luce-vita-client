@@ -10,16 +10,16 @@ export function TravelCard({ travel, onClick }: { travel: Travel; onClick: () =>
       {/* 제목, 기간 */}
       <div className="flex justify-between items-center">
         {/* 제목 */}
-        <h2 className="border-b-2 border-slate-400 text-4xl font-bold text-gray-600">
+        <h2 className="border-b-2 border-slate-400 text-4xl font-bold text-gray-600 overflow-hidden text-ellipsis">
           {travel.travel_title}
         </h2>
         {/* 기간 */}
         <div className="text-lg text-gray-600">
-          {/* 연도를 이 아래 span에 넣을 예정이었음.. */}
-          <span className="mr-2"></span>
-          <span>{travel.start_date}</span>
+          <span className="mr-2 text-gray-500">{travel.start_date.slice(0, 4)}</span>
+          <span>· </span>
+          <span>{travel.start_date.slice(5).replace('-', '')}</span>
           <span className="mx-1">-</span>
-          <span>{travel.end_date}</span>
+          <span>{travel.end_date.slice(5).replace('-', '')}</span>
         </div>
       </div>
 
@@ -29,16 +29,18 @@ export function TravelCard({ travel, onClick }: { travel: Travel; onClick: () =>
         <div>
           <div className="text-slate-400">국가, 장소</div>
           <div className="text-2xl font-bold text-gray-600">
-            <span>{travel.country.country_name}</span>
+            <span className="overflow-hidden text-ellipsis">{travel.country.country_name}</span>
             <span className="mr-2">,</span>
-            <span>{travel.local_name}</span>
+            <span className="overflow-hidden text-ellipsis">{travel.local_name}</span>
           </div>
         </div>
 
         {/* 숙소 */}
         <div>
           <div className="text-slate-400">숙소</div>
-          <div className="text-2xl font-bold text-gray-600">{travel.address}</div>
+          <div className="overflow-hidden text-ellipsis text-2xl font-bold text-gray-600">
+            {travel.address}
+          </div>
         </div>
       </div>
 
@@ -48,8 +50,8 @@ export function TravelCard({ travel, onClick }: { travel: Travel; onClick: () =>
         <div className="flex justify-center items-center gap-2">
           <div className="text-slate-400">잔액</div>
           <div className="text-2xl font-bold text-gray-600">
-            <span>₩</span>
-            <span>{travel.budget_total}</span>
+            <span className="mr-1">₩</span>
+            <span>{travel.budget_total.toLocaleString()}</span>
           </div>
         </div>
 
