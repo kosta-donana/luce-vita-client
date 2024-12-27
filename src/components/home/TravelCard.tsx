@@ -4,10 +4,10 @@ import { Tag } from './Tag';
 type TravelCardProps = {
   travel: Travel;
   travelStatus: string;
-  onClick: () => void;
+  onClickHandler: () => void;
 };
 
-export function TravelCard({ travel, onClick, travelStatus }: TravelCardProps) {
+export function TravelCard({ travel, onClickHandler, travelStatus }: TravelCardProps) {
   return (
     <div
       className={`flex flex-col gap-6 justify-center p-6 aspect-2/1 rounded-3xl shadow-md cursor-pointer ${
@@ -15,7 +15,7 @@ export function TravelCard({ travel, onClick, travelStatus }: TravelCardProps) {
       } ${travelStatus === 'ongoing' && 'bg-white border-4 border-secondary-300'} ${
         travelStatus === 'upcoming' && 'bg-gray-50'
       } ${travelStatus === 'completed' && 'bg-gray-300'}`}
-      onClick={onClick}
+      onClick={onClickHandler}
     >
       <div className={`${travelStatus === 'upcoming' && 'blur-[2px]'}`}>
         {/* 제목, 기간 */}
