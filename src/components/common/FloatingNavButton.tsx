@@ -8,12 +8,18 @@ import { FloatingNavButtonProps } from '../../models/props.model';
 export const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInfo }) => {
   const navigate = useNavigate();
 
-  function navigateToOrNumber(route: To | number) {
+  function navigateToOrNumber(route: To | number): boolean {
+    if (route === 0) {
+      return false;
+    }
+
     if (typeof route === 'number') {
       navigate(route);
     } else {
       navigate(route);
     }
+
+    return true;
   }
 
   return (
@@ -21,7 +27,9 @@ export const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInf
       type="button"
       className="absolute z-10 right-0 bottom-0 m-8 bg-primary-500 hover:bg-secondary-400 size-24 text-neutral-200 hover:text-neutral-100 rounded-full shadow-md shadow-gray-500"
       onClick={() => {
-        navigateToOrNumber(navIconInfo.route);
+        if (!navigateToOrNumber(navIconInfo.route)) {
+          navIconInfo.handleClick!();
+        }
       }}
     >
       <FontAwesomeIcon icon={navIconInfo.id} size="4x" title={navIconInfo.title} />
