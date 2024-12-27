@@ -21,9 +21,9 @@ export async function requestLogin(email: string, password: string): Promise<Log
     if (response.data.success) {
       return 'succeed';
     } else {
-      return 'failed';
+      return 'error';
     }
-  } catch {
-    return 'error';
+  } catch (error) {
+    return axios.isAxiosError(error) ? 'failed' : 'error';
   }
 }

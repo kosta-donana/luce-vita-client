@@ -24,12 +24,17 @@ export async function requestSignUp(email: string, password: string): Promise<Si
 
     if (response.data.success) {
       return 'verify';
-    } else if (response.data.error === 'Registered User') {
-      return 'exist';
     } else {
       return 'error';
     }
-  } catch {
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.data.error === 'Registered User') {
+        return 'exist';
+      }
+      // TODO: 회원탈퇴 후 재가입 오류 처리하기
+    }
+
     return 'error';
   }
 }
@@ -54,12 +59,14 @@ export async function verifyEmail(
 
     if (response.data.success) {
       return 'verified';
-    } else if (response.data.error === 'Verification Failed') {
-      return 'failed';
     } else {
       return 'error';
     }
-  } catch {
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.data.error === 'Verification Failed') {
+      return 'failed';
+    }
+
     return 'error';
   }
 }
