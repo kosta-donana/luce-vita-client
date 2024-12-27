@@ -16,6 +16,7 @@ export const Home = withNavigation(() => {
   // const [travels, setTravels] = useState<Travel[]>(dummyTravels);
   const navigate = useNavigate();
   const [currentTravel, setCurrentTravel] = useState<Travel | null>();
+  const [upcomingTravels, setUpcomingTravels] = useState<Travel[] | null>();
   const { data } = useQuery({
     queryKey: [],
     queryFn: async () => {
@@ -37,8 +38,14 @@ export const Home = withNavigation(() => {
       const upcomingTravels = data.data.data.upcomingTravels;
       if (ongoingTravels.length > 0) {
         setCurrentTravel(ongoingTravels[0]);
+        if (upcomingTravels.length > 0) {
+          setUpcomingTravels(upcomingTravels.reverse());
+        }
       } else if (upcomingTravels.length > 0) {
         setCurrentTravel(upcomingTravels[0]);
+        if (upcomingTravels.length >= 2) {
+          setUpcomingTravels(upcomingTravels.slice(1).reverse());
+        }
       } else {
         setCurrentTravel(null);
       }
@@ -65,7 +72,7 @@ export const Home = withNavigation(() => {
         <Status startDate={'2000-01-01'} endDate={'2000-01-02'} />
       )} */}
 
-      <Status startDate={'2024-12-29'} endDate={'2024-12-31'} />
+      <Status startDate={'2024-12-22'} endDate={'2024-12-25'} />
 
       {currentTravel ? (
         <TravelCard
@@ -75,6 +82,15 @@ export const Home = withNavigation(() => {
       ) : (
         <EmptyCard />
       )}
+
+      {upcomingTravels &&
+        upcomingTravels.map((travel) => (
+          <TravelCard
+            key={travel.travel_id}
+            travel={travel}
+            onClick={() => clickTravelHandler(travel.travel_id)}
+          />
+        ))}
 
       <CreateTravelButton
         navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/travels/create' }}
