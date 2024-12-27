@@ -5,7 +5,7 @@ import { FloatingNavButtonProps } from '../../models/props.model';
 /**
  * 플로팅 버튼 컴포넌트입니다.
  */
-export const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInfo }) => {
+export const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInfo, top }) => {
   const navigate = useNavigate();
 
   function navigateToOrNumber(route: To | number) {
@@ -19,7 +19,8 @@ export const FloatingNavButton: React.FC<FloatingNavButtonProps> = ({ navIconInf
   return (
     <button
       type="button"
-      className="absolute z-10 right-0 bottom-0 m-8 bg-primary-500 hover:bg-secondary-400 size-24 text-neutral-200 hover:text-neutral-100 rounded-full shadow-md shadow-gray-500"
+      className="sticky z-10 left-full mx-2 bg-primary-500 hover:bg-secondary-400 size-24 text-neutral-200 hover:text-neutral-100 rounded-full shadow-md shadow-gray-500"
+      style={{ top }}
       onClick={() => {
         navigateToOrNumber(navIconInfo.route);
       }}

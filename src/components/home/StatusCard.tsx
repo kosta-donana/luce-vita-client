@@ -15,7 +15,7 @@ export function StatusCard({ startDate, endDate }: StatusCardProps) {
   const dday = Math.ceil((start.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
   return (
-    <div className="flex flex-col justify-center my-7 p-6 gap-3 rounded-3xl shadow-md shadow-gray-400 bg-primary-400">
+    <div className="flex flex-col justify-center my-6 p-6 gap-3 rounded-3xl shadow-md shadow-gray-400 bg-primary-400">
       {/* 일정 상태 */}
       <div className="my-1.5 w-full text-left text-4xl font-bold text-white">
         {dday > 0 ? (
