@@ -1,20 +1,16 @@
 import { useState, useLayoutEffect } from 'react';
-import { Outlet, Navigate } from 'react-router-dom';
-import { RequireAuthProps } from '../../models/props.model';
+import { Outlet } from 'react-router-dom';
 import { authenticate } from '../../api/authenticate';
+import { Loading } from '../navigation/Loading';
 
-export const RequireAuth: React.FC<RequireAuthProps> = ({ redirect }) => {
+export const RequireAuth: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<true | false | null>(null);
 
   useLayoutEffect(() => {
-    authenticate().then((result) => {
+    authenticate().then(async (result) => {
       setIsAuthenticated(result);
     });
   }, []);
 
-  if (isAuthenticated === null) {
-    return <></>;
-  }
-
-  return isAuthenticated ? <Outlet /> : <Navigate to={redirect} />;
+  return isAuthenticated ? <Outlet /> : <Loading hasFailed={!(isAuthenticated ?? true)} />;
 };

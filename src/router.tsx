@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <RequireAuth redirect="/login" />,
+    element: <RequireAuth />,
     children: [
       { index: true, element: <Home /> },
       { path: 'mypage', element: <MyPage /> },

@@ -3,19 +3,20 @@
  */
 
 export type Travel = {
-  travelid: number;
-  userid: string;
+  travel_id: number;
+  user_id: string;
   country: {
-    countryname: string;
+    country_name: string;
     currency: string;
   };
-  title: string;
-  startdate: string;
-  enddate: string;
-  localname: string;
+  country_no: number;
+  travel_title: string;
+  start_date: string;
+  end_date: string;
+  local_name: string;
   address: string;
-  travelimg: string;
-  budgettotal: number;
+  travel_img: string;
+  budget_total: number;
   tags: string[];
   memo: string;
 };

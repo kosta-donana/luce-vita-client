@@ -14,10 +14,6 @@ type NavIconInfo = {
  * 공통 컴포넌트의 Props 타입들을 정의하고 있는 파일입니다.
  */
 
-export type RequireAuthProps = {
-  redirect: To;
-};
-
 export type TopNavProps = {
   navIconInfos: [NavIconInfo, NavIconInfo];
   bgColor: string;

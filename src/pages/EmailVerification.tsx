@@ -22,6 +22,7 @@ export const EmailVerification = withNavigation(() => {
     );
     switch (status) {
       case 'verified':
+        alert('회원가입이 모두 완료되었습니다.');
         if (sessionStorage?.getItem('backCount')) {
           navigate(-(Number(sessionStorage?.getItem('backCount')) + 1));
         } else {
