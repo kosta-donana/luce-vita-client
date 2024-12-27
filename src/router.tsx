@@ -44,8 +44,8 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: 'mypage', element: <MyPage /> },
       { path: 'travels', element: <Travels /> },
-      { path: 'travels/:idHash', element: <TravelDetail /> },
-      { path: 'travels/:idHash/:todoDate', element: <Todo /> },
+      { path: 'travels/:id', element: <TravelDetail /> },
+      { path: 'travels/:id/:todoDate', element: <Todo /> },
     ],
   },
 ]);
