@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-type TokenStatus = 'reissued' | 'expired' | 'error';
+type TokenStatus = 'timeout' | 'reissued' | 'expired' | 'error';
 
 const ajax = axios.create({
   withCredentials: true,
@@ -16,12 +16,26 @@ async function requestToken(): Promise<TokenStatus> {
 
     if (response.data.success) {
       return 'reissued';
-    } else if (response.status === 401) {
-      return 'expired';
     } else {
+      console.log('서버에서 원인을 알 수 없는 오류가 발생하였습니다.');
       return 'error';
     }
-  } catch {
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 401) {
+        return 'expired';
+      }
+      if (error.code === 'ECONNABORTED') {
+        return 'timeout';
+      }
+
+      console.log(
+        'Axios 요청 과정에서 오류가 발생하였습니다. 더욱 자세한 정보를 얻으려면 API 명세를 확인해주세요.'
+      );
+      return 'error';
+    }
+
+    console.log('서버로의 요청에 실패하였습니다.');
     return 'error';
   }
 }
@@ -35,6 +49,7 @@ export async function authenticate(): Promise<boolean> {
   switch (status) {
     case 'reissued':
       return true;
+    case 'timeout':
     case 'expired':
     case 'error':
       return false;

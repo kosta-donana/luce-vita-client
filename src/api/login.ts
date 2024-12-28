@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export type LoginStatus = 'succeed' | 'failed' | 'error';
+export type LoginStatus = 'timeout' | 'succeed' | 'failed' | 'error';
 
 const ajax = axios.create({
   withCredentials: true,
@@ -21,9 +21,27 @@ export async function requestLogin(email: string, password: string): Promise<Log
     if (response.data.success) {
       return 'succeed';
     } else {
-      return 'failed';
+      console.log('서버에서 원인을 알 수 없는 오류가 발생하였습니다.');
+      return 'error';
     }
-  } catch {
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // 서버에서 2xx가 아닌 응답 결과를 받았을 때
+      if (error.response) {
+        return 'failed';
+      }
+      // 서버에서 응답 결과를 받지 못 했고, 타임아웃이 원인일 때
+      if (error.code === 'ECONNABORTED') {
+        return 'timeout';
+      }
+
+      console.log(
+        'Axios 요청 과정에서 오류가 발생하였습니다. 더욱 자세한 정보를 얻으려면 API 명세를 확인해주세요.'
+      );
+      return 'error';
+    }
+
+    console.log('서버로의 요청에 실패하였습니다.');
     return 'error';
   }
 }

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState, useLayoutEffect, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -12,12 +12,18 @@ import { StatusCard as Status } from '../components/home/StatusCard';
 import { TravelCard } from '../components/home/TravelCard';
 import { EmptyCard } from '../components/home/EmptyCard';
 
-export const Home = withNavigation(() => {
-  const navigate = useNavigate();
-  // const [travels, setTravels] = useState<Travel[]>(dummyTravels);
-  const [upcomingTravels, setUpcomingTravels] = useState<Travel[]>();
-  const [ongoingTravels, setOngoingTravels] = useState<Travel[]>();
+const rootEl = document.getElementById('root')!;
 
+export const Home = withNavigation(() => {
+  // const [travels, setTravels] = useState<Travel[]>(dummyTravels);
+  const navigate = useNavigate();
+  const [currentTravel, setCurrentTravel] = useState<Travel | null>();
+  const [upcomingTravels, setUpcomingTravels] = useState<Travel[] | null>();
+  const [top, setTop] = useState<string>(
+    parseInt(rootEl.style.height) -
+      8 * (Math.round(16 * Math.cbrt(parseInt(rootEl.style.width) / 1440) * 100) / 100) +
+      'px'
+  );
   const { data } = useQuery({
     queryKey: [],
     queryFn: async () => {
@@ -28,60 +34,98 @@ export const Home = withNavigation(() => {
     },
   });
 
+  const clickTravelHandler = () => {
+    navigate(`/travels`);
+  };
+
+  useLayoutEffect(() => {
+    let timeoutId = 0;
+    function debounceSetTop() {
+      if (timeoutId !== 0) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        setTop(
+          parseInt(rootEl.style.height) -
+            8 * (Math.round(16 * Math.cbrt(parseInt(rootEl.style.width) / 1440) * 100) / 100) +
+            'px'
+        );
+      }, 250);
+    }
+
+    window.addEventListener('resize', debounceSetTop);
+    screen.orientation.addEventListener('change', debounceSetTop);
+
+    return () => {
+      window.removeEventListener('resize', debounceSetTop);
+      screen.orientation.removeEventListener('change', debounceSetTop);
+    };
+  }, []);
+
   useEffect(() => {
-    console.log('useQuery data:', data);
     console.log('data?.data.data:', data?.data.data);
     if (data) {
-      setOngoingTravels(data.data.data.ongoingTravels);
-      setUpcomingTravels(data.data.data.upcomingTravels);
+      const ongoingTravels = data.data.data.ongoingTravels;
+      const upcomingTravels = data.data.data.upcomingTravels;
+      if (ongoingTravels.length > 0) {
+        setCurrentTravel(ongoingTravels[0]);
+        if (upcomingTravels.length > 0) {
+          setUpcomingTravels(upcomingTravels.reverse());
+        }
+      } else if (upcomingTravels.length > 0) {
+        setCurrentTravel(upcomingTravels[0]);
+        if (upcomingTravels.length >= 2) {
+          setUpcomingTravels(upcomingTravels.slice(1).reverse());
+        }
+      } else {
+        setCurrentTravel(null);
+      }
     }
   }, [data]);
 
   return (
-    <div className="p-6 bg-primary-100 min-h-full flex flex-col gap-5">
-      <TopNav
-        navIconInfos={[
-          // TODO: 내비게이션 아이콘 변경 및 커뮤니티 기능 연결하기
-          { id: faHouseFlag, title: '커뮤니티 기능으로 임시 이동하기', route: '/' },
-          { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
-        ]}
-        bgColor="bg-primary-100"
-        iconColor="text-primary-300"
-        title="Luce Vita"
-        titleColor="text-slate-700"
+    <div className="relative p-6 bg-primary-100 min-h-full flex flex-col gap-5">
+      <div className="absolute pr-12 w-full">
+        <TopNav
+          navIconInfos={[
+            { id: faHouseFlag, title: '커뮤니티 기능으로 임시 이동하기', route: '/' },
+            { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
+          ]}
+          bgColor="bg-primary-100"
+          iconColor="text-primary-300"
+          title="Luce Vita"
+          titleColor="text-slate-700"
+        />
+      </div>
+      <CreateTravelButton
+        navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/travels/create' }}
+        top={top}
       />
 
       {/* 여행 상태 캘린더 */}
-      <Status startDate={'2024-12-25'} endDate={'2025-01-06'} />
+      {currentTravel ? (
+        <Status startDate={currentTravel.start_date} endDate={currentTravel.end_date} />
+      ) : (
+        <Status startDate={'1999-01-01'} endDate={'1999-12-31'} />
+      )}
 
-      {/* 다가올 여행 */}
-      {upcomingTravels?.map((travel) => (
-        <TravelCard
-          key={travel.travel_id}
-          travel={travel}
-          onClick={() => {
-            navigate(`/travels/${travel.travel_id}`);
-          }}
-        />
-      ))}
+      {/* 현재 진행중인 여행 */}
+      {currentTravel ? (
+        <TravelCard travel={currentTravel} travelStatus="" onClickHandler={clickTravelHandler} />
+      ) : (
+        <EmptyCard />
+      )}
 
-      {/* 진행중인 여행 */}
-      {ongoingTravels?.map((travel) => (
-        <TravelCard
-          key={travel.travel_id}
-          travel={travel}
-          onClick={() => {
-            navigate(`/travels/${travel.travel_id}`);
-          }}
-        />
-      ))}
-
-      {/* 여행이 없으니 만들라는 레이아웃 칸 */}
-      {ongoingTravels?.length === 0 && upcomingTravels?.length === 0 && <EmptyCard />}
-
-      <CreateTravelButton
-        navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/travels/create' }}
-      />
+      {/* 예정된 여행들 (오름차순) */}
+      {upcomingTravels &&
+        upcomingTravels.map((travel) => (
+          <TravelCard
+            key={travel.travel_id}
+            travel={travel}
+            travelStatus=""
+            onClickHandler={clickTravelHandler}
+          />
+        ))}
     </div>
   );
 });

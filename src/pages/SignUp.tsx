@@ -90,6 +90,11 @@ export const SignUp = withNavigation(() => {
     const email = emailRef.current!.value;
     const status: SignUpStatus = await requestSignUp(email, passwordInput.value);
     switch (status) {
+      case 'timeout':
+        alert(
+          '네트워크 연결이 불안정하거나, 서버의 응답이 너무 오래 걸립니다. 잠시 후에 다시 시도하세요.'
+        );
+        break;
       case 'verify':
         navigate('/emailverification', { state: { email: email } });
         break;
