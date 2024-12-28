@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useLayoutEffect } from 'react';
 import axios from 'axios';
 import { faLeftLong, faPlaneCircleCheck } from '@fortawesome/free-solid-svg-icons';
@@ -7,10 +8,13 @@ import { InputItem } from '../components/travel-create/InputItem';
 import { Country } from '../models/country.model';
 
 export const TravelCreate = withNavigation(() => {
+  const navigate = useNavigate();
   const [countries, setCountries] = useState<Country[]>([]);
   const [currencyUnit, setCurrencyUnit] = useState<string>('화폐 단위');
 
   const formRef = useRef<HTMLFormElement>(null);
+
+  let isSubmitting: boolean = false;
 
   useLayoutEffect(() => {
     axios
@@ -27,7 +31,10 @@ export const TravelCreate = withNavigation(() => {
    * 새로운 여행 추가하기 버튼을 클릭했을 때의 동작을 정의하는 함수입니다.
    */
   function handleClick() {
-    formRef.current!.requestSubmit();
+    if (!isSubmitting) {
+      isSubmitting = true;
+      formRef.current!.requestSubmit();
+    }
   }
 
   /**
@@ -55,6 +62,38 @@ export const TravelCreate = withNavigation(() => {
 
     // 줄 바꿈 문자 치환하기
     const memo: string = formData.get('memo')!.toString().replace(/\n\r?/g, '&#13;&#10;');
+
+    axios
+      .post(`${import.meta.env.VITE_API_BASE_URL}/travels`, {
+        travel_title: travelTitle,
+        start_date: startDate,
+        end_date: endDate,
+        country_no: countryNo,
+        local_name: localName,
+        address,
+        budget_total: budgetTotal,
+        memo,
+        tags,
+      })
+      .then((response) => {
+        if (response.data.success) {
+          navigate(-1);
+        } else {
+          console.log('서버에서 원인을 알 수 없는 오류가 발생하였습니다.');
+        }
+      })
+      .catch((error) => {
+        if (error.code === 'ECONNABORTED') {
+          alert(
+            '네트워크 연결이 불안정하거나, 서버의 응답이 너무 오래 걸립니다. 잠시 후에 다시 시도하세요.'
+          );
+        } else {
+          alert('서버 오류가 발생하였습니다.');
+        }
+      })
+      .finally(() => {
+        isSubmitting = false;
+      });
   }
 
   return (
