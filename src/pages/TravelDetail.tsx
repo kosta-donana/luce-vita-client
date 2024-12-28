@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { TopNav } from '../components/common/TopNav';
@@ -6,6 +7,8 @@ import { TravelBudget } from '../components/travel-detail/TravelBudget';
 import { FullWidthButton } from '../components/common/FullWidthButton';
 
 export const TravelDetail = withNavigation(() => {
+  const { id } = useParams();
+
   return (
     <div className="p-6 bg-primary-100 min-h-full">
       {/* 상단 내비게이션 */}
@@ -35,13 +38,16 @@ export const TravelDetail = withNavigation(() => {
       {/* 수정 버튼 */}
       <FullWidthButton
         type="button"
-        margin="my-8"
+        margin="my-7"
         bgColor="bg-secondary-400"
         textColor="text-white"
       >
         여행 수정하러 가기
       </FullWidthButton>
       {/* 일정 목록 */}
+      <section className="pl-5 pr-24 py-6 bg-primary-300 rounded-2xl shadow-md">
+        <h1 className="my-1 text-primary-100 text-lg">일정 목록</h1>
+      </section>
     </div>
   );
 });
