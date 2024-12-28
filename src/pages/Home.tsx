@@ -6,12 +6,11 @@ import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
 // import { dummyTravels } from '../utils/dummy-travels.util';
+import { MainWrapper } from '../components/common/MainWrapper';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
-import { StatusCard } from '../components/home/StatusCard';
 import { TravelCard } from '../components/common/TravelCard';
-import { EmptyCard } from '../components/home/EmptyCard';
-import { MainWrapper } from '../components/common/MainWrapper';
+import { StatusCard, EmptyCard } from '../components/home';
 
 const rootEl = document.getElementById('root')!;
 
@@ -67,7 +66,6 @@ export const Home = withNavigation(() => {
     if (queryData) {
       const { ongoingTravels, upcomingTravels } = queryData.data.data;
       if (ongoingTravels.length > 0 && upcomingTravels.length > 0) {
-        console.log(upcomingTravels);
         setCurrentTravel(ongoingTravels[0]);
         setUpcomingTravels(upcomingTravels.toReversed());
       } else if (ongoingTravels.length === 0 && upcomingTravels.length === 1) {
