@@ -1,5 +1,7 @@
-import { useParams } from 'react-router-dom';
-import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { faLeftLong, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { TopNav } from '../components/common/TopNav';
 import { TravelBasics } from '../components/travel-detail/TravelBasics';
@@ -7,7 +9,52 @@ import { TravelBudget } from '../components/travel-detail/TravelBudget';
 import { FullWidthButton } from '../components/common/FullWidthButton';
 
 export const TravelDetail = withNavigation(() => {
+  const navigate = useNavigate();
   const { id } = useParams();
+  const [travelTitle, setTravelTitle] = useState<string>('-');
+  const [startDate, setStartDate] = useState<string>('');
+  const [endDate, setEndDate] = useState<string>('');
+  const [countryName, setCountryName] = useState<string>('-');
+  const [currencyUnit, setCurrencyUnit] = useState<string>('');
+  const [localName, setLocalName] = useState<string>('-');
+  const [address, setAddress] = useState<string>('');
+  const [memo, setMemo] = useState<string>('');
+
+  let isDeleting = false;
+
+  useEffect(() => {}, []);
+
+  /**
+   * 여행 삭제하기 버튼을 클릭했을 때의 동작을 정의하는 함수이다.
+   */
+  function deleteTravel() {
+    if (isDeleting) return;
+
+    isDeleting = true;
+
+    axios
+      .delete(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}`)
+      .then((response) => {
+        if (response.data.success) {
+          alert('여행이 성공적으로 삭제되었습니다.');
+          navigate(-1);
+        } else {
+          console.log('서버에서 원인을 알 수 없는 오류가 발생하였습니다.');
+        }
+      })
+      .catch((error) => {
+        if (error.code === 'ECONNABORTED') {
+          alert(
+            '네트워크 연결이 불안정하거나, 서버의 응답이 너무 오래 걸립니다. 잠시 후에 다시 시도하세요.'
+          );
+        } else {
+          alert('서버 오류가 발생하였습니다.');
+        }
+      })
+      .finally(() => {
+        isDeleting = false;
+      });
+  }
 
   return (
     <div className="p-6 bg-primary-100 min-h-full">
@@ -15,7 +62,16 @@ export const TravelDetail = withNavigation(() => {
       <TopNav
         navIconInfos={[
           { id: faLeftLong, title: '이전 화면으로 되돌아가기', route: -1 },
-          { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
+          {
+            id: faTrash,
+            title: '여행 삭제하기',
+            route: 0,
+            handleClick: () => {
+              if (confirm('정말로 삭제하실 건가요?')) {
+                deleteTravel();
+              }
+            },
+          },
         ]}
         bgColor="bg-secondary-500"
         iconColor="text-neutral-600"
@@ -24,17 +80,16 @@ export const TravelDetail = withNavigation(() => {
       />
       {/* 기본 정보 */}
       <TravelBasics
-        title="null"
-        startdate="24/10/22"
-        enddate="24/11/07"
-        country={{ countryname: 'null', currency: 'GBP' }}
-        localname="런던"
-        address="Town Hall Albert Square Manchester M60 2LA United Kingdom"
-        memo="이런&#13;&#10;저런&#13;&#10;메모들.."
-        tags={[]}
+        travelTitle={travelTitle}
+        startDate={startDate.replace('-', '/')}
+        endDate={endDate.replace('-', '/')}
+        countryName={countryName}
+        localName={localName}
+        address={address}
+        memo={memo}
       />
       {/* 예산 정보 */}
-      <TravelBudget currency="KRW" total={1000000} spent={300000} />
+      <TravelBudget currencyUnit={currencyUnit} total={1000000} spent={300000} />
       {/* 수정 버튼 */}
       <FullWidthButton
         type="button"
