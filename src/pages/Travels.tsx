@@ -7,7 +7,7 @@ import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
-import { TravelCard } from '../components/home/TravelCard';
+import { TravelCard } from '../components/common/TravelCard';
 import { EmptyCard } from '../components/home/EmptyCard';
 
 const rootEl = document.getElementById('root')!;

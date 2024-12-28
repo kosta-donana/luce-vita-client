@@ -9,7 +9,7 @@ import { Travel } from '../models/travel.model';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
 import { StatusCard } from '../components/home/StatusCard';
-import { TravelCard } from '../components/home/TravelCard';
+import { TravelCard } from '../components/common/TravelCard';
 import { EmptyCard } from '../components/home/EmptyCard';
 import { MainWrapper } from '../components/common/MainWrapper';
 

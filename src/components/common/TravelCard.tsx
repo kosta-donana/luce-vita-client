@@ -1,5 +1,5 @@
 import { Travel } from '../../models/travel.model';
-import { Tag } from './Tag';
+import { Tag } from '../home/Tag';
 
 type TravelCardProps = {
   travel: Travel;
