@@ -24,6 +24,7 @@ export const Home = withNavigation(() => {
       8 * (Math.round(16 * Math.cbrt(parseInt(rootEl.style.width) / 1440) * 100) / 100) +
       'px'
   );
+
   const { data: queryData } = useQuery({
     queryKey: [],
     queryFn: async () => {
@@ -96,18 +97,21 @@ export const Home = withNavigation(() => {
           titleColor="text-slate-700"
         />
       </div>
+
       {/* 여행 생성 버튼 */}
       <CreateTravelButton
         navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/travels/create' }}
         top={top}
       />
+
       {/* 여행 상태 캘린더 */}
       {currentTravel ? (
         <StatusCard startDate={currentTravel.start_date} endDate={currentTravel.end_date} />
       ) : (
         <StatusCard startDate={'1999-01-01'} endDate={'1999-12-31'} />
       )}
-      {/* 현재 진행중인 여행 */}
+
+      {/* 현재 진행중이거나 제일 빨리 오는 여행 */}
       {currentTravel ? (
         <TravelCard
           travel={currentTravel}
@@ -117,6 +121,7 @@ export const Home = withNavigation(() => {
       ) : (
         <EmptyCard />
       )}
+
       {/* 예정된 여행들*/}
       {upcomingTravels?.map((travel) => (
         <TravelCard
