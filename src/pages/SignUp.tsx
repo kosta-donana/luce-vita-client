@@ -28,6 +28,8 @@ export const SignUp = withNavigation(() => {
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
   const termsCheckboxRef = useRef<HTMLInputElement>(null);
 
+  let isSubmitting: boolean = false;
+
   useLayoutEffect(() => {
     const passwordWarningEl = document.getElementById('password_warning')!;
     const passwordConfirmWarningEl = document.getElementById('password_confirm_warning')!;
@@ -63,6 +65,9 @@ export const SignUp = withNavigation(() => {
    * 다음 단계로 버튼을 클릭했을 때의 동작을 정의하는 함수입니다.
    */
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    if (isSubmitting) return;
+
+    isSubmitting = true;
     event.preventDefault();
 
     const [passwordInput, passwordConfirmInput] = [
@@ -105,6 +110,8 @@ export const SignUp = withNavigation(() => {
         alert('서버 오류가 발생하였습니다.');
         break;
     }
+
+    isSubmitting = false;
   }
 
   return (
