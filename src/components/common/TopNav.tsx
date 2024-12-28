@@ -33,6 +33,7 @@ export const TopNav: React.FC<TopNavProps> = ({
       className={`p-5 ${bgColor} ${iconColor} rounded-3xl shadow-md flex justify-between items-center`}
     >
       <FontAwesomeIcon
+        className="cursor-pointer"
         icon={navIconInfos[0].id}
         onClick={() => {
           if (!navigateToOrNumber(navIconInfos[0].route)) {
@@ -44,6 +45,7 @@ export const TopNav: React.FC<TopNavProps> = ({
       />
       <h1 className={`${titleColor} text-4xl font-semibold`}>{title}</h1>
       <FontAwesomeIcon
+        className="cursor-pointer"
         icon={navIconInfos[1].id}
         onClick={() => {
           if (!navigateToOrNumber(navIconInfos[1].route)) {
