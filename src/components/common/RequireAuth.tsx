@@ -7,7 +7,7 @@ export const RequireAuth: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<true | false | null>(null);
 
   useLayoutEffect(() => {
-    authenticate().then(async (result) => {
+    authenticate().then((result) => {
       setIsAuthenticated(result);
     });
   }, []);
