@@ -8,23 +8,24 @@ import { Travel } from '../models/travel.model';
 // import { dummyTravels } from '../utils/dummy-travels.util';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
-import { StatusCard as Status } from '../components/home/StatusCard';
+import { StatusCard } from '../components/home/StatusCard';
 import { TravelCard } from '../components/home/TravelCard';
 import { EmptyCard } from '../components/home/EmptyCard';
+import { MainWrapper } from '../components/common/MainWrapper';
 
 const rootEl = document.getElementById('root')!;
 
 export const Home = withNavigation(() => {
-  // const [travels, setTravels] = useState<Travel[]>(dummyTravels);
   const navigate = useNavigate();
-  const [currentTravel, setCurrentTravel] = useState<Travel | null>();
-  const [upcomingTravels, setUpcomingTravels] = useState<Travel[] | null>();
+  const [currentTravel, setCurrentTravel] = useState<Travel | null>(null);
+  const [upcomingTravels, setUpcomingTravels] = useState<Travel[] | null>(null);
+  // const [travels, setTravels] = useState<Travel[]>(dummyTravels);
   const [top, setTop] = useState<string>(
     parseInt(rootEl.style.height) -
       8 * (Math.round(16 * Math.cbrt(parseInt(rootEl.style.width) / 1440) * 100) / 100) +
       'px'
   );
-  const { data } = useQuery({
+  const { data: queryData } = useQuery({
     queryKey: [],
     queryFn: async () => {
       const result = await axios.get(
@@ -63,32 +64,32 @@ export const Home = withNavigation(() => {
   }, []);
 
   useEffect(() => {
-    console.log('data?.data.data:', data?.data.data);
-    if (data) {
-      const ongoingTravels = data.data.data.ongoingTravels;
-      const upcomingTravels = data.data.data.upcomingTravels;
-      if (ongoingTravels.length > 0) {
+    if (queryData) {
+      const { ongoingTravels, upcomingTravels } = queryData.data.data;
+      if (ongoingTravels.length > 0 && upcomingTravels.length > 0) {
+        console.log(upcomingTravels);
         setCurrentTravel(ongoingTravels[0]);
-        if (upcomingTravels.length > 0) {
-          setUpcomingTravels(upcomingTravels.reverse());
-        }
-      } else if (upcomingTravels.length > 0) {
+        setUpcomingTravels(upcomingTravels.toReversed());
+      } else if (ongoingTravels.length === 0 && upcomingTravels.length === 1) {
         setCurrentTravel(upcomingTravels[0]);
-        if (upcomingTravels.length >= 2) {
-          setUpcomingTravels(upcomingTravels.slice(1).reverse());
-        }
+        setUpcomingTravels(null);
+      } else if (ongoingTravels.length === 0 && upcomingTravels.length >= 2) {
+        setCurrentTravel(upcomingTravels.toReversed().slice(0, 1));
+        setUpcomingTravels(upcomingTravels.toReversed().slice(1));
       } else {
         setCurrentTravel(null);
+        setUpcomingTravels(null);
       }
     }
-  }, [data]);
+  }, [queryData]);
 
   return (
-    <div className="relative p-6 bg-primary-100 min-h-full flex flex-col gap-5">
+    <MainWrapper>
+      {/* 내비게이션 바 */}
       <div className="absolute pr-12 w-full">
         <TopNav
           navIconInfos={[
-            { id: faHouseFlag, title: '커뮤니티 기능으로 임시 이동하기', route: '/' },
+            { id: faHouseFlag, title: '커뮤니티로 이동하기', route: '/community' },
             { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
           ]}
           bgColor="bg-primary-100"
@@ -97,35 +98,36 @@ export const Home = withNavigation(() => {
           titleColor="text-slate-700"
         />
       </div>
+      {/* 여행 생성 버튼 */}
       <CreateTravelButton
         navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/travels/create' }}
         top={top}
       />
-
       {/* 여행 상태 캘린더 */}
       {currentTravel ? (
-        <Status startDate={currentTravel.start_date} endDate={currentTravel.end_date} />
+        <StatusCard startDate={currentTravel.start_date} endDate={currentTravel.end_date} />
       ) : (
-        <Status startDate={'1999-01-01'} endDate={'1999-12-31'} />
+        <StatusCard startDate={'1999-01-01'} endDate={'1999-12-31'} />
       )}
-
       {/* 현재 진행중인 여행 */}
       {currentTravel ? (
-        <TravelCard travel={currentTravel} travelStatus="" onClickHandler={clickTravelHandler} />
+        <TravelCard
+          travel={currentTravel}
+          travelStatus="ongoing"
+          onClickHandler={clickTravelHandler}
+        />
       ) : (
         <EmptyCard />
       )}
-
-      {/* 예정된 여행들 (오름차순) */}
-      {upcomingTravels &&
-        upcomingTravels.map((travel) => (
-          <TravelCard
-            key={travel.travel_id}
-            travel={travel}
-            travelStatus=""
-            onClickHandler={clickTravelHandler}
-          />
-        ))}
-    </div>
+      {/* 예정된 여행들*/}
+      {upcomingTravels?.map((travel) => (
+        <TravelCard
+          key={travel.travel_id}
+          travel={travel}
+          travelStatus=""
+          onClickHandler={clickTravelHandler}
+        />
+      ))}
+    </MainWrapper>
   );
 });
