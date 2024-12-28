@@ -28,6 +28,8 @@ export const SignUp = withNavigation(() => {
   const passwordConfirmRef = useRef<HTMLInputElement>(null);
   const termsCheckboxRef = useRef<HTMLInputElement>(null);
 
+  let isSubmitting: boolean = false;
+
   useLayoutEffect(() => {
     const passwordWarningEl = document.getElementById('password_warning')!;
     const passwordConfirmWarningEl = document.getElementById('password_confirm_warning')!;
@@ -63,6 +65,9 @@ export const SignUp = withNavigation(() => {
    * 다음 단계로 버튼을 클릭했을 때의 동작을 정의하는 함수입니다.
    */
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    if (isSubmitting) return;
+
+    isSubmitting = true;
     event.preventDefault();
 
     const [passwordInput, passwordConfirmInput] = [
@@ -105,6 +110,8 @@ export const SignUp = withNavigation(() => {
         alert('서버 오류가 발생하였습니다.');
         break;
     }
+
+    isSubmitting = false;
   }
 
   return (
@@ -121,8 +128,8 @@ export const SignUp = withNavigation(() => {
           name="email"
           title="이메일"
         />
-        {/* 비밀번호 입력란 */}
         <div className="mt-11 flex">
+          {/* 비밀번호 입력란 */}
           <InputItem ref={passwordRef} required type="password" name="password" title="비밀번호" />
           <p
             id="password_warning"
@@ -132,8 +139,8 @@ export const SignUp = withNavigation(() => {
             <br />ⓘ 영문 대소문자 및 숫자를 모두 포함한 10자리 이상의 문자열을 입력해주세요.
           </p>
         </div>
-        {/* 비밀번호 확인 입력란 */}
         <div className="mt-3.5 flex">
+          {/* 비밀번호 확인 입력란 */}
           <InputItem
             ref={passwordConfirmRef}
             type="password"

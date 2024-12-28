@@ -8,6 +8,7 @@ type NavIconInfo = {
   title: string;
   // 라우팅 경로
   route: To | number;
+  handleClick?: () => void;
 };
 
 /**

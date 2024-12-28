@@ -14,12 +14,18 @@ export const TopNav: React.FC<TopNavProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  function navigateToOrNumber(route: To | number) {
+  function navigateToOrNumber(route: To | number): boolean {
+    if (route === 0) {
+      return false;
+    }
+
     if (typeof route === 'number') {
       navigate(route);
     } else {
       navigate(route);
     }
+
+    return true;
   }
 
   return (
@@ -29,7 +35,9 @@ export const TopNav: React.FC<TopNavProps> = ({
       <FontAwesomeIcon
         icon={navIconInfos[0].id}
         onClick={() => {
-          navigateToOrNumber(navIconInfos[0].route);
+          if (!navigateToOrNumber(navIconInfos[0].route)) {
+            navIconInfos[0].handleClick!();
+          }
         }}
         size="3x"
         title={navIconInfos[0].title}
@@ -38,7 +46,9 @@ export const TopNav: React.FC<TopNavProps> = ({
       <FontAwesomeIcon
         icon={navIconInfos[1].id}
         onClick={() => {
-          navigateToOrNumber(navIconInfos[1].route);
+          if (!navigateToOrNumber(navIconInfos[1].route)) {
+            navIconInfos[1].handleClick!();
+          }
         }}
         size="3x"
         title={navIconInfos[1].title}

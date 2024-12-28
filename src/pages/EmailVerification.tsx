@@ -10,10 +10,15 @@ export const EmailVerification = withNavigation(() => {
 
   const authTokenRef = useRef<HTMLInputElement>(null);
 
+  let isSubmitting: boolean = false;
+
   /**
    * 회원가입 완료하기 버튼을 클릭했을 때의 동작을 정의하는 함수입니다.
    */
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    if (isSubmitting) return;
+
+    isSubmitting = true;
     event.preventDefault();
 
     const status: VerificationStatus = await verifyEmail(
@@ -41,6 +46,8 @@ export const EmailVerification = withNavigation(() => {
         alert('서버 오류가 발생하였습니다.');
         break;
     }
+
+    isSubmitting = false;
   }
 
   return (

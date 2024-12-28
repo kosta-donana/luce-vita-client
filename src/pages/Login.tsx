@@ -13,10 +13,15 @@ export const Login = withNavigation(() => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  let isSubmitting: boolean = false;
+
   /**
    * 로그인하기 버튼을 클릭했을 때의 동작을 정의하는 함수입니다.
    */
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    if (isSubmitting) return;
+
+    isSubmitting = true;
     event.preventDefault();
 
     const email = emailRef.current!.value;
@@ -37,6 +42,8 @@ export const Login = withNavigation(() => {
         alert('서버 오류가 발생하였습니다.');
         break;
     }
+
+    isSubmitting = false;
   }
 
   return (
