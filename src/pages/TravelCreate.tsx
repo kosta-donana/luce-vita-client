@@ -37,19 +37,24 @@ export const TravelCreate = withNavigation(() => {
     event.preventDefault();
 
     const formData = new FormData(formRef.current!);
-    // const title: string = formData.get('title')!.toString();
+    const travelTitle: string = formData.get('travelTitle')!.toString();
     const startDate: string = formData.get('startDate')!.toString();
     const endDate: string = formData.get('endDate')!.toString();
-    // const countryNo: number = Number(formData.get('countryNo')!.toString());
-    // const localName: string = formData.get('localName')!.toString();
-    // const address = formData.get('address')!.toString();
-    // const budgetTotal: number = Number(formData.get('budgetTotal')!.toString());
-
     // 시작 날짜 및 종료 날짜 유효성 검사하기
     if (startDate > endDate) {
       alert('시작 날짜가 종료 날짜 이후로 입력되었습니다. 입력된 일정을 확인해주세요.');
       return;
     }
+
+    const countryNo: number = Number(formData.get('countryNo')!.toString());
+    const localName: string = formData.get('localName')!.toString();
+    const address = formData.get('address')!.toString();
+    const budgetTotal: number = Number(formData.get('budgetTotal')!.toString());
+    const tags = ['여행', '태그', '힐링']; // 임시로 설정한 태그 배열입니다.
+    // TODO: 태그 등록 기능 구현하기
+
+    // 줄 바꿈 문자 치환하기
+    const memo: string = formData.get('memo')!.toString().replace(/\n\r?/g, '&#13;&#10;');
   }
 
   return (
@@ -70,7 +75,7 @@ export const TravelCreate = withNavigation(() => {
         <InputItem
           required
           type="text"
-          name="title"
+          name="travelTitle"
           placeholder="여행의 제목을 입력해주세요"
           title="여행 제목"
         />
@@ -116,6 +121,13 @@ export const TravelCreate = withNavigation(() => {
           type="number"
           name="budgetTotal"
           title={`총 예산 (${currencyUnit})`}
+        />
+        <h1 className="mt-4 mb-2.5 text-primary-100 text-lg">메모</h1>
+        {/* 메모 입력란 */}
+        <textarea
+          name="memo"
+          className="p-2.5 w-2/3 text-gray-700 text-xl rounded-xl border-2 border-primary-100 border-primary-200 focus:border-secondary-300"
+          rows={7}
         />
       </form>
     </div>
