@@ -39,7 +39,7 @@ export const Travels = withNavigation(() => {
   useLayoutEffect(() => {
     let timeoutId = 0;
     function debounceSetTop() {
-      if (timeoutId != 0) {
+      if (timeoutId !== 0) {
         clearTimeout(timeoutId);
       }
       timeoutId = setTimeout(() => {
