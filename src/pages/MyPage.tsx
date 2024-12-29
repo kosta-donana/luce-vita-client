@@ -1,10 +1,11 @@
 import { faLeftLong, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
+import { MainWrapper } from '../components/common/MainWrapper';
 import { TopNav } from '../components/common/TopNav';
 
 export const MyPage = withNavigation(() => {
   return (
-    <div className="p-6 bg-primary-100 min-h-full">
+    <MainWrapper paddings="p-6" bgColor="bg-primary-100">
       {/* 상단 내비게이션 */}
       <TopNav
         navIconInfos={[
@@ -16,6 +17,6 @@ export const MyPage = withNavigation(() => {
         title="마이페이지"
         titleColor="text-primary-100"
       />
-    </div>
+    </MainWrapper>
   );
 });

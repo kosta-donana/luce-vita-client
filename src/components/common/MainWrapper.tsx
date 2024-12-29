@@ -1,7 +1,13 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
+import { MainWrapperProps } from '../../models/props.model';
 
-export function MainWrapper({ children }: { children: ReactNode }) {
+export const MainWrapper: React.FC<PropsWithChildren<MainWrapperProps>> = ({
+  position,
+  paddings,
+  bgColor,
+  children,
+}) => {
   return (
-    <main className="relative p-6 bg-primary-100 min-h-full flex flex-col gap-5">{children}</main>
+    <main className={`${position ?? ''} ${paddings} ${bgColor} min-h-full`.trim()}>{children}</main>
   );
-}
+};

@@ -6,7 +6,7 @@ import { HalfWidthButtonProps } from '../../models/props.model';
  */
 export const HalfWidthButton: React.FC<PropsWithChildren<HalfWidthButtonProps>> = ({
   type,
-  margin,
+  margins,
   bgColor,
   textColor,
   handleClick,
@@ -16,7 +16,7 @@ export const HalfWidthButton: React.FC<PropsWithChildren<HalfWidthButtonProps>> 
     <button
       type={type}
       className={`${
-        margin ?? ''
+        margins ?? ''
       } p-5 ${bgColor} w-1/2 ${textColor} text-3xl font-bold rounded-2xl flex justify-center items-center`.trim()}
       onClick={handleClick}
     >

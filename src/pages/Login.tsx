@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { requestLogin } from '../api/login';
+import { MainWrapper } from '../components/common/MainWrapper';
 import { InputItem } from '../components/login/InputItem';
 import { FullWidthButton as Button } from '../components/common/FullWidthButton';
 
@@ -47,7 +48,7 @@ export const Login = withNavigation(() => {
   }
 
   return (
-    <div className="px-16 py-20 bg-slate-200 min-h-full">
+    <MainWrapper paddings="px-16 py-20" bgColor="bg-slate-200">
       {/* 제목 */}
       <h1 className="mt-20 text-primary-400 text-[4rem] font-semibold text-center">Luce Vita!</h1>
       {/* 소개글 */}
@@ -63,7 +64,7 @@ export const Login = withNavigation(() => {
         <InputItem ref={emailRef} required type="email" name="email" title="이메일" />
         {/* 비밀번호 입력란 */}
         <InputItem ref={passwordRef} required type="password" name="password" title="비밀번호" />
-        <Button type="submit" margin="mt-14" bgColor="bg-primary-400" textColor="text-white">
+        <Button type="submit" margins="mt-14" bgColor="bg-primary-400" textColor="text-white">
           로그인하기
         </Button>
       </form>
@@ -80,6 +81,6 @@ export const Login = withNavigation(() => {
           <img src="/google.png" className="size-14" title="구글 로그인" alt="구글 로그인" />
         </Button>
       </div>
-    </div>
+    </MainWrapper>
   );
 });

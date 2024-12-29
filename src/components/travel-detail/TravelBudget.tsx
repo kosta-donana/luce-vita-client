@@ -17,7 +17,7 @@ export const TravelBudget: React.FC<TravelBudgetProps> = ({ currencyUnit, total,
           {spent.toLocaleString() + ' ' + currencyUnit}
         </TravelBudgetArticle>
       </div>
-      <TravelBudgetArticle margin="mt-6" fontSize="text-3xl" title="남은 금액">
+      <TravelBudgetArticle margins="mt-6" fontSize="text-3xl" title="남은 금액">
         {(total - spent).toLocaleString() + ' ' + currencyUnit}
       </TravelBudgetArticle>
     </section>

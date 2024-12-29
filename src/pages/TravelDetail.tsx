@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { faLeftLong, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
+import { MainWrapper } from '../components/common/MainWrapper';
 import { TopNav } from '../components/common/TopNav';
 import { TravelBasics } from '../components/travel-detail/TravelBasics';
 import { TravelBudget } from '../components/travel-detail/TravelBudget';
@@ -57,7 +58,7 @@ export const TravelDetail = withNavigation(() => {
   }
 
   return (
-    <div className="p-6 bg-primary-100 min-h-full">
+    <MainWrapper paddings="p-6" bgColor="bg-primary-100">
       {/* 상단 내비게이션 */}
       <TopNav
         navIconInfos={[
@@ -93,7 +94,7 @@ export const TravelDetail = withNavigation(() => {
       {/* 수정 버튼 */}
       <FullWidthButton
         type="button"
-        margin="my-7"
+        margins="my-7"
         bgColor="bg-secondary-400"
         textColor="text-white"
       >
@@ -103,6 +104,6 @@ export const TravelDetail = withNavigation(() => {
       <section className="pl-5 pr-24 py-6 bg-primary-300 rounded-2xl shadow-md">
         <h1 className="my-1 text-primary-100 text-lg">일정 목록</h1>
       </section>
-    </div>
+    </MainWrapper>
   );
 });

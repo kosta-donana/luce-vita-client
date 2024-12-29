@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRef, useLayoutEffect } from 'react';
 import { withNavigation } from './withNavigation';
 import { SignUpStatus, requestSignUp } from '../api/sign-up';
+import { MainWrapper } from '../components/common/MainWrapper';
 import { InputItem } from '../components/signup/InputItem';
 import { HalfWidthButton as Button } from '../components/common/HalfWidthButton';
 
@@ -115,7 +116,7 @@ export const SignUp = withNavigation(() => {
   }
 
   return (
-    <div className="px-10 py-16 bg-primary-400 min-h-full">
+    <MainWrapper paddings="px-10 py-16" bgColor="bg-primary-400">
       {/* 제목 */}
       <h1 className="text-slate-50 text-5xl font-medium">이메일 회원가입</h1>
       <form className="mt-16" method="post" onSubmit={handleSubmit}>
@@ -171,10 +172,10 @@ export const SignUp = withNavigation(() => {
             </p>
           </label>
         </section>
-        <Button type="submit" margin="mt-10" bgColor="bg-slate-200" textColor="text-slate-600">
+        <Button type="submit" margins="mt-10" bgColor="bg-slate-200" textColor="text-slate-600">
           다음 단계로
         </Button>
       </form>
-    </div>
+    </MainWrapper>
   );
 });

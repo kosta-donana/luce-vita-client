@@ -81,7 +81,7 @@ export const Travels = withNavigation(() => {
   }, [queryData]);
 
   return (
-    <MainWrapper>
+    <MainWrapper position="relative" paddings="p-6" bgColor="bg-primary-100">
       {/* 내비게이션 바 */}
       <div className="absolute pr-12 w-full">
         <TopNav

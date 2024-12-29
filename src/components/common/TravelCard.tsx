@@ -10,7 +10,7 @@ type TravelCardProps = {
 export function TravelCard({ travel, onClickHandler, travelStatus }: TravelCardProps) {
   return (
     <div
-      className={`flex flex-col gap-6 justify-center p-6 aspect-2/1 rounded-3xl shadow-md cursor-pointer ${
+      className={`flex flex-col gap-6 justify-center my-5 p-6 aspect-2/1 rounded-3xl shadow-md cursor-pointer ${
         travelStatus === '' && 'bg-white'
       } ${travelStatus === 'ongoing' && 'bg-white border-4 border-secondary-300'} ${
         travelStatus === 'upcoming' && 'bg-gray-50'

@@ -6,7 +6,7 @@ import { FullWidthButtonProps } from '../../models/props.model';
  */
 export const FullWidthButton: React.FC<PropsWithChildren<FullWidthButtonProps>> = ({
   type,
-  margin,
+  margins,
   bgColor,
   textColor,
   handleClick,
@@ -16,7 +16,7 @@ export const FullWidthButton: React.FC<PropsWithChildren<FullWidthButtonProps>> 
     <button
       type={type}
       className={`${
-        margin ?? ''
+        margins ?? ''
       } p-5 ${bgColor} w-full ${textColor} text-3xl font-bold rounded-2xl flex justify-center items-center`.trim()}
       onClick={handleClick}
     >

@@ -15,6 +15,12 @@ type NavIconInfo = {
  * 공통 컴포넌트의 Props 타입들을 정의하고 있는 파일입니다.
  */
 
+export type MainWrapperProps = {
+  position?: string;
+  paddings: string;
+  bgColor: string;
+};
+
 export type TopNavProps = {
   navIconInfos: [NavIconInfo, NavIconInfo];
   bgColor: string;
@@ -29,7 +35,7 @@ export type FloatingNavButtonProps = {
 };
 
 export type TravelArticleProps = {
-  margin?: string;
+  margins?: string;
   fontSize?: string;
   title: string;
   titleColor: string;
@@ -46,7 +52,7 @@ export type InputProps = {
 
 export type FullWidthButtonProps = {
   type: 'button' | 'submit';
-  margin?: string;
+  margins?: string;
   bgColor: string;
   textColor: string;
   handleClick?: () => void;
@@ -54,7 +60,7 @@ export type FullWidthButtonProps = {
 
 export type HalfWidthButtonProps = {
   type: 'button' | 'submit';
-  margin?: string;
+  margins?: string;
   bgColor: string;
   textColor: string;
   handleClick?: () => void;

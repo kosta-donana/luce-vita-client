@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 import { withNavigation } from './withNavigation';
 import { VerificationStatus, verifyEmail } from '../api/sign-up';
+import { MainWrapper } from '../components/common/MainWrapper';
 import { InputItem } from '../components/signup/InputItem';
 import { FullWidthButton as Button } from '../components/common/FullWidthButton';
 
@@ -51,16 +52,16 @@ export const EmailVerification = withNavigation(() => {
   }
 
   return (
-    <div className="px-10 py-16 bg-primary-400 min-h-full">
+    <MainWrapper paddings="px-10 py-16" bgColor="bg-primary-400">
       {/* 제목 */}
       <h1 className="text-slate-50 text-5xl font-medium">이메일 인증</h1>
       <form className="mt-16" method="post" onSubmit={handleSubmit}>
         {/* 인증번호 입력란 */}
         <InputItem ref={authTokenRef} required type="text" name="authToken" title="인증번호 확인" />
-        <Button type="submit" margin="mt-36" bgColor="bg-slate-200" textColor="text-slate-600">
+        <Button type="submit" margins="mt-36" bgColor="bg-slate-200" textColor="text-slate-600">
           인증하고 회원가입 완료하기
         </Button>
       </form>
-    </div>
+    </MainWrapper>
   );
 });

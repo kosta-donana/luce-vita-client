@@ -3,6 +3,7 @@ import { useState, useRef, useLayoutEffect } from 'react';
 import axios from 'axios';
 import { faLeftLong, faPlaneCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
+import { MainWrapper } from '../components/common/MainWrapper';
 import { TopNav } from '../components/common/TopNav';
 import { InputItem } from '../components/travel-create/InputItem';
 import { Country } from '../models/country.model';
@@ -97,7 +98,7 @@ export const TravelCreate = withNavigation(() => {
   }
 
   return (
-    <div className="p-6 bg-primary-400 min-h-full">
+    <MainWrapper paddings="p-6" bgColor="bg-primary-400">
       {/* 상단 내비게이션 */}
       <TopNav
         navIconInfos={[
@@ -169,6 +170,6 @@ export const TravelCreate = withNavigation(() => {
           rows={7}
         />
       </form>
-    </div>
+    </MainWrapper>
   );
 });

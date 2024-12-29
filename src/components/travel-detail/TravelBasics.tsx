@@ -16,18 +16,18 @@ export const TravelBasics: React.FC<TravelBasicsProps> = (props) => {
       <TravelBasicsArticle fontSize="text-4xl" title="여행 제목">
         {props.travelTitle}
       </TravelBasicsArticle>
-      <TravelBasicsArticle margin="mt-6" fontSize="text-3xl" title="날짜">
+      <TravelBasicsArticle margins="mt-6" fontSize="text-3xl" title="날짜">
         {`${props.startDate} - ${props.endDate}`}
       </TravelBasicsArticle>
-      <TravelBasicsArticle margin="mt-6" fontSize="text-3xl" title="국가 및 장소">
+      <TravelBasicsArticle margins="mt-6" fontSize="text-3xl" title="국가 및 장소">
         {props.countryName}
         <br />
         {props.localName}
       </TravelBasicsArticle>
-      <TravelBasicsArticle margin="mt-6" fontSize="text-2xl" title="숙소 정보">
+      <TravelBasicsArticle margins="mt-6" fontSize="text-2xl" title="숙소 정보">
         {props.address}
       </TravelBasicsArticle>
-      <TravelBasicsArticle margin="mt-6" fontSize="text-xl" title="메모">
+      <TravelBasicsArticle margins="mt-6" fontSize="text-xl" title="메모">
         <textarea
           className="p-2.5 w-full text-neutral-700 rounded-xl border-2 border-primary-100"
           rows={5}
