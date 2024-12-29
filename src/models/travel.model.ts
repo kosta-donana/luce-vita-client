@@ -20,3 +20,8 @@ export type Travel = {
   tags: string[];
   memo: string;
 };
+
+export type Budget = {
+  schedule_date: string;
+  budget: number;
+};

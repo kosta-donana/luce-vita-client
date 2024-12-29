@@ -1,4 +1,7 @@
-import { Travel } from '../../models/travel.model';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Travel, Budget } from '../../models/travel.model';
+import { accumulateSpent } from '../../utils/budget.util';
 import { Tag } from '../home/Tag';
 
 type TravelCardProps = {
@@ -8,6 +11,29 @@ type TravelCardProps = {
 };
 
 export const TravelCard: React.FC<TravelCardProps> = ({ travel, onClickHandler, travelStatus }) => {
+  const [balance, setBalance] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (travelStatus === 'ongoing') {
+      axios
+        .get(`${import.meta.env.VITE_API_BASE_URL}/travels/${travel.travel_id}/budgets`)
+        .then((response) => {
+          const budgetList: Budget[] = response.data.data;
+          setBalance(travel.budget_total - accumulateSpent(budgetList));
+        })
+        .catch((error) => {
+          if (error.code === 'ECONNABORTED') {
+            alert(
+              '네트워크 연결이 불안정하거나, 서버의 응답이 너무 오래 걸립니다. 잠시 후에 다시 시도하세요.'
+            );
+            return;
+          }
+
+          console.log('서버로의 요청에 실패하였습니다.');
+        });
+    }
+  }, [travelStatus, travel.travel_id, travel.budget_total]);
+
   return (
     <div
       className={`flex flex-col gap-6 justify-center my-5 p-6 aspect-2/1 rounded-3xl shadow-md cursor-pointer ${
@@ -63,7 +89,11 @@ export const TravelCard: React.FC<TravelCardProps> = ({ travel, onClickHandler, 
           <div className="flex justify-center items-center gap-2">
             <div className="text-slate-400">잔액</div>
             <div className="text-2xl font-bold text-gray-600">
-              <span className="mr-1.5">{travel.budget_total.toLocaleString()}</span>
+              {travelStatus === 'ongoing' ? (
+                <span className="mr-1.5">{balance?.toLocaleString() ?? '계산중'}</span>
+              ) : (
+                <span className="mr-1.5">{travel.budget_total.toLocaleString()}</span>
+              )}
               <span className="text-sm text-slate-500">{travel.country.currency}</span>
             </div>
           </div>
