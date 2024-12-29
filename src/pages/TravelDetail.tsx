@@ -130,8 +130,8 @@ export const TravelDetail = withNavigation(() => {
       {/* 기본 정보 */}
       <TravelBasics
         travelTitle={travelTitle}
-        startDate={formatWithSlash(new Date(startDate))}
-        endDate={formatWithSlash(new Date(endDate))}
+        startDate={startDate ? formatWithSlash(new Date(startDate)) : startDate}
+        endDate={endDate ? formatWithSlash(new Date(endDate)) : endDate}
         countryName={countryName}
         localName={localName}
         address={address}
