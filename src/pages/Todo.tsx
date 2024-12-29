@@ -1,10 +1,35 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { MainWrapper, TopNav, FullWidthButton, Input } from '../components/common';
 
+type Todo = {
+  schedule: string;
+  budget: number;
+};
+
 export const Todo = withNavigation(() => {
   const formRef = useRef<HTMLFormElement>(null);
+  const scheduleRef = useRef<HTMLInputElement>(null);
+  const budgetRef = useRef<HTMLInputElement>(null);
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  function saveHandler(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+  }
+
+  function createHandler() {
+    const todo: Todo = { schedule: '', budget: 0 };
+    if (scheduleRef.current) {
+      todo.schedule = scheduleRef.current.value;
+      scheduleRef.current.value = '';
+    }
+    if (budgetRef.current) {
+      todo.budget = Number(budgetRef.current.value);
+      budgetRef.current.value = '';
+    }
+    setTodos((prev) => [...prev, todo]);
+  }
 
   return (
     <MainWrapper paddings="p-6" bgColor="bg-primary-100">
@@ -20,7 +45,7 @@ export const Todo = withNavigation(() => {
         titleColor="text-neutral-50"
       />
       {/*  */}
-      <form ref={formRef} className="mt-9" method="post">
+      <form ref={formRef} className="mt-9" method="post" onSubmit={saveHandler}>
         {/* 저장 버튼 */}
         <FullWidthButton
           type="submit"
@@ -40,6 +65,7 @@ export const Todo = withNavigation(() => {
             placeholder="할 일을 입력하세요"
             bgColor="bg-white"
             borderColor="border-primary-200"
+            ref={scheduleRef}
           />
           {/*  */}
           <Input
@@ -49,6 +75,7 @@ export const Todo = withNavigation(() => {
             placeholder="예산을 입력하세요"
             bgColor="bg-white"
             borderColor="border-primary-200"
+            ref={budgetRef}
           />
           {/* 만들기 버튼 */}
           <FullWidthButton
@@ -56,13 +83,21 @@ export const Todo = withNavigation(() => {
             margins="my-7"
             bgColor="bg-secondary-400"
             textColor="text-white"
+            handleClick={() => {
+              createHandler();
+            }}
           >
             만들기
           </FullWidthButton>
-          {/* 할일 */}
-          <div className="px-5 py-3.5 bg-white w-full text-gray-700 text-2xl rounded-2xl border-2">
-            할 일 1
-          </div>
+          {/* 할 일 */}
+          {todos?.map((todo, i) => (
+            <div
+              key={i}
+              className="px-5 py-3.5 bg-white w-full text-gray-700 text-2xl rounded-2xl border-2"
+            >
+              {todo.schedule}
+            </div>
+          ))}
         </section>
       </form>
     </MainWrapper>
