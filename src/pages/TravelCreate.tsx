@@ -129,7 +129,7 @@ export const TravelCreate = withNavigation(() => {
         <select
           required
           name="countryNo"
-          className="px-[1.11rem] py-3.5 w-7/12 text-gray-700 text-2xl rounded-2xl border-2 border-primary-200 focus:border-secondary-300"
+          className="appearance-none px-[1.11rem] py-3.5 w-7/12 text-gray-700 text-2xl rounded-2xl border-2 border-primary-200 focus:border-secondary-300"
           onChange={(event) => {
             const countryNo = Number(event.target.value);
             setCurrencyUnit(
