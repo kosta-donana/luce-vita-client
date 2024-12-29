@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 import { withNavigation } from './withNavigation';
 import { MainWrapper, TopNav, FullWidthButton, Input } from '../components/common';
 
@@ -14,8 +15,46 @@ export const Todo = withNavigation(() => {
   const budgetRef = useRef<HTMLInputElement>(null);
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  function saveHandler(event: React.FormEvent<HTMLFormElement>) {
+  async function saveHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const schedule_list: {
+      schedule_id?: number;
+      schedule_no: number;
+      schedule_content: string;
+      budget: number;
+    }[] = [
+      {
+        schedule_id: 1,
+        schedule_no: 1,
+        schedule_content: todos[0].schedule,
+        budget: todos[0].budget,
+      },
+    ];
+    for (const [i, todo] of todos.slice(1).entries()) {
+      schedule_list.push({
+        schedule_no: i + 2,
+        schedule_content: todo.schedule,
+        budget: todo.budget,
+      });
+    }
+    console.log('schedule_list:', schedule_list);
+
+    // const sendData = {
+    //   // 날짜 받아와야 됨 수정할 예정
+    //   schedule_date: '2024-12-29',
+    //   schedule_list: [
+    //     { schedule_id: 1, schedule_no: 1, schedule_content: '첫번째는왜안생김', budget: 20000 },
+    //     { schedule_no: 2, schedule_content: '두번째는되는듯', budget: 30000 },
+    //     { schedule_no: 3, schedule_content: '세번째는?', budget: 70000 },
+    //   ],
+    // };
+
+    const sendData = { schedule_date: '2024-12-29', schedule_list };
+    const result = await axios.post(
+      'http://localhost:3000/api/travels/767b2e18-7909-46bf-b807-d1346ea928ec/schedules',
+      sendData
+    );
+    console.log('result:', result);
   }
 
   function createHandler() {
@@ -106,7 +145,7 @@ export const Todo = withNavigation(() => {
           {/* 할 일 */}
           {todos?.map((todo, i) => (
             <div
-              key={i}
+              key={i + 1}
               className="px-5 py-3.5 bg-white w-full text-gray-700 text-2xl rounded-2xl border-2 flex justify-between"
             >
               <span className="text-slate-600">{todo.schedule}</span>
