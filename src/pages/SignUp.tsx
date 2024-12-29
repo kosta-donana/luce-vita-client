@@ -125,7 +125,7 @@ export const SignUp = withNavigation(() => {
           ref={emailRef}
           required
           type="email"
-          margin="mr-24"
+          margins="mr-24"
           name="email"
           title="이메일"
         />

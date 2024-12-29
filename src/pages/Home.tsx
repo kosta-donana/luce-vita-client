@@ -111,7 +111,7 @@ export const Home = withNavigation(() => {
           travel={currentTravel}
           travelStatus="ongoing"
           onClickHandler={() => {
-            navigate(`/travels`);
+            navigate('/travels');
           }}
         />
       ) : (
@@ -125,7 +125,7 @@ export const Home = withNavigation(() => {
           travel={travel}
           travelStatus=""
           onClickHandler={() => {
-            navigate(`/travels`);
+            navigate('/travels');
           }}
         />
       ))}

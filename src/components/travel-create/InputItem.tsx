@@ -3,7 +3,7 @@ import { Input } from '../common/Input';
 
 type InputItemProps = {
   required?: boolean;
-  margin?: string;
+  margins?: string;
   type: string;
   name: string;
   placeholder?: string;
@@ -11,9 +11,9 @@ type InputItemProps = {
 };
 
 export const InputItem = forwardRef<HTMLInputElement, InputItemProps>(
-  ({ required, type, margin, name, placeholder, title }, ref) => {
+  ({ required, margins, type, name, placeholder, title }, ref) => {
     return (
-      <div className={margin}>
+      <div className={margins}>
         <h1 className="mt-4 mb-2.5 text-primary-100 text-lg">{title}</h1>
         <Input
           ref={ref}

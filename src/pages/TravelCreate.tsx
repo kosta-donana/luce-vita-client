@@ -146,18 +146,18 @@ export const TravelCreate = withNavigation(() => {
         {/* 장소 입력란 */}
         <InputItem
           required
-          margin="mr-40"
+          margins="mr-40"
           type="text"
           name="localName"
           placeholder="여행 장소를 입력해주세요"
           title="여행 장소"
         />
         {/* 숙소 입력란 */}
-        <InputItem margin="mr-20" type="text" name="address" title="숙소 주소" />
+        <InputItem margins="mr-20" type="text" name="address" title="숙소 주소" />
         {/* 총 예산 입력란 */}
         <InputItem
           required
-          margin="mr-40"
+          margins="mr-40"
           type="number"
           name="budgetTotal"
           title={`총 예산 (${currencyUnit})`}
