@@ -1,11 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import { useState, useLayoutEffect, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
-// import { dummyTravels } from '../utils/dummy-travels.util';
 import { MainWrapper } from '../components/common/MainWrapper';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
@@ -18,7 +17,6 @@ export const Home = withNavigation(() => {
   const navigate = useNavigate();
   const [currentTravel, setCurrentTravel] = useState<Travel | null>(null);
   const [upcomingTravels, setUpcomingTravels] = useState<Travel[] | null>(null);
-  // const [travels, setTravels] = useState<Travel[]>(dummyTravels);
   const [top, setTop] = useState<string>(
     parseInt(rootEl.style.height) -
       8 * (Math.round(16 * Math.cbrt(parseInt(rootEl.style.width) / 1440) * 100) / 100) +
@@ -34,10 +32,6 @@ export const Home = withNavigation(() => {
       return result;
     },
   });
-
-  const clickTravelHandler = () => {
-    navigate(`/travels`);
-  };
 
   useLayoutEffect(() => {
     let timeoutId = 0;
@@ -116,7 +110,9 @@ export const Home = withNavigation(() => {
         <TravelCard
           travel={currentTravel}
           travelStatus="ongoing"
-          onClickHandler={clickTravelHandler}
+          onClickHandler={() => {
+            navigate(`/travels`);
+          }}
         />
       ) : (
         <EmptyCard />
@@ -128,7 +124,9 @@ export const Home = withNavigation(() => {
           key={travel.travel_id}
           travel={travel}
           travelStatus=""
-          onClickHandler={clickTravelHandler}
+          onClickHandler={() => {
+            navigate(`/travels`);
+          }}
         />
       ))}
     </MainWrapper>
