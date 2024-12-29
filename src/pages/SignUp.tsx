@@ -2,9 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useRef, useLayoutEffect } from 'react';
 import { withNavigation } from './withNavigation';
 import { SignUpStatus, requestSignUp } from '../api/sign-up';
-import { MainWrapper } from '../components/common/MainWrapper';
+import { MainWrapper, HalfWidthButton as Button } from '../components/common';
 import { InputItem } from '../components/signup/InputItem';
-import { HalfWidthButton as Button } from '../components/common/HalfWidthButton';
 
 function validatePassword(password: string): boolean {
   if (password.length < 10) return false;

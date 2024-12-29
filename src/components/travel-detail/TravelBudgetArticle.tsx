@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { TravelArticle } from '../common/TravelArticle';
+import { TravelArticle } from '../common';
 
 type TravelBudgetArticleProps = {
   margins?: string;

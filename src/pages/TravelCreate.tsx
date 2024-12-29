@@ -3,8 +3,7 @@ import { useState, useRef, useLayoutEffect } from 'react';
 import axios from 'axios';
 import { faLeftLong, faPlaneCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
-import { MainWrapper } from '../components/common/MainWrapper';
-import { TopNav } from '../components/common/TopNav';
+import { MainWrapper, TopNav } from '../components/common';
 import { InputItem } from '../components/travel-create/InputItem';
 import { Country } from '../models/country.model';
 

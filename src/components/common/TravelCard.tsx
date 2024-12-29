@@ -7,7 +7,7 @@ type TravelCardProps = {
   onClickHandler: () => void;
 };
 
-export function TravelCard({ travel, onClickHandler, travelStatus }: TravelCardProps) {
+export const TravelCard: React.FC<TravelCardProps> = ({ travel, onClickHandler, travelStatus }) => {
   return (
     <div
       className={`flex flex-col gap-6 justify-center my-5 p-6 aspect-2/1 rounded-3xl shadow-md cursor-pointer ${
@@ -78,4 +78,4 @@ export function TravelCard({ travel, onClickHandler, travelStatus }: TravelCardP
       </div>
     </div>
   );
-}
+};

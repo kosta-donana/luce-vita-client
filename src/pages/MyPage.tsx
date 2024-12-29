@@ -1,7 +1,6 @@
 import { faLeftLong, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
-import { MainWrapper } from '../components/common/MainWrapper';
-import { TopNav } from '../components/common/TopNav';
+import { MainWrapper, TopNav } from '../components/common';
 
 export const MyPage = withNavigation(() => {
   return (

@@ -3,11 +3,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { faLeftLong, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
-import { MainWrapper } from '../components/common/MainWrapper';
-import { TopNav } from '../components/common/TopNav';
+import { MainWrapper, TopNav, FullWidthButton } from '../components/common';
 import { TravelBasics } from '../components/travel-detail/TravelBasics';
 import { TravelBudget } from '../components/travel-detail/TravelBudget';
-import { FullWidthButton } from '../components/common/FullWidthButton';
 
 export const TravelDetail = withNavigation(() => {
   const navigate = useNavigate();

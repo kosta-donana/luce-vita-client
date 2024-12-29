@@ -1,6 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { ExcludeAuth } from './components/common/ExcludeAuth';
-import { RequireAuth } from './components/common/RequireAuth';
+import { ExcludeAuth, RequireAuth } from './components/common';
 import {
   Login,
   SignUp,

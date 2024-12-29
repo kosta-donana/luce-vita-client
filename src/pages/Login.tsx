@@ -4,9 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { requestLogin } from '../api/login';
-import { MainWrapper } from '../components/common/MainWrapper';
+import { MainWrapper, FullWidthButton as Button } from '../components/common';
 import { InputItem } from '../components/login/InputItem';
-import { FullWidthButton as Button } from '../components/common/FullWidthButton';
 
 export const Login = withNavigation(() => {
   const navigate = useNavigate();

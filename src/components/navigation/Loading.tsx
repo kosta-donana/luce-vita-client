@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlane, faVanShuttle, faCarSide } from '@fortawesome/free-solid-svg-icons';
-import { HalfWidthButton as Button } from '../common/HalfWidthButton';
+import { HalfWidthButton as Button } from '../common';
 
 type LoadingProps = {
   hasFailed: boolean;

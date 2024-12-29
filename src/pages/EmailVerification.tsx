@@ -2,9 +2,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 import { withNavigation } from './withNavigation';
 import { VerificationStatus, verifyEmail } from '../api/sign-up';
-import { MainWrapper } from '../components/common/MainWrapper';
+import { MainWrapper, FullWidthButton as Button } from '../components/common';
 import { InputItem } from '../components/signup/InputItem';
-import { FullWidthButton as Button } from '../components/common/FullWidthButton';
 
 export const EmailVerification = withNavigation(() => {
   const [navigate, location] = [useNavigate(), useLocation()];

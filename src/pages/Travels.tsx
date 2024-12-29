@@ -5,10 +5,12 @@ import axios from 'axios';
 import { faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
-import { MainWrapper } from '../components/common/MainWrapper';
-import { TopNav } from '../components/common/TopNav';
-import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
-import { TravelCard } from '../components/common/TravelCard';
+import {
+  MainWrapper,
+  TopNav,
+  FloatingNavButton as CreateTravelButton,
+  TravelCard,
+} from '../components/common';
 import { EmptyCard } from '../components/home';
 
 const rootEl = document.getElementById('root')!;
