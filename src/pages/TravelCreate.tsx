@@ -31,16 +31,16 @@ export const TravelCreate = withNavigation(() => {
    * 새로운 여행 추가하기 버튼을 클릭했을 때의 동작을 정의하는 함수입니다.
    */
   function handleClick() {
-    if (!isSubmitting) {
-      isSubmitting = true;
-      formRef.current!.requestSubmit();
-    }
+    formRef.current!.requestSubmit();
   }
 
   /**
    * 새로운 여행 추가하기 버튼을 클릭해서 폼이 제출되었을 때의 동작을 정의하는 함수입니다.
    */
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    if (isSubmitting) return;
+
+    isSubmitting = true;
     event.preventDefault();
 
     const formData = new FormData(formRef.current!);

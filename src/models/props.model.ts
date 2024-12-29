@@ -57,6 +57,7 @@ export type FullWidthButtonProps = {
   bgColor: string;
   textColor: string;
   handleClick?: () => void;
+  disabled?: boolean;
 };
 
 export type HalfWidthButtonProps = {
@@ -65,4 +66,5 @@ export type HalfWidthButtonProps = {
   bgColor: string;
   textColor: string;
   handleClick?: () => void;
+  disabled?: boolean;
 };
