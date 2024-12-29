@@ -98,7 +98,7 @@ export const TravelEdit = withNavigation(() => {
     }
 
     axios
-      .post(`${import.meta.env.VITE_API_BASE_URL}/travels`, {
+      .put(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}`, {
         travel_title: travelTitleRef.current!.value,
         start_date: startDateRef.current!.value,
         end_date: endDateRef.current!.value,
