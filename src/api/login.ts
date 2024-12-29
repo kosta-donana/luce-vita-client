@@ -26,7 +26,7 @@ export async function requestLogin(email: string, password: string): Promise<Log
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      // 서버에서 2xx가 아닌 응답 결과를 받았을 때
+      // 서버에서 2XX가 아닌 상태와 더불어 응답 결과를 받았을 때
       if (error.response) {
         return 'failed';
       }
