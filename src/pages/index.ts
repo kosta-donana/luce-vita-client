@@ -6,4 +6,5 @@ export { EmailVerification } from './EmailVerification';
 export { Travels } from './Travels';
 export { TravelCreate } from './TravelCreate';
 export { TravelDetail } from './TravelDetail';
+export { TravelEdit } from './TravelEdit';
 export { Todo } from './Todo';

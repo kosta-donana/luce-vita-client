@@ -9,6 +9,7 @@ import {
   Travels,
   TravelCreate,
   TravelDetail,
+  TravelEdit,
   Todo,
 } from './pages';
 
@@ -46,6 +47,7 @@ export const router = createBrowserRouter([
       { path: 'travels', element: <Travels /> },
       { path: 'travels/create', element: <TravelCreate /> },
       { path: 'travels/:id', element: <TravelDetail /> },
+      { path: 'travels/:id/edit', element: <TravelEdit /> },
       { path: 'travels/:id/:todoDate', element: <Todo /> },
     ],
   },

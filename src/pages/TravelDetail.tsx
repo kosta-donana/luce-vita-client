@@ -145,6 +145,9 @@ export const TravelDetail = withNavigation(() => {
         margins="my-7"
         bgColor="bg-secondary-400"
         textColor="text-white"
+        handleClick={() => {
+          navigate(`/travels/${id}/edit`);
+        }}
       >
         여행 수정하러 가기
       </FullWidthButton>
