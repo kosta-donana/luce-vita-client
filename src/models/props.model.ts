@@ -48,6 +48,7 @@ export type InputProps = {
   bgColor: string;
   borderColor: string;
   placeholder?: string;
+  disabled?: boolean;
 };
 
 export type FullWidthButtonProps = {

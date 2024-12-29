@@ -7,6 +7,7 @@ type InputItemProps = {
   name: string;
   placeholder?: string;
   title: string;
+  disabled?: boolean;
 };
 
 export const InputItem: React.FC<InputItemProps> = ({
@@ -16,17 +17,19 @@ export const InputItem: React.FC<InputItemProps> = ({
   name,
   placeholder,
   title,
+  disabled,
 }) => {
   return (
     <div className={margins}>
-      <h1 className="mt-4 mb-2.5 text-primary-100 text-lg">{title}</h1>
+      <h1 className="mt-2.5 mb-2 text-neutral-500 text-lg">{title}</h1>
       <Input
         required={required}
         type={type}
         name={name}
         bgColor="bg-white"
-        borderColor="border-primary-200 focus:border-secondary-300"
+        borderColor="border-primary-300 focus:border-secondary-400"
         placeholder={placeholder}
+        disabled={disabled}
       />
     </div>
   );

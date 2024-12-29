@@ -3,9 +3,9 @@ import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { faLeftLong, faPlaneCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
+import { Country } from '../models/country.model';
 import { MainWrapper, TopNav } from '../components/common';
 import { InputItem } from '../components/travel-create/InputItem';
-import { Country } from '../models/country.model';
 
 export const TravelCreate = withNavigation(() => {
   const navigate = useNavigate();
@@ -167,7 +167,7 @@ export const TravelCreate = withNavigation(() => {
         {/* 메모 입력란 */}
         <textarea
           name="memo"
-          className="p-2.5 w-2/3 text-gray-700 text-xl rounded-xl border-2 border-primary-100 border-primary-200 focus:border-secondary-300"
+          className="p-2.5 w-2/3 text-gray-700 text-xl rounded-xl border-2 border-primary-200 focus:border-secondary-300"
           rows={7}
         />
       </form>
