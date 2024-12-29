@@ -31,6 +31,20 @@ export const Todo = withNavigation(() => {
     setTodos((prev) => [...prev, todo]);
   }
 
+  function deleteHandler(event: React.FormEvent<HTMLButtonElement>, targetIndex: number) {
+    event.preventDefault();
+    console.log(targetIndex);
+    setTodos((prevTodos) => {
+      const result = [];
+      for (const [idx, prevTodo] of prevTodos.entries()) {
+        if (idx !== targetIndex) {
+          result.push(prevTodo);
+        }
+      }
+      return result;
+    });
+  }
+
   return (
     <MainWrapper paddings="p-6" bgColor="bg-primary-100">
       {/* 내비게이션 바 */}
@@ -93,9 +107,19 @@ export const Todo = withNavigation(() => {
           {todos?.map((todo, i) => (
             <div
               key={i}
-              className="px-5 py-3.5 bg-white w-full text-gray-700 text-2xl rounded-2xl border-2"
+              className="px-5 py-3.5 bg-white w-full text-gray-700 text-2xl rounded-2xl border-2 flex justify-between"
             >
-              {todo.schedule}
+              <span className="text-slate-600">{todo.schedule}</span>
+              <div>
+                <span className="text-sm text-slate-400 mr-6">{todo.budget} CUR</span>
+                <button
+                  onClick={(e) => {
+                    deleteHandler(e, i);
+                  }}
+                >
+                  X
+                </button>
+              </div>
             </div>
           ))}
         </section>
