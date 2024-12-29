@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState, useRef, useLayoutEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { faLeftLong, faPlaneCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
@@ -16,7 +16,7 @@ export const TravelCreate = withNavigation(() => {
 
   let isSubmitting: boolean = false;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_BASE_URL}/countries`)
       .then((response) => {
