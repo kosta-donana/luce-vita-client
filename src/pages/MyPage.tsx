@@ -1,6 +1,7 @@
 import { faLeftLong, faHouse } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
-import { MainWrapper, TopNav } from '../components/common';
+import { MainWrapper, TopNav, FullWidthButton as Button } from '../components/common';
+import { UserInfo } from '../components/mypage/UserInfo';
 
 export const MyPage = withNavigation(() => {
   return (
@@ -16,6 +17,20 @@ export const MyPage = withNavigation(() => {
         title="마이페이지"
         titleColor="text-primary-100"
       />
+      <UserInfo nickname="" />
+      <div className="mt-16 flex gap-x-2.5">
+        <Button type="button" margins="mx-2.5" bgColor="bg-primary-400" textColor="text-white">
+          로그아웃
+        </Button>
+        <Button
+          type="button"
+          margins="mx-2.5"
+          bgColor="bg-neutral-300"
+          textColor="text-neutral-600"
+        >
+          회원탈퇴
+        </Button>
+      </div>
     </MainWrapper>
   );
 });
