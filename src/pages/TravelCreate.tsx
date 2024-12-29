@@ -3,9 +3,9 @@ import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { faLeftLong, faPlaneCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
+import { Country } from '../models/country.model';
 import { MainWrapper, TopNav } from '../components/common';
 import { InputItem } from '../components/travel-create/InputItem';
-import { Country } from '../models/country.model';
 
 export const TravelCreate = withNavigation(() => {
   const navigate = useNavigate();
@@ -31,16 +31,16 @@ export const TravelCreate = withNavigation(() => {
    * 새로운 여행 추가하기 버튼을 클릭했을 때의 동작을 정의하는 함수입니다.
    */
   function handleClick() {
-    if (!isSubmitting) {
-      isSubmitting = true;
-      formRef.current!.requestSubmit();
-    }
+    formRef.current!.requestSubmit();
   }
 
   /**
    * 새로운 여행 추가하기 버튼을 클릭해서 폼이 제출되었을 때의 동작을 정의하는 함수입니다.
    */
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    if (isSubmitting) return;
+
+    isSubmitting = true;
     event.preventDefault();
 
     const formData = new FormData(formRef.current!);
@@ -83,7 +83,9 @@ export const TravelCreate = withNavigation(() => {
         }
       })
       .catch((error) => {
-        if (error.code === 'ECONNABORTED') {
+        if (error.response?.status === 401) {
+          navigate('/login');
+        } else if (error.code === 'ECONNABORTED') {
           alert(
             '네트워크 연결이 불안정하거나, 서버의 응답이 너무 오래 걸립니다. 잠시 후에 다시 시도하세요.'
           );
@@ -165,7 +167,7 @@ export const TravelCreate = withNavigation(() => {
         {/* 메모 입력란 */}
         <textarea
           name="memo"
-          className="p-2.5 w-2/3 text-gray-700 text-xl rounded-xl border-2 border-primary-100 border-primary-200 focus:border-secondary-300"
+          className="p-2.5 w-2/3 text-gray-700 text-xl rounded-xl border-2 border-primary-200 focus:border-secondary-300"
           rows={7}
         />
       </form>
