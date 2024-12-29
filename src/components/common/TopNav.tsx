@@ -43,7 +43,7 @@ export const TopNav: React.FC<TopNavProps> = ({
         size="3x"
         title={navIconInfos[0].title}
       />
-      <h1 className={`${titleColor} text-4xl font-semibold`}>{title}</h1>
+      <h1 className={`${titleColor} text-4xl font-semibold select-none`}>{title}</h1>
       <FontAwesomeIcon
         className="cursor-pointer"
         icon={navIconInfos[1].id}

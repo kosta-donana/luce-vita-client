@@ -1,28 +1,30 @@
-import { useNavigate } from 'react-router-dom';
 import { useState, useLayoutEffect, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { faHouse, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
+import { MainWrapper } from '../components/common/MainWrapper';
 import { TopNav } from '../components/common/TopNav';
 import { FloatingNavButton as CreateTravelButton } from '../components/common/FloatingNavButton';
-import { TravelCard } from '../components/home/TravelCard';
-import { EmptyCard } from '../components/home/EmptyCard';
+import { TravelCard } from '../components/common/TravelCard';
+import { EmptyCard } from '../components/home';
 
 const rootEl = document.getElementById('root')!;
 
 export const Travels = withNavigation(() => {
   const navigate = useNavigate();
-  const [currentTravel, setCurrentTravel] = useState<Travel | null>();
-  const [upcomingTravels, setUpcomingTravels] = useState<Travel[] | null>();
-  const [completedTravels, setCompletedTravels] = useState<Travel[] | null>();
+  const [currentTravel, setCurrentTravel] = useState<Travel | null>(null);
+  const [upcomingTravels, setUpcomingTravels] = useState<Travel[] | null>(null);
+  const [completedTravels, setCompletedTravels] = useState<Travel[] | null>(null);
   const [top, setTop] = useState<string>(
     parseInt(rootEl.style.height) -
       8 * (Math.round(16 * Math.cbrt(parseInt(rootEl.style.width) / 1440) * 100) / 100) +
       'px'
   );
-  const { data } = useQuery({
+
+  const { data: queryData } = useQuery({
     queryKey: [],
     queryFn: async () => {
       const result = await axios.get(
@@ -31,10 +33,6 @@ export const Travels = withNavigation(() => {
       return result;
     },
   });
-
-  const clickTravelHandler = (travel_id: number) => {
-    navigate(`/travels/${travel_id}`);
-  };
 
   useLayoutEffect(() => {
     let timeoutId = 0;
@@ -61,79 +59,83 @@ export const Travels = withNavigation(() => {
   }, []);
 
   useEffect(() => {
-    console.log('data?.data.data:', data?.data.data);
-    if (data) {
-      const ongoingTravels = data.data.data.ongoingTravels;
-      const upcomingTravels = data.data.data.upcomingTravels;
-      const completedTravels = data.data.data.completedTravels;
-      if (ongoingTravels.length > 0) {
+    if (queryData) {
+      const { ongoingTravels, upcomingTravels, completedTravels } = queryData.data.data;
+      if (ongoingTravels.length > 0 && upcomingTravels.length > 0) {
         setCurrentTravel(ongoingTravels[0]);
-        if (upcomingTravels.length > 0) {
-          setUpcomingTravels(upcomingTravels);
-        }
-      } else if (upcomingTravels.length > 0) {
+        setUpcomingTravels(upcomingTravels);
+      } else if (ongoingTravels.length === 0 && upcomingTravels.length === 1) {
         setCurrentTravel(upcomingTravels[0]);
-        if (upcomingTravels.length >= 2) {
-          setUpcomingTravels(upcomingTravels.slice(1));
-        }
+        setUpcomingTravels(null);
+      } else if (ongoingTravels.length === 0 && upcomingTravels.length >= 2) {
+        setCurrentTravel(upcomingTravels.slice(0, 1));
+        setUpcomingTravels(upcomingTravels.slice(1));
       } else {
         setCurrentTravel(null);
+        setUpcomingTravels(null);
       }
-      setCompletedTravels(completedTravels);
+      if (completedTravels.length > 0) {
+        setCompletedTravels(completedTravels);
+      }
     }
-  }, [data]);
+  }, [queryData]);
 
   return (
-    <div className="relative p-6 bg-primary-100 min-h-full flex flex-col gap-5">
+    <MainWrapper>
+      {/* 내비게이션 바 */}
       <div className="absolute pr-12 w-full">
         <TopNav
           navIconInfos={[
-            { id: faHouse, title: '홈 화면으로 이동하기', route: '/' },
+            { id: faHouse, title: '홈으로 이동하기', route: '/' },
             { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
           ]}
           bgColor="bg-primary-400"
           iconColor="text-primary-200"
-          title="여행 목록"
+          title="나의 여행 목록"
           titleColor="text-primary-100"
         />
       </div>
+
+      {/* 여행 생성 버튼 */}
       <CreateTravelButton
         navIconInfo={{ id: faPlus, title: '새로운 여행 추가하기', route: '/travels/create' }}
         top={top}
       />
 
       {/* 예정된 여행들 */}
-      {upcomingTravels &&
-        upcomingTravels.map((travel) => (
-          <TravelCard
-            key={travel.travel_id}
-            travel={travel}
-            travelStatus="upcoming"
-            onClickHandler={() => clickTravelHandler(travel.travel_id)}
-          />
-        ))}
+      {upcomingTravels?.map((travel) => (
+        <TravelCard
+          key={travel.travel_id}
+          travel={travel}
+          travelStatus="upcoming"
+          onClickHandler={() => {
+            navigate(`/travels/${travel.travel_id}`);
+          }}
+        />
+      ))}
 
       {/* 현재 진행중인 여행 */}
       {currentTravel ? (
         <TravelCard
           travel={currentTravel}
           travelStatus="ongoing"
-          onClickHandler={() => clickTravelHandler(currentTravel.travel_id)}
+          onClickHandler={() => navigate(`/travels/${currentTravel.travel_id}`)}
         />
       ) : (
         <EmptyCard />
       )}
 
       {/* 완료된 여행들 */}
-      {completedTravels &&
-        completedTravels.map((travel) => (
-          <TravelCard
-            key={travel.travel_id}
-            travel={travel}
-            travelStatus="completed"
-            onClickHandler={() => clickTravelHandler(travel.travel_id)}
-          />
-        ))}
-    </div>
+      {completedTravels?.map((travel) => (
+        <TravelCard
+          key={travel.travel_id}
+          travel={travel}
+          travelStatus="completed"
+          onClickHandler={() => {
+            navigate(`/travels/${travel.travel_id}`);
+          }}
+        />
+      ))}
+    </MainWrapper>
   );
 });
