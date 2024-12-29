@@ -44,19 +44,23 @@ export const TravelDetail = withNavigation(() => {
         axios
           .get(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}/budgets`)
           .then((response) => {
-            const budgetList: Budget[] = response.data.data;
-            setTotal(travel.budget_total);
-            setSpent(accumulateSpent(budgetList));
+            setSpent(accumulateSpent(response.data.data as Budget[]));
           })
           .catch((error) => {
-            if (error.code === 'ECONNABORTED') {
-              alert(
-                '네트워크 연결이 불안정하거나, 서버의 응답이 너무 오래 걸립니다. 잠시 후에 다시 시도하세요.'
-              );
-              return;
+            if (axios.isAxiosError(error)) {
+              if (error.code === 'ECONNABORTED') {
+                alert(
+                  '네트워크 연결이 불안정하거나, 서버의 응답이 너무 오래 걸립니다. 잠시 후에 다시 시도하세요.'
+                );
+                return;
+              }
+              // 여행에 포함되어 있는 일정이 없는 경우, 서버에서 4XX 상태를 응답
             }
 
             console.log('서버로의 요청에 실패하였습니다.');
+          })
+          .finally(() => {
+            setTotal(travel.budget_total);
           });
       })
       .catch((error) => {
