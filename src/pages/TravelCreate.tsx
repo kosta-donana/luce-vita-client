@@ -83,7 +83,9 @@ export const TravelCreate = withNavigation(() => {
         }
       })
       .catch((error) => {
-        if (error.code === 'ECONNABORTED') {
+        if (error.response?.status === 401) {
+          navigate('/login');
+        } else if (error.code === 'ECONNABORTED') {
           alert(
             '네트워크 연결이 불안정하거나, 서버의 응답이 너무 오래 걸립니다. 잠시 후에 다시 시도하세요.'
           );
