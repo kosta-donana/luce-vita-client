@@ -90,6 +90,46 @@ export const TravelEdit = withNavigation(() => {
 
     isSubmitting = true;
     event.preventDefault();
+
+    // 시작 날짜 및 종료 날짜 유효성 검사하기
+    if (startDateRef.current!.value > endDateRef.current!.value) {
+      alert('시작 날짜가 종료 날짜 이후로 입력되었습니다. 입력된 일정을 확인해주세요.');
+      return;
+    }
+
+    axios
+      .post(`${import.meta.env.VITE_API_BASE_URL}/travels`, {
+        travel_title: travelTitleRef.current!.value,
+        start_date: startDateRef.current!.value,
+        end_date: endDateRef.current!.value,
+        country_no: countryNoRef.current!.value,
+        local_name: localNameRef.current!.value,
+        address: addressRef.current!.value,
+        budget_total: budgetTotalRef.current!.value,
+        memo: memoRef.current!.value.replace(/\n\r?/g, '&#13;&#10;'),
+        tags: ['여행', '태그', '힐링'], // 임시로 설정한 태그 배열입니다.
+      })
+      .then((response) => {
+        if (response.data.success) {
+          alert('여행이 성공적으로 저장되었습니다!');
+        } else {
+          console.log('서버에서 원인을 알 수 없는 오류가 발생하였습니다.');
+        }
+      })
+      .catch((error) => {
+        if (error.response?.status === 401) {
+          navigate('/login');
+        } else if (error.code === 'ECONNABORTED') {
+          alert(
+            '네트워크 연결이 불안정하거나, 서버의 응답이 너무 오래 걸립니다. 잠시 후에 다시 시도하세요.'
+          );
+        } else {
+          alert('서버 오류가 발생하였습니다.');
+        }
+      })
+      .finally(() => {
+        isSubmitting = false;
+      });
   }
 
   return (
