@@ -1,3 +1,5 @@
+import { formatToString } from './format-date.util';
+
 // 주어진 날짜가 포함된 주의 시작 날짜 계산
 export function getStartOfWeek(currentDate: Date): Date {
   const currentDay = currentDate.getDay();
@@ -23,4 +25,18 @@ export function generateWeeks(startDate: Date, numOfWeeks: number): Date[][] {
 export function isWithinRange(targetDate: Date, start: Date, end: Date): boolean {
   targetDate.setHours(9, 0, 0, 0);
   return start <= targetDate && targetDate <= end;
+}
+
+export function getStringList(startDate: Date, endDate: Date): string[] {
+  if (startDate > endDate) return [];
+
+  const stringList: string[] = [];
+  const date = new Date(startDate);
+
+  do {
+    stringList.push(formatToString(date));
+    date.setDate(date.getDate() + 1);
+  } while (date <= endDate);
+
+  return stringList;
 }
