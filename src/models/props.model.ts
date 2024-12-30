@@ -43,6 +43,7 @@ export type TravelArticleProps = {
 
 export type InputProps = {
   required?: boolean;
+  margins?: string;
   type: string;
   name: string;
   bgColor: string;
