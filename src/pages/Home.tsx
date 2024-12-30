@@ -105,7 +105,14 @@ export const Home = withNavigation(() => {
       <div className="absolute pr-12 w-full">
         <TopNav
           navIconInfos={[
-            { id: faGlobe, title: '커뮤니티로 이동하기', route: '/community' },
+            {
+              id: faGlobe,
+              title: '커뮤니티로 이동하기',
+              route: 0,
+              handleClick: () => {
+                alert('커뮤니티 기능은 추후에 도입될 예정입니다.');
+              },
+            },
             { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
           ]}
           bgColor="bg-primary-100"
