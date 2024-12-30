@@ -2,7 +2,7 @@ import { useState, useLayoutEffect, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { faHouseFlag, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faPlus, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
 import { Travel } from '../models/travel.model';
 import {
@@ -84,7 +84,7 @@ export const Home = withNavigation(() => {
       <div className="absolute pr-12 w-full">
         <TopNav
           navIconInfos={[
-            { id: faHouseFlag, title: '커뮤니티로 이동하기', route: '/community' },
+            { id: faGlobe, title: '커뮤니티로 이동하기', route: '/community' },
             { id: faUser, title: '마이페이지로 이동하기', route: '/mypage' },
           ]}
           bgColor="bg-primary-100"
