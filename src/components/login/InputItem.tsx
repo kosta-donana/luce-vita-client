@@ -20,8 +20,8 @@ export const InputItem = forwardRef<HTMLInputElement, InputItemProps>(
       <div className="mt-6">
         <h1 className="my-2 text-gray-600">{title}</h1>
         <Input
-          ref={ref}
           required={required}
+          ref={ref}
           type={type}
           name={name}
           bgColor="bg-neutral-100 focus:bg-white"

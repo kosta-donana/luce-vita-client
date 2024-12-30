@@ -56,7 +56,7 @@ export const EmailVerification = withNavigation(() => {
       <h1 className="text-slate-50 text-5xl font-medium">이메일 인증</h1>
       <form className="mt-16" method="post" onSubmit={handleSubmit}>
         {/* 인증번호 입력란 */}
-        <InputItem ref={authTokenRef} required type="text" name="authToken" title="인증번호 확인" />
+        <InputItem required ref={authTokenRef} type="text" name="authToken" title="인증번호 확인" />
         <Button type="submit" margins="mt-36" bgColor="bg-slate-200" textColor="text-slate-600">
           인증하고 회원가입 완료하기
         </Button>
