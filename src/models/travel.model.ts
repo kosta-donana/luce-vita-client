@@ -25,3 +25,8 @@ export type Budget = {
   schedule_date: string;
   budget: number;
 };
+
+export type TopSchedule = {
+  schedule_date: string;
+  schedule_content: string;
+};

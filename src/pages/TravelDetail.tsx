@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { faLeftLong, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
-import { Travel, Budget } from '../models/travel.model';
+import { TopSchedule, Travel, Budget } from '../models/travel.model';
 import { accumulateSpent } from '../utils/budget.util';
 import { formatWithSlash } from '../utils/format-date.util';
 import { MainWrapper, TopNav, FullWidthButton } from '../components/common';
 import { TravelBasics } from '../components/travel-detail/TravelBasics';
 import { TravelBudget } from '../components/travel-detail/TravelBudget';
+import { getStringList } from '../utils/calculate-date.util';
+import { TodoCard } from '../components/travel-detail/TodoCard';
 
 export const TravelDetail = withNavigation(() => {
   const navigate = useNavigate();
@@ -25,9 +27,12 @@ export const TravelDetail = withNavigation(() => {
   const [total, setTotal] = useState<number | null>(null);
   const [spent, setSpent] = useState<number>(0);
 
+  const [topSchedules, setTopSchedules] = useState<TopSchedule[]>([]);
+
   let isDeleting = false;
 
   useEffect(() => {
+    // 기본 정보와 예산 정보 가져오기
     axios
       .get(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}`)
       .then((response) => {
@@ -72,6 +77,15 @@ export const TravelDetail = withNavigation(() => {
         }
 
         console.log('서버로의 요청에 실패하였습니다.');
+      });
+    // 일정 목록 가져오기
+    axios
+      .get(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}/top-schedules`)
+      .then((response) => {
+        setTopSchedules(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, [id]);
 
@@ -158,6 +172,20 @@ export const TravelDetail = withNavigation(() => {
       {/* 일정 목록 */}
       <section className="pl-5 pr-24 py-6 bg-primary-300 rounded-2xl shadow-md">
         <h1 className="my-1 text-primary-100 text-lg">일정 목록</h1>
+        {startDate &&
+          endDate &&
+          getStringList(new Date(startDate), new Date(endDate)).map((dateString) => (
+            <TodoCard date={new Date(dateString)} route={`/travels/${id}/${dateString}`}>
+              {topSchedules
+                .filter((topSchedule) => topSchedule.schedule_date === dateString)
+                .map((topSchedule) => (
+                  <>
+                    {topSchedule.schedule_content}
+                    <br />
+                  </>
+                ))}
+            </TodoCard>
+          ))}
       </section>
     </MainWrapper>
   );
