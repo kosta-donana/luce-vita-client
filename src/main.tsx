@@ -41,9 +41,9 @@ let timeoutId = 0;
  */
 function debounceAdjustings(): void {
   if (timeoutId != 0) {
-    clearTimeout(timeoutId);
+    window.clearTimeout(timeoutId);
   }
-  timeoutId = setTimeout(adjustRootDimensions, 250);
+  timeoutId = window.setTimeout(adjustRootDimensions, 250);
 }
 
 // 화면 크기가 변경될 때

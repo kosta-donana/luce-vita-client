@@ -38,9 +38,9 @@ export const Travels = withNavigation(() => {
     let timeoutId = 0;
     function debounceSetTop() {
       if (timeoutId !== 0) {
-        clearTimeout(timeoutId);
+        window.clearTimeout(timeoutId);
       }
-      timeoutId = setTimeout(() => {
+      timeoutId = window.setTimeout(() => {
         setTop(
           parseInt(rootEl.style.height) -
             8 * (Math.round(16 * Math.cbrt(parseInt(rootEl.style.width) / 1440) * 100) / 100) +
