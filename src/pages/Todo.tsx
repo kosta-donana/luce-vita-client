@@ -115,22 +115,24 @@ export const Todo = withNavigation(() => {
           {/* 할 일 입력창 */}
           <Input
             required
+            ref={scheduleRef}
+            margins="my-2.5"
             type="text"
             name="todo"
-            placeholder="할 일을 입력하세요"
             bgColor="bg-white"
             borderColor="border-primary-200"
-            ref={scheduleRef}
+            placeholder="할 일을 입력하세요"
           />
           {/* 예산 입력창 */}
           <Input
             required
+            ref={budgetRef}
+            margins="my-2.5"
             type="number"
             name="budget"
-            placeholder="예산을 입력하세요"
             bgColor="bg-white"
             borderColor="border-primary-200"
-            ref={budgetRef}
+            placeholder="예산을 입력하세요"
           />
           {/* 만들기 버튼 */}
           <FullWidthButton
@@ -149,7 +151,7 @@ export const Todo = withNavigation(() => {
           {todos?.map((todo, i) => (
             <div
               key={i + 1}
-              className="px-5 py-3.5 bg-white w-full text-gray-700 text-2xl rounded-2xl border-2 flex justify-between"
+              className="my-4 px-5 py-3.5 bg-white w-full text-gray-700 text-2xl rounded-2xl border-2 flex justify-between"
             >
               <span className="text-slate-600">{todo.schedule}</span>
               <div>
