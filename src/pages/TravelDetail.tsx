@@ -34,7 +34,7 @@ export const TravelDetail = withNavigation(() => {
   useEffect(() => {
     // 기본 정보와 예산 정보 가져오기
     axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}`)
+      .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}`)
       .then((response) => {
         const travel: Travel = response.data.data[0];
         setTravelTitle(travel.travel_title);
@@ -47,7 +47,7 @@ export const TravelDetail = withNavigation(() => {
         setMemo(travel.memo);
 
         axios
-          .get(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}/budgets`)
+          .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}/budgets`)
           .then((response) => {
             setSpent(accumulateSpent(response.data.data as Budget[]));
           })
@@ -80,7 +80,7 @@ export const TravelDetail = withNavigation(() => {
       });
     // 일정 목록 가져오기
     axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}/top-schedules`)
+      .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}/top-schedules`)
       .then((response) => {
         setTopSchedules(response.data.data);
       })
@@ -98,7 +98,7 @@ export const TravelDetail = withNavigation(() => {
     isDeleting = true;
 
     axios
-      .delete(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}`)
+      .delete(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}`)
       .then((response) => {
         if (response.data.success) {
           alert('여행이 성공적으로 삭제되었습니다.');

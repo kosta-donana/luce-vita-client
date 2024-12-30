@@ -42,7 +42,9 @@ export const MyPage = withNavigation(() => {
    */
   async function deactivate() {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/users/deactivate`);
+      const response = await axios.post(
+        `${import.meta.env.VITE_VERCEL_API_BASE_URL}/users/deactivate`
+      );
 
       if (response.data.success) {
         assignGoogle();

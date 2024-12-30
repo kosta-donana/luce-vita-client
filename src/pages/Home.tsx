@@ -29,7 +29,7 @@ export const Home = withNavigation(() => {
   const { data: queryData } = useQuery({
     queryKey: [],
     queryFn: async () => {
-      const result = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/travels`);
+      const result = await axios.get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels`);
       return result;
     },
   });

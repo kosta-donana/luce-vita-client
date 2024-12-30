@@ -16,7 +16,7 @@ export const TravelCard: React.FC<TravelCardProps> = ({ travel, onClickHandler, 
   useEffect(() => {
     if (travelStatus === 'ongoing') {
       axios
-        .get(`${import.meta.env.VITE_API_BASE_URL}/travels/${travel.travel_id}/budgets`)
+        .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${travel.travel_id}/budgets`)
         .then((response) => {
           const budgetList: Budget[] = response.data.data;
           setBalance(travel.budget_total - accumulateSpent(budgetList));

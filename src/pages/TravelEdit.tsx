@@ -30,7 +30,7 @@ export const TravelEdit = withNavigation(() => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}/countries`)
+      .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/countries`)
       .then((response) => {
         setCountries(response.data.data);
       })
@@ -46,7 +46,7 @@ export const TravelEdit = withNavigation(() => {
     }
 
     axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}`)
+      .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}`)
       .then((response) => {
         const travel: Travel = response.data.data[0];
         travelTitleRef.current!.value = travel.travel_title;
@@ -105,7 +105,7 @@ export const TravelEdit = withNavigation(() => {
     }
 
     axios
-      .put(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}`, {
+      .put(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}`, {
         travel_title: travelTitleRef.current!.value,
         start_date: startDateRef.current!.value,
         end_date: endDateRef.current!.value,

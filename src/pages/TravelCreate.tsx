@@ -19,7 +19,7 @@ export const TravelCreate = withNavigation(() => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}/countries`)
+      .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/countries`)
       .then((response) => {
         setCountries(response.data.data);
       })
@@ -73,7 +73,7 @@ export const TravelCreate = withNavigation(() => {
     // TODO: 태그 등록 기능 구현하기
 
     axios
-      .post(`${import.meta.env.VITE_API_BASE_URL}/travels`, {
+      .post(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels`, {
         travel_title: travelTitle,
         start_date: startDate,
         end_date: endDate,

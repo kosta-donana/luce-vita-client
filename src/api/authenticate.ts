@@ -4,7 +4,7 @@ type TokenStatus = 'timeout' | 'reissued' | 'expired' | 'error';
 
 const ajax = axios.create({
   withCredentials: true,
-  baseURL: `${import.meta.env.VITE_API_BASE_URL}/signup/token`,
+  baseURL: `${import.meta.env.VITE_VERCEL_API_BASE_URL}/signup/token`,
 });
 
 async function requestToken(): Promise<TokenStatus> {

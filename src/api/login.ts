@@ -5,7 +5,7 @@ export type LogoutStatus = 'timeout' | 'succeed' | 'expired' | 'error';
 
 const ajax = axios.create({
   withCredentials: true,
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.VITE_VERCEL_API_BASE_URL,
 });
 
 export async function requestLogin(email: string, password: string): Promise<LoginStatus> {
