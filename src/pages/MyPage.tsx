@@ -99,7 +99,11 @@ export const MyPage = withNavigation(() => {
           margins="mx-2.5"
           bgColor="bg-neutral-300"
           textColor="text-neutral-600"
-          handleClick={deactivate}
+          handleClick={() => {
+            if (confirm('정말로 회원탈퇴하시겠습니까?')) {
+              deactivate();
+            }
+          }}
         >
           회원탈퇴
         </Button>
