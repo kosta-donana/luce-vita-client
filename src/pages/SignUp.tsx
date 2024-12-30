@@ -103,6 +103,9 @@ export const SignUp = withNavigation(() => {
       case 'verify':
         navigate('/emailverification', { state: { email: email } });
         break;
+      case 'deleted':
+        alert('회원탈퇴하신 계정입니다.');
+        break;
       case 'exist':
         alert('이미 등록된 이메일입니다.');
         break;

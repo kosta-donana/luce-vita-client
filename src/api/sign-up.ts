@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export type SignUpStatus = 'timeout' | 'verify' | 'exist' | 'error';
+export type SignUpStatus = 'timeout' | 'verify' | 'deleted' | 'exist' | 'error';
 export type VerificationStatus = 'timeout' | 'verified' | 'failed' | 'error';
 
 const ajax = axios.create({
@@ -30,10 +30,12 @@ export async function requestSignUp(email: string, password: string): Promise<Si
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (error.response?.data.error === 'Deleted User') {
+        return 'deleted';
+      }
       if (error.response?.data.error === 'Registered User') {
         return 'exist';
       }
-      // TODO: 회원탈퇴 후 재가입 오류 처리하기
 
       if (error.code === 'ECONNABORTED') {
         return 'timeout';
