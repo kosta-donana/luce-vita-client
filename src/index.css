@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 #root {
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
