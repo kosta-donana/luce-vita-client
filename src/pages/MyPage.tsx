@@ -43,7 +43,9 @@ export const MyPage = withNavigation(() => {
   async function deactivate() {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_VERCEL_API_BASE_URL}/users/deactivate`
+        `${import.meta.env.VITE_VERCEL_API_BASE_URL}/users/deactivate`,
+        null,
+        { withCredentials: true }
       );
 
       if (response.data.success) {
