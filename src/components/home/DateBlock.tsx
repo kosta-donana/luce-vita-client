@@ -11,7 +11,7 @@ export function DateBlock({
     <div
       className={`aspect-square flex justify-center items-center rounded-xl text-3xl font-bold ${
         isTravel ? 'bg-secondary-400' : 'bg-gray-300'
-      } ${isToday ? 'text-secondary-600 bg-secondary-200' : 'text-white'}`}
+      } ${isToday ? 'bg-white text-secondary-400' : 'text-white'}`}
     >
       {children}
     </div>
