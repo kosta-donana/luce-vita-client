@@ -42,24 +42,24 @@
 
 - 4인 (FE 2인, BE 2인)
 - 홈, 여행 목록, 일정 상세
-- 사용자 인증, 로그인, 회원가입, 여행 상세·수정, 마이페이지
+- 사용자 인증, 로그인, 회원가입, 여행 상세, 마이페이지
 
 링크 목록
 
-- [Luce Vita 앱]()
-- [Luce Vita 서버]()
-- [Luce Vita DB]()
+- [Luce Vita 앱](https://luce-vita-client.vercel.app/)
+- [Luce Vita 서버](https://luce-vita-server-test.vercel.app/)
+- [Luce Vita DB](https://supabase.com/dashboard/project/xvkskcomnspwcdhmdtzu)
 
 ### 2. 기술 스택
 
-- `TypeScript`: 
-- `React`: 
-- `React Router`: 
-- `TanStack Query`: 
-- `Axios`: 
-- `Vite`: 
-- `Tailwind CSS`: 
-- `Font Awesome`: 아이콘 라이브러리
+- `TypeScript`: 정적 타입을 도입해 안정성·가독성 향상
+- `React`: 컴포넌트 기반으로 재사용 가능한 UI 구축
+- `React Router`: 클라이언트 라우팅 관리
+- `TanStack Query`: 서버 상태 관리, 데이터 동기화를 효율적으로 사용
+- `Axios`: 간결한 HTTP 요청·응답 처리
+- `Vite`: 빠른 HMR, 빌드 속도
+- `Tailwind CSS`: 간단하고 일관된 디자인 시스템 구현
+- `Font Awesome`: 다양한 아이콘 사용
 
 ### 3. 느낀 점
 
@@ -81,11 +81,43 @@
 2. 회원가입 (Signup)
 3. 홈 (Home)
 4. 여행 목록 (Travels)
-5. 여행 상세 (TravelDetail)
+5. 여행 상세 (TraveDetail)
 6. 여행 생성 (TravelCreate)
-7. 여행 상세 수정 (TravelEdit)
+7. 여행 수정 (TravelEdit)
 8. 일정 상세 (Todo)
 9. 마이페이지 (MyPage)
+
+1 로그인 (Login)
+
+2 회원가입 (Signup)
+
+3 홈 (Home)
+
+.. 사진 ..
+
+- 여행 상태 카드
+- 여행 카드
+
+4 여행 목록 (Travels)
+
+.. 사진 ..
+
+- 여행 카드
+
+5 여행 상세 (TravelDetail)
+
+6 여행 생성 (TravelCreate)
+
+7 여행 상세 수정 (TravelEdit)
+
+8 일정 상세 (Todo)
+
+.. 사진 ..
+
+- 할 일
+- 예산
+
+9 마이페이지 (MyPage)
 
 |||
 |:-:|:-:|:-:|
@@ -94,36 +126,19 @@
 시연 영상
 
 ### 5. 아쉬웠던 부분
+
 - ..
+
 ### 6. 앞으로 학습할 것들, 나아갈 방향
+
 - ..
+
 ### 7. 어려웠던 부분, 해결한 과정
+
 ??
+
 - ..
+
 ???
+
 - ...
----
-
-  
-
-서버, 클라이언트 각 README
-
-ERD 사진
-
-피그마 사진 ?
-
-해당 링크 (서버, DB, 프론트 등)
-
-  
-  
-  
-
-프로젝트 소개 README?
-
-프로젝트 주제, 개요
-
-기획 배경
-
-개발 기간
-
-주요 기능
