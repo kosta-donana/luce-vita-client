@@ -10,8 +10,8 @@ import {
   TopNav,
   FloatingNavButton as CreateTravelButton,
   TravelCard,
+  EmptyCard,
 } from '../components/common';
-import { EmptyCard } from '../components/home';
 
 const rootEl = document.getElementById('root')!;
 
@@ -29,9 +29,7 @@ export const Travels = withNavigation(() => {
   const { data: queryData } = useQuery({
     queryKey: [],
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:3000/api/travels/${import.meta.env.VITE_TEST_USER_UUID}`
-      );
+      const result = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/travels`);
       return result;
     },
   });

@@ -8,3 +8,4 @@ export { RequireAuth } from './RequireAuth';
 export { TopNav } from './TopNav';
 export { TravelArticle } from './TravelArticle';
 export { TravelCard } from './TravelCard';
+export { EmptyCard } from './EmptyCard';
