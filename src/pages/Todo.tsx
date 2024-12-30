@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import { faLeftLong, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLeftLong, faUser, faFloppyDisk, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { withNavigation } from './withNavigation';
 import { MainWrapper, TopNav, FullWidthButton, Input } from '../components/common';
@@ -106,11 +107,12 @@ export const Todo = withNavigation(() => {
           bgColor="bg-primary-400"
           textColor="text-white"
         >
-          저장하기
+          <FontAwesomeIcon icon={faFloppyDisk} className="mr-3" />
+          <span>저장하기</span>
         </FullWidthButton>
         {/*  */}
         <section className="mt-8 pl-5 pr-5 py-6 bg-primary-300 text-white rounded-2xl shadow-md">
-          {/*  */}
+          {/* 할 일 입력창 */}
           <Input
             required
             type="text"
@@ -120,7 +122,7 @@ export const Todo = withNavigation(() => {
             borderColor="border-primary-200"
             ref={scheduleRef}
           />
-          {/*  */}
+          {/* 예산 입력창 */}
           <Input
             required
             type="number"
@@ -140,7 +142,8 @@ export const Todo = withNavigation(() => {
               createHandler();
             }}
           >
-            만들기
+            <FontAwesomeIcon icon={faPlus} className="mr-3" />
+            <span>만들기</span>
           </FullWidthButton>
           {/* 할 일 */}
           {todos?.map((todo, i) => (
@@ -156,7 +159,7 @@ export const Todo = withNavigation(() => {
                     deleteHandler(e, i);
                   }}
                 >
-                  X
+                  <FontAwesomeIcon icon={faX} />
                 </button>
               </div>
             </div>
