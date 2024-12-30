@@ -8,8 +8,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ required, type, name, bgColor, borderColor, placeholder, disabled }, ref) => {
     return (
       <input
-        ref={ref}
         required={required}
+        ref={ref}
         type={type}
         name={name}
         className={`px-5 py-3.5 ${bgColor} w-full text-gray-700 text-2xl rounded-2xl border-2 ${borderColor}`}

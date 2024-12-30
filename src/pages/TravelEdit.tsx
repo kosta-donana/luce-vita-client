@@ -96,16 +96,23 @@ export const TravelEdit = withNavigation(() => {
       alert('시작 날짜가 종료 날짜 이후로 입력되었습니다. 입력된 일정을 확인해주세요.');
       return;
     }
+    // 총 예산 유효성 검사하기
+    if (Number(budgetTotalRef.current!.value) < 0) {
+      budgetTotalRef.current!.focus();
+
+      alert('입력하신 금액이 0보다 작습니다. 총 예산을 정확히 입력해주세요.');
+      return;
+    }
 
     axios
       .put(`${import.meta.env.VITE_API_BASE_URL}/travels/${id}`, {
         travel_title: travelTitleRef.current!.value,
         start_date: startDateRef.current!.value,
         end_date: endDateRef.current!.value,
-        country_no: countryNoRef.current!.value,
+        country_no: Number(countryNoRef.current!.value),
         local_name: localNameRef.current!.value,
         address: addressRef.current!.value,
-        budget_total: budgetTotalRef.current!.value,
+        budget_total: Number(budgetTotalRef.current!.value),
         memo: memoRef.current!.value.replace(/\n\r?/g, '&#13;&#10;'),
         tags: ['여행', '태그', '힐링'], // 임시로 설정한 태그 배열입니다.
       })

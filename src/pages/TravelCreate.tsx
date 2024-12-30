@@ -13,6 +13,7 @@ export const TravelCreate = withNavigation(() => {
   const [currencyUnit, setCurrencyUnit] = useState<string>('화폐 단위');
 
   const formRef = useRef<HTMLFormElement>(null);
+  const budgetTotalRef = useRef<HTMLInputElement>(null);
 
   let isSubmitting: boolean = false;
 
@@ -57,11 +58,19 @@ export const TravelCreate = withNavigation(() => {
     const localName: string = formData.get('localName')!.toString();
     const address = formData.get('address')!.toString();
     const budgetTotal: number = Number(formData.get('budgetTotal')!.toString());
-    const tags = ['여행', '태그', '힐링']; // 임시로 설정한 태그 배열입니다.
-    // TODO: 태그 등록 기능 구현하기
+    // 총 예산 유효성 검사하기
+    if (budgetTotal < 0) {
+      budgetTotalRef.current!.focus();
+
+      alert('입력하신 금액이 0보다 작습니다. 총 예산을 정확히 입력해주세요.');
+      return;
+    }
 
     // 줄 바꿈 문자 치환하기
     const memo: string = formData.get('memo')!.toString().replace(/\n\r?/g, '&#13;&#10;');
+
+    const tags = ['여행', '태그', '힐링']; // 임시로 설정한 태그 배열입니다.
+    // TODO: 태그 등록 기능 구현하기
 
     axios
       .post(`${import.meta.env.VITE_API_BASE_URL}/travels`, {
@@ -158,6 +167,7 @@ export const TravelCreate = withNavigation(() => {
         {/* 총 예산 입력란 */}
         <InputItem
           required
+          ref={budgetTotalRef}
           margins="mr-40"
           type="number"
           name="budgetTotal"

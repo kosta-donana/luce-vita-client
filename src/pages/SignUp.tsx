@@ -121,8 +121,8 @@ export const SignUp = withNavigation(() => {
       <form className="mt-16" method="post" onSubmit={handleSubmit}>
         {/* 이메일 입력란 */}
         <InputItem
-          ref={emailRef}
           required
+          ref={emailRef}
           type="email"
           margins="mr-24"
           name="email"
@@ -130,7 +130,7 @@ export const SignUp = withNavigation(() => {
         />
         <div className="mt-11 flex">
           {/* 비밀번호 입력란 */}
-          <InputItem ref={passwordRef} required type="password" name="password" title="비밀번호" />
+          <InputItem required ref={passwordRef} type="password" name="password" title="비밀번호" />
           <p
             id="password_warning"
             className="ml-4 w-5/12 text-red-400 font-medium leading-snug invisible"
