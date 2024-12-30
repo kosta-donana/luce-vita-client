@@ -29,7 +29,11 @@ export function StatusCard({ startDate, endDate }: StatusCardProps) {
       {/* 캘린더 */}
       <div className="w-full grid grid-rows-3 grid-cols-7 gap-3 px-2">
         {weeks.flat().map((date, i) => (
-          <DateBlock key={i} isTravel={isWithinRange(date, start, end)}>
+          <DateBlock
+            key={i}
+            isTravel={isWithinRange(date, start, end)}
+            isToday={new Date().getDate().toString() === date.getDate().toString()}
+          >
             {date.getDate().toString()}
           </DateBlock>
         ))}
