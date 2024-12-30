@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export type LoginStatus = 'timeout' | 'succeed' | 'failed' | 'error';
-export type LogoutStatus = 'timeout' | 'succeed' | 'error';
+export type LogoutStatus = 'timeout' | 'succeed' | 'expired' | 'error';
 
 const ajax = axios.create({
   withCredentials: true,
@@ -62,6 +62,9 @@ export async function requestLogout(): Promise<LogoutStatus> {
     }
   } catch (error) {
     if (axios.isAxiosError(error)) {
+      if (error.response?.status === 401) {
+        return 'expired';
+      }
       if (error.code === 'ECONNABORTED') {
         return 'timeout';
       }
