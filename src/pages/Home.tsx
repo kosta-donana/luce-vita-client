@@ -28,9 +28,7 @@ export const Home = withNavigation(() => {
   const { data: queryData } = useQuery({
     queryKey: [],
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:3000/api/travels/${import.meta.env.VITE_TEST_USER_UUID}`
-      );
+      const result = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/travels`);
       return result;
     },
   });
@@ -69,14 +67,14 @@ export const Home = withNavigation(() => {
         setCurrentTravel(upcomingTravels[0]);
         setUpcomingTravels(null);
       } else if (ongoingTravels.length === 0 && upcomingTravels.length >= 2) {
-        setCurrentTravel(upcomingTravels.toReversed().slice(0, 1));
+        setCurrentTravel(upcomingTravels.toReversed().slice(0, 1)[0]);
         setUpcomingTravels(upcomingTravels.toReversed().slice(1));
       } else {
         setCurrentTravel(null);
         setUpcomingTravels(null);
       }
     }
-  }, [queryData]);
+  }, [queryData, currentTravel]);
 
   return (
     <MainWrapper position="relative" paddings="p-6" bgColor="bg-primary-100">
