@@ -10,8 +10,9 @@ import {
   TopNav,
   FloatingNavButton as CreateTravelButton,
   TravelCard,
+  EmptyCard,
 } from '../components/common';
-import { StatusCard, EmptyCard } from '../components/home';
+import { StatusCard } from '../components/home';
 
 const rootEl = document.getElementById('root')!;
 
