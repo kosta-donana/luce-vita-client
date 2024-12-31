@@ -61,7 +61,7 @@ export const Travels = withNavigation(() => {
   useEffect(() => {
     if (queryData) {
       const { ongoingTravels, upcomingTravels, completedTravels } = queryData.data.data;
-      if (ongoingTravels.length > 0 && upcomingTravels.length > 0) {
+      if (ongoingTravels.length > 0 && upcomingTravels.length >= 0) {
         setCurrentTravel(ongoingTravels[0]);
         setUpcomingTravels(upcomingTravels);
       } else if (ongoingTravels.length === 0 && upcomingTravels.length === 1) {
