@@ -1,9 +1,22 @@
-import { useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLeftLong, faUser, faFloppyDisk, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
+import { useParams } from 'react-router-dom';
+import { useState, useRef } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faLeftLong,
+  faUser,
+  faFloppyDisk,
+  faPlus,
+  faX,
+} from '@fortawesome/free-solid-svg-icons';
 import { withNavigation } from './withNavigation';
-import { MainWrapper, TopNav, FullWidthButton, Input } from '../components/common';
+import {
+  MainWrapper,
+  TopNav,
+  FullWidthButton,
+  Input,
+} from '../components/common';
+import { formatToSimple } from '../utils/format-date.util';
 
 type Todo = {
   schedule: string;
@@ -11,10 +24,12 @@ type Todo = {
 };
 
 export const Todo = withNavigation(() => {
+  const { id, todoDate } = useParams();
+  const [todos, setTodos] = useState<Todo[]>([]);
+
   const formRef = useRef<HTMLFormElement>(null);
   const scheduleRef = useRef<HTMLInputElement>(null);
   const budgetRef = useRef<HTMLInputElement>(null);
-  const [todos, setTodos] = useState<Todo[]>([]);
 
   async function saveHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -38,24 +53,13 @@ export const Todo = withNavigation(() => {
         budget: todo.budget,
       });
     }
-    console.log('schedule_list:', schedule_list);
 
-    // const sendData = {
-    //   // 날짜 받아와야 됨 수정할 예정
-    //   schedule_date: '2024-12-29',
-    //   schedule_list: [
-    //     { schedule_id: 1, schedule_no: 1, schedule_content: '첫번째는왜안생김', budget: 20000 },
-    //     { schedule_no: 2, schedule_content: '두번째는되는듯', budget: 30000 },
-    //     { schedule_no: 3, schedule_content: '세번째는?', budget: 70000 },
-    //   ],
-    // };
+    const sendData = { schedule_date: todoDate, schedule_list };
 
-    const sendData = { schedule_date: '2024-12-29', schedule_list };
-    const result = await axios.post(
-      'http://localhost:3000/api/travels/767b2e18-7909-46bf-b807-d1346ea928ec/schedules',
+    axios.post(
+      `${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}/schedules`,
       sendData
     );
-    console.log('result:', result);
   }
 
   function createHandler() {
@@ -71,7 +75,10 @@ export const Todo = withNavigation(() => {
     setTodos((prev) => [...prev, todo]);
   }
 
-  function deleteHandler(event: React.FormEvent<HTMLButtonElement>, targetIndex: number) {
+  function deleteHandler(
+    event: React.FormEvent<HTMLButtonElement>,
+    targetIndex: number
+  ) {
     event.preventDefault();
     console.log(targetIndex);
     setTodos((prevTodos) => {
@@ -95,7 +102,7 @@ export const Todo = withNavigation(() => {
         ]}
         bgColor="bg-secondary-500"
         iconColor="text-neutral-600"
-        title="00월 00일 일정 상세"
+        title={`${formatToSimple(new Date(todoDate as string))} 일정 상세`}
         titleColor="text-neutral-50"
       />
       {/*  */}
@@ -155,7 +162,9 @@ export const Todo = withNavigation(() => {
             >
               <span className="text-slate-600">{todo.schedule}</span>
               <div>
-                <span className="text-sm text-slate-400 mr-6">{todo.budget} CUR</span>
+                <span className="text-sm text-slate-400 mr-6">
+                  {todo.budget} CUR
+                </span>
                 <button
                   onClick={(e) => {
                     deleteHandler(e, i);
