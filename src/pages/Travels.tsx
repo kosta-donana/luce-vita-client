@@ -50,11 +50,11 @@ export const Travels = withNavigation(() => {
     }
 
     window.addEventListener('resize', debounceSetTop);
-    screen.orientation.addEventListener('change', debounceSetTop);
+    screen.orientation?.addEventListener('change', debounceSetTop);
 
     return () => {
       window.removeEventListener('resize', debounceSetTop);
-      screen.orientation.removeEventListener('change', debounceSetTop);
+      screen.orientation?.removeEventListener('change', debounceSetTop);
     };
   }, []);
 
