@@ -32,7 +32,7 @@ export const TravelDetail = withNavigation(() => {
   let isDeleting = false;
 
   useEffect(() => {
-    // 기본 정보와 예산 정보 가져오기
+    // 기본 정보 가져오기
     axios
       .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}`)
       .then((response) => {
@@ -46,10 +46,27 @@ export const TravelDetail = withNavigation(() => {
         setAddress(travel.address);
         setMemo(travel.memo);
 
+        // 예산 정보 가져오기
         axios
-          .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}/budgets`)
+          .get(
+            `${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}/budgets`
+          )
           .then((response) => {
             setSpent(accumulateSpent(response.data.data as Budget[]));
+
+            // 일정 목록 가져오기
+            axios
+              .get(
+                `${
+                  import.meta.env.VITE_VERCEL_API_BASE_URL
+                }/travels/${id}/top-schedules`
+              )
+              .then((response) => {
+                setTopSchedules(response.data.data);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           })
           .catch((error) => {
             if (axios.isAxiosError(error)) {
@@ -77,15 +94,6 @@ export const TravelDetail = withNavigation(() => {
         }
 
         console.log('서버로의 요청에 실패하였습니다.');
-      });
-    // 일정 목록 가져오기
-    axios
-      .get(`${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}/top-schedules`)
-      .then((response) => {
-        setTopSchedules(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }, [id]);
 
@@ -156,7 +164,11 @@ export const TravelDetail = withNavigation(() => {
         memo={memo}
       />
       {/* 예산 정보 */}
-      <TravelBudget currencyUnit={currencyUnit} total={total ?? -1} spent={spent} />
+      <TravelBudget
+        currencyUnit={currencyUnit}
+        total={total ?? -1}
+        spent={spent}
+      />
       {/* 수정 버튼 */}
       <FullWidthButton
         type="button"
@@ -174,18 +186,25 @@ export const TravelDetail = withNavigation(() => {
         <h1 className="my-1 text-primary-100 text-lg">일정 목록</h1>
         {startDate &&
           endDate &&
-          getStringList(new Date(startDate), new Date(endDate)).map((dateString) => (
-            <TodoCard date={new Date(dateString)} route={`/travels/${id}/${dateString}`}>
-              {topSchedules
-                .filter((topSchedule) => topSchedule.schedule_date === dateString)
-                .map((topSchedule) => (
-                  <>
-                    {topSchedule.schedule_content}
-                    <br />
-                  </>
-                ))}
-            </TodoCard>
-          ))}
+          getStringList(new Date(startDate), new Date(endDate)).map(
+            (dateString) => (
+              <TodoCard
+                date={new Date(dateString)}
+                route={`/travels/${id}/${dateString}`}
+              >
+                {topSchedules
+                  .filter(
+                    (topSchedule) => topSchedule.schedule_date === dateString
+                  )
+                  .map((topSchedule) => (
+                    <>
+                      {topSchedule.schedule_content}
+                      <br />
+                    </>
+                  ))}
+              </TodoCard>
+            )
+          )}
       </section>
     </MainWrapper>
   );
