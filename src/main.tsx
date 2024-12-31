@@ -50,4 +50,4 @@ function debounceAdjustings(): void {
 window.addEventListener('resize', debounceAdjustings);
 
 // 화면 방향이 변경될 때
-screen.orientation.addEventListener('change', debounceAdjustings);
+screen.orientation?.addEventListener('change', debounceAdjustings);
