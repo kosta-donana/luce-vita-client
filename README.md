@@ -89,9 +89,37 @@
 
 1 로그인 (Login)
 
+![로그인 전](./images/00-before-login.png)
+
+- 로그인 필수
+
+![로그인](./images/01-login.png)
+
+- 이메일, 비밀번호를 입력해 로그인
+- 소셜 로그인 버튼 (향후 구현)
+
 2 회원가입 (Signup)
 
+![이메일 회원가입](./images/02-signup.png)
+
+- 이메일, 비밀번호를 입력해 회원가입
+
+![이메일 인증](./images/03-signup-verification.png)
+
+- 유효한 이메일인지 인증코드를 해당 이메일로 전송
+
+![이메일 인증 코드](./images/04-email-verification.png)
+
+- 해당 이메일로 인증코드를 받아 이메일 인증 화면에 입력
+
 3 홈 (Home)
+
+![홈](./images/05-home.png)
+
+- 홈 화면
+- 여행 일정 캘린더
+- 현재 진행중인 여행 카드들
+- 예정된 여행 카드들
 
 .. 사진 ..
 
