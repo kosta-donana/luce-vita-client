@@ -21,7 +21,13 @@ export const Todo = withNavigation(() => {
   const scheduleContentRef = useRef<HTMLInputElement>(null);
   const budgetRef = useRef<HTMLInputElement>(null);
 
+  let isSaving = false;
+
   function saveHandler() {
+    if (isSaving) return;
+
+    isSaving = true;
+
     const schedule_list: {
       schedule_id?: number;
       schedule_no: number;
@@ -56,6 +62,9 @@ export const Todo = withNavigation(() => {
         } else {
           alert('서버 오류가 발생하였습니다.');
         }
+      })
+      .finally(() => {
+        isSaving = false;
       });
   }
 
