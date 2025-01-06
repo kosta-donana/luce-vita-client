@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong, faUser, faFloppyDisk, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,7 @@ import { MainWrapper, TopNav, FullWidthButton, Input } from '../components/commo
 import { formatToSimple } from '../utils/format-date.util';
 
 type Todo = {
+  schedule_id?: number;
   schedule_content: string;
   budget: number;
 };
@@ -17,11 +18,36 @@ export const Todo = withNavigation(() => {
   const { id, todoDate } = useParams();
   const [todos, setTodos] = useState<Todo[]>([]);
 
+  const isLoadingRef = useRef<boolean>(true);
   const formRef = useRef<HTMLFormElement>(null);
   const scheduleContentRef = useRef<HTMLInputElement>(null);
   const budgetRef = useRef<HTMLInputElement>(null);
 
   let isSaving = false;
+
+  /**
+   * 서버로부터 최신화된 일정 정보를 가져오는 기능의 함수입니다.
+   */
+  const fetchTodos = useCallback(async () => {
+    isLoadingRef.current = true;
+
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_VERCEL_API_BASE_URL}/travels/${id}/schedules/${todoDate}`
+      );
+
+      setTodos(response.data.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      isLoadingRef.current = false;
+    }
+  }, [id, todoDate]);
+
+  // 서버로부터 일정 정보 가져오기
+  useEffect(() => {
+    fetchTodos();
+  }, [fetchTodos]);
 
   function saveHandler() {
     if (isSaving) return;
@@ -48,6 +74,7 @@ export const Todo = withNavigation(() => {
       .then((response) => {
         if (response.data.success) {
           alert('일정이 성공적으로 저장되었습니다!');
+          fetchTodos();
         } else {
           console.log('서버에서 원인을 알 수 없는 오류가 발생하였습니다.');
         }
@@ -70,6 +97,12 @@ export const Todo = withNavigation(() => {
 
   function createHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (isLoadingRef.current) {
+      alert('서버로부터 최신화된 일정 정보를 가져오는 중입니다..');
+      return;
+    }
+
     const todo: Todo = { schedule_content: '', budget: 0 };
     if (budgetRef.current) {
       // 예산 유효성 검사하기
