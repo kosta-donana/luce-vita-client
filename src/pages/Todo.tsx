@@ -62,13 +62,20 @@ export const Todo = withNavigation(() => {
   function createHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const todo: Todo = { schedule_content: '', budget: 0 };
+    if (budgetRef.current) {
+      // 예산 유효성 검사하기
+      if (Number(budgetRef.current.value) < 0) {
+        budgetRef.current.focus();
+
+        alert('입력하신 금액이 0보다 작습니다. 예산을 정확히 입력해주세요.');
+        return;
+      }
+      todo.budget = Number(budgetRef.current.value);
+      budgetRef.current.value = '';
+    }
     if (scheduleContentRef.current) {
       todo.schedule_content = scheduleContentRef.current.value;
       scheduleContentRef.current.value = '';
-    }
-    if (budgetRef.current) {
-      todo.budget = Number(budgetRef.current.value);
-      budgetRef.current.value = '';
     }
     setTodos((prev) => [...prev, todo]);
   }
