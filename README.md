@@ -44,7 +44,7 @@
 링크 목록
 
 - [Luce Vita 앱](https://luce-vita-client.vercel.app/)
-- [Luce Vita 서버](https://luce-vita-server-test.vercel.app/)
+- [Luce Vita 서버](https://luce-vita-server.vercel.app/)
 - [Luce Vita DB](https://supabase.com/dashboard/project/xvkskcomnspwcdhmdtzu)
 
 ### 2. 기술 스택
