@@ -47,7 +47,7 @@
 - [Luce Vita 서버](https://luce-vita-server.vercel.app/)
 - [Luce Vita DB](https://supabase.com/dashboard/project/xvkskcomnspwcdhmdtzu)
 
-### 2. 기술 스택
+### 2\. 기술 스택
 
 - `TypeScript`: 정적 타입을 도입해 안정성·가독성 향상
 - `React`: 컴포넌트 기반으로 재사용 가능한 UI 구축
@@ -58,7 +58,7 @@
 - `Tailwind CSS`: 간단하고 일관된 디자인 시스템 구현
 - `Font Awesome`: 다양한 아이콘 사용
 
-### 3. 느낀 점
+### 3\. 느낀 점
 
 **함희주**
 
@@ -76,7 +76,7 @@ PM으로서 더 열심히 했어야 하는데 그러지 못해 아쉬웠다. 그
 기간이 아쉬웠고, 테스트의 중요성을 많이 느끼게 된 마무리였다.
 ```
 
-### 4. 기능 (페이지 구성)
+### 4\. 기능 \(페이지 구성\)
 
 1. 로그인 \(Login\)
 2. 회원가입 \(SignUp\)
